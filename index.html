@@ -15,6 +15,11 @@
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <!-- EmailJS for email sending -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("WpFbJdWJXQE0Sg-SJ"); // 公开密钥
+        })();
+    </script>
     <style>
         /* Primary Brand Colors */
         .gradient-bg {
@@ -261,11 +266,7 @@
                         <p class="text-gray-600 text-lg">Fill out the registration form to start your maker journey</p>
                     </div>
                     
-                    <form name="registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
-                        <!-- Hidden bot field for spam protection -->
-                        <input type="hidden" name="bot-field" />
-                        <!-- Hidden form name field -->
-                        <input type="hidden" name="form-name" value="registration" />
+                    <form id="registrationForm" name="registration" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-gray-700 font-bold mb-2">
@@ -630,26 +631,118 @@
                 });
             }
 
-            // Form submission handling
-            const form = document.querySelector('form[name="registration"]');
+            // Form submission handling with EmailJS
+            const form = document.getElementById('registrationForm');
             const successMessage = document.getElementById('successMessage');
             
             if (form) {
                 form.addEventListener('submit', function(e) {
+                    e.preventDefault(); // 阻止默认提交
+                    
                     // 显示加载状态
                     const submitBtn = form.querySelector('button[type="submit"]');
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>发送中...';
                     submitBtn.disabled = true;
                     
-                    // 延迟一点显示成功消息（让Netlify处理表单）
-                    setTimeout(function() {
+                    // 收集表单数据
+                    const formData = new FormData(form);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        country: formData.get('country'),
+                        phone: formData.get('phone') || '未提供',
+                        company: formData.get('company') || '个人参与',
+                        participation_type: formData.get('participation_type'),
+                        team_members: formData.get('team_members') || '无',
+                        power_level: formData.get('power_level'),
+                        source: formData.get('source') || '未选择',
+                        agreed: formData.get('agreed'),
+                        submission_time: new Date().toLocaleString('zh-CN'),
+                        // 格式化的邮件内容
+                        email_content: formatEmailContent(formData)
+                    };
+                    
+                    // 使用EmailJS发送邮件
+                    emailjs.send('service_k8xprge', 'template_registration', {
+                        to_email: 'info@sflaser.net',
+                        from_name: data.name,
+                        from_email: data.email,
+                        subject: 'SKYFIRE第二届DIY激光切割机大赛 - 新注册申请',
+                        message: data.email_content
+                    }).then(function(response) {
+                        console.log('邮件发送成功!', response.status, response.text);
                         // 隐藏表单，显示成功消息
                         form.parentElement.style.display = 'none';
                         successMessage.classList.remove('hidden');
-                        // 滚动到成功消息
                         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 2000);
+                    }, function(error) {
+                        console.log('邮件发送失败...', error);
+                        alert('提交失败，请稍后重试或直接发送邮件到 info@sflaser.net');
+                        // 恢复按钮状态
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    });
                 });
+            }
+            
+            // 格式化邮件内容
+            function formatEmailContent(formData) {
+                return `
+🔥 SKYFIRE第二届DIY激光切割机大赛 - 新注册申请
+
+📋 参赛者信息:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 姓名: ${formData.get('name')}
+📧 邮箱: ${formData.get('email')}
+🌍 国家/地区: ${formData.get('country')}
+📱 电话: ${formData.get('phone') || '未提供'}
+🏢 组织/公司: ${formData.get('company') || '个人参与'}
+
+🔧 参赛信息:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👥 参与类型: ${formData.get('participation_type') === 'individual' ? '个人参与' : '团队参与'}
+${formData.get('participation_type') === 'team' && formData.get('team_members') ? 
+    `👨‍👩‍👧‍👦 团队成员: ${formData.get('team_members')}` : ''}
+⚡ 激光功率: ${getPowerLevelText(formData.get('power_level'))}
+📢 了解渠道: ${getSourceText(formData.get('source'))}
+
+⏰ 提交时间: ${new Date().toLocaleString('zh-CN')}
+✅ 已同意条款: ${formData.get('agreed') === 'yes' ? '是' : '否'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+请及时联系参赛者进行后续安排。
+
+SKYFIRE大赛组委会自动通知系统
+                `;
+            }
+            
+            // 获取功率等级文本
+            function getPowerLevelText(value) {
+                const powerLevels = {
+                    '1kw_1.5kw': '1kW - 1.5kW',
+                    '3kw': '3kW',
+                    '6kw': '6kW',
+                    '12kw': '12kW',
+                    'above_12kw': '12kW以上'
+                };
+                return powerLevels[value] || value;
+            }
+            
+            // 获取来源文本
+            function getSourceText(value) {
+                const sources = {
+                    'social_media': '社交媒体',
+                    'friend_referral': '朋友推荐',
+                    'tech_forum': '技术论坛',
+                    'maker_community': 'Maker社区',
+                    'search_engine': '搜索引擎',
+                    'other': '其他'
+                };
+                return sources[value] || '未选择';
             }
         });
     </script>
