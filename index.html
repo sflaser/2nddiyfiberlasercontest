@@ -110,7 +110,7 @@
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="orange-gradient text-white shadow-xl sticky top-0 z-40" x-data="{ mobileMenuOpen: false }">
+    <nav class="text-gray-800 shadow-xl sticky top-0 z-40" x-data="{ mobileMenuOpen: false }" style="background-color: #fff8f0 !important;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-18">
                 <div class="flex items-center">
@@ -124,29 +124,29 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-1">
-                    <a href="#home" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                    <a href="#home" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-home mr-2"></i>Home
                     </a>
-                    <a href="#registration" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                    <a href="#registration" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-user-plus mr-2"></i>Registration
                     </a>
-                    <a href="evaluation.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                    <a href="evaluation.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-chart-line mr-2"></i>Evaluation
                     </a>
-                    <a href="https://alleriastore.com/" target="_blank" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                    <a href="https://alleriastore.com/" target="_blank" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-shopping-cart mr-2"></i>Laser Kits
                     </a>
-                    <a href="#patterns" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                    <a href="#patterns" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-download mr-2"></i>Patterns
                     </a>
-                    <a href="promotion.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                    <a href="promotion.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-bullhorn mr-2"></i>Promote
                     </a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
                 <div class="lg:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-800 p-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -160,24 +160,24 @@
                  x-transition:leave="transition ease-in duration-150"
                  x-transition:leave-start="opacity-100 translate-y-0"
                  x-transition:leave-end="opacity-0 -translate-y-1"
-                 class="lg:hidden pb-4 border-t border-orange-400 border-opacity-30 mt-4">
+                 class="lg:hidden pb-4 border-t border-gray-300 border-opacity-30 mt-4">
                 <div class="space-y-2 pt-4">
-                    <a href="#home" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                    <a href="#home" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-home mr-3 w-5"></i>Home
                     </a>
-                    <a href="#registration" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                    <a href="#registration" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-user-plus mr-3 w-5"></i>2nd Edition Registration
                     </a>
-                    <a href="evaluation.html" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                    <a href="evaluation.html" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-chart-line mr-3 w-5"></i>Evaluation System
                     </a>
-                    <a href="https://alleriastore.com/" target="_blank" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                    <a href="https://alleriastore.com/" target="_blank" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-shopping-cart mr-3 w-5"></i>Laser Kits
                     </a>
-                    <a href="#patterns" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                    <a href="#patterns" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-download mr-3 w-5"></i>Patterns
                     </a>
-                    <a href="promotion.html" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                    <a href="promotion.html" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-bullhorn mr-3 w-5"></i>Promote Contest
                     </a>
                 </div>
@@ -388,11 +388,11 @@
                     Meet the talented makers who have registered for the competition
                 </p>
                 <div class="mt-6 flex items-center justify-center gap-4">
-                    <span class="bg-gradient-to-r from-orange-400 to-orange-600 text-white px-6 py-3 rounded-full text-lg font-bold shadow-lg">
-                        <i class="fas fa-fire mr-2"></i><span x-text="participants.length"></span> Participants Registered
+                    <span class="bg-white text-black px-6 py-3 rounded-full text-lg font-bold shadow-lg border-2 border-gray-200">
+                        <i class="fas fa-fire mr-2 text-orange-500"></i><span x-text="participants.length"></span> Participants Registered
                     </span>
                     <button @click="loadParticipants()" 
-                            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                            class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
                             title="Refresh participant data">
                         <i class="fas fa-sync-alt mr-1"></i>Refresh
                     </button>
