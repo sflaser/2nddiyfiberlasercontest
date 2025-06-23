@@ -1,6 +1,9 @@
 [build]
   publish = "."
 
+[build.processing]
+  skip_processing = true
+
 # 表单设置
 [[forms]]
   name = "registration"
