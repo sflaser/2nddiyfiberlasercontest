@@ -1,6 +1,5 @@
 [build]
   publish = "."
-  command = ""
 
 # 表单设置
 [[forms]]
