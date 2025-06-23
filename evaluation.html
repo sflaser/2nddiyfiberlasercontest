@@ -539,38 +539,8 @@
                 },
                 
                 loadDemoData() {
-                    const demoParticipants = [
-                        {
-                            id: 1,
-                            name: "John Smith",
-                            email: "john@example.com",
-                            country: "USA",
-                            phone: "+1-555-0123",
-                            company: "Maker Labs Inc",
-                            participationType: "individual",
-                            powerLevel: "3kw",
-                            description: "DIY 3kW fiber laser with custom control system",
-                            videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                            dateAdded: new Date().toISOString(),
-                            scores: {}
-                        },
-                        {
-                            id: 2,
-                            name: "Team Alpha",
-                            email: "team@alpha.com",
-                            country: "Germany",
-                            phone: "+49-123-456789",
-                            company: "Alpha Innovations",
-                            participationType: "team",
-                            powerLevel: "6kw",
-                            description: "High-precision 6kW laser with advanced motion control",
-                            videoUrl: "https://www.facebook.com/watch?v=example",
-                            dateAdded: new Date().toISOString(),
-                            scores: {}
-                        }
-                    ];
-                    
-                    this.participants = demoParticipants;
+                    // No demo data - start with empty participants list
+                    this.participants = [];
                     this.saveParticipants();
                 }
             }
