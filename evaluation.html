@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYFIRE Competition Evaluation System</title>
+    <meta name="description" content="SKYFIRE 2nd DIY Fiber Laser Cutter Competition Evaluation System">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+        .gradient-accent {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+        }
+        .orange-accent { color: #ff8c00; }
+        .orange-bg { background-color: #ff8c00; }
+        .orange-hover:hover { background-color: #e67e00; }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50" x-data="evaluationSystem()">
+    <!-- Navigation -->
+    <nav class="gradient-accent text-white shadow-xl sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <i class="fas fa-fire text-2xl text-yellow-300 animate-pulse"></i>
+                        </div>
+                        <div>
+                            <span class="font-black text-lg tracking-wide">SKYFIRE Evaluation</span>
+                            <div class="text-xs text-orange-200 font-medium -mt-1">Competition Assessment</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <button @click="showLogin = true" 
+                            x-show="!isLoggedIn"
+                            class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                    <button @click="logout()" 
+                            x-show="isLoggedIn"
+                            class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout (<span x-text="currentUser.name"></span>)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div x-show="showLogin" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+         @click.self="showLogin = false">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <h3 class="text-xl font-bold mb-6 text-center">Login to Evaluation System</h3>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Username</label>
+                    <input type="text" x-model="loginForm.username" 
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500"
+                           placeholder="Enter your username">
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Password</label>
+                    <input type="password" x-model="loginForm.password" 
+                           @keyup.enter="login()"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500"
+                           placeholder="Enter your password">
+                </div>
+                
+                <div class="flex gap-2">
+                    <button @click="login()" 
+                            class="flex-1 gradient-accent text-white py-3 rounded-lg font-bold hover:opacity-90 transition-opacity">
+                        Login
+                    </button>
+                    <button @click="showLogin = false" 
+                            class="flex-1 bg-gray-600 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition-colors">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-sm text-gray-600">
+                <p><strong>Default Accounts:</strong></p>
+                <p>Administrator: admin / skyfire2025</p>
+                <p>Judge 1: judge1 / judge123</p>
+                <p>Judge 2: judge2 / judge123</p>
+                <p>Judge 3: judge3 / judge123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Welcome Section -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                <span class="orange-accent">SKYFIRE</span> Competition Evaluation System
+            </h1>
+            <p class="text-xl text-gray-600">Manage participants and evaluate DIY fiber laser cutter projects</p>
+        </div>
+
+        <!-- Admin Panel -->
+        <div x-show="isLoggedIn && currentUser.role === 'admin'" class="mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-user-cog orange-accent mr-3"></i>Administrator Panel
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Add Participant Form -->
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold mb-4">Add New Participant</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">Participant Name</label>
+                                <input type="text" x-model="newParticipant.name" 
+                                       class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">Email</label>
+                                <input type="email" x-model="newParticipant.email" 
+                                       class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Country</label>
+                                    <input type="text" x-model="newParticipant.country" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Phone</label>
+                                    <input type="text" x-model="newParticipant.phone" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">Company/Organization</label>
+                                <input type="text" x-model="newParticipant.company" 
+                                       class="w-full p-3 border border-gray-300 rounded-lg">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Participation Type</label>
+                                    <select x-model="newParticipant.participationType" 
+                                            class="w-full p-3 border border-gray-300 rounded-lg">
+                                        <option value="">Select Type</option>
+                                        <option value="individual">Individual</option>
+                                        <option value="team">Team</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-bold mb-2">Power Level</label>
+                                    <select x-model="newParticipant.powerLevel" 
+                                            class="w-full p-3 border border-gray-300 rounded-lg">
+                                        <option value="">Select Power</option>
+                                        <option value="1kw_1.5kw">1kW - 1.5kW</option>
+                                        <option value="3kw">3kW</option>
+                                        <option value="6kw">6kW</option>
+                                        <option value="12kw">12kW</option>
+                                        <option value="above_12kw">Above 12kW</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">Project Description</label>
+                                <textarea x-model="newParticipant.description" 
+                                          class="w-full p-3 border border-gray-300 rounded-lg h-24"
+                                          placeholder="Brief description of the project..."></textarea>
+                            </div>
+                            
+                            <button @click="addParticipant()" 
+                                    class="w-full gradient-accent text-white py-3 rounded-lg font-bold hover:opacity-90">
+                                <i class="fas fa-plus mr-2"></i>Add Participant
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Statistics -->
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold mb-4">Competition Statistics</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-blue-600" x-text="participants.length"></div>
+                                <div class="text-gray-600">Total Participants</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-green-600" x-text="participants.filter(p => p.scores && Object.keys(p.scores).length > 0).length"></div>
+                                <div class="text-gray-600">Evaluated Projects</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-orange-600" x-text="participants.filter(p => p.participationType === 'team').length"></div>
+                                <div class="text-gray-600">Team Participations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Participants List -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold flex items-center">
+                    <i class="fas fa-users orange-accent mr-3"></i>Competition Participants
+                </h2>
+                <div class="text-sm text-gray-600">
+                    Total: <span class="font-bold" x-text="participants.length"></span> participants
+                </div>
+            </div>
+            
+            <!-- Search and Filter -->
+            <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                <div class="flex-1">
+                    <input type="text" x-model="searchTerm" 
+                           placeholder="Search participants..."
+                           class="w-full p-3 border border-gray-300 rounded-lg">
+                </div>
+                <select x-model="filterType" class="p-3 border border-gray-300 rounded-lg">
+                    <option value="">All Types</option>
+                    <option value="individual">Individual</option>
+                    <option value="team">Team</option>
+                </select>
+            </div>
+            
+            <!-- Participants Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="participant in filteredParticipants" :key="participant.id">
+                    <div class="border border-gray-200 rounded-lg p-6 card-hover transition-all duration-300">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-bold text-lg" x-text="participant.name"></h3>
+                                <p class="text-gray-600 text-sm" x-text="participant.email"></p>
+                            </div>
+                            <span class="px-2 py-1 text-xs font-bold rounded"
+                                  :class="participant.participationType === 'team' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'"
+                                  x-text="participant.participationType === 'team' ? 'Team' : 'Individual'">
+                            </span>
+                        </div>
+                        
+                        <div class="space-y-2 text-sm text-gray-600 mb-4">
+                            <div><i class="fas fa-globe w-4"></i> <span x-text="participant.country"></span></div>
+                            <div><i class="fas fa-building w-4"></i> <span x-text="participant.company || 'Individual'"></span></div>
+                            <div><i class="fas fa-bolt w-4"></i> <span x-text="participant.powerLevel"></span></div>
+                            <div x-show="participant.description" class="text-xs"><i class="fas fa-info-circle w-4"></i> <span x-text="participant.description"></span></div>
+                        </div>
+                        
+                        <!-- Scoring Section -->
+                        <div x-show="isLoggedIn && currentUser.role === 'judge'" class="border-t pt-4">
+                            <h4 class="font-bold text-sm mb-3">Judge Evaluation</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs">Appearance Design:</span>
+                                    <select @change="updateScore(participant.id, 'appearance', $event.target.value)"
+                                            class="text-xs p-1 border rounded">
+                                        <option value="">-</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs">Innovation:</span>
+                                    <select @change="updateScore(participant.id, 'innovation', $event.target.value)"
+                                            class="text-xs p-1 border rounded">
+                                        <option value="">-</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs">Cutting Performance:</span>
+                                    <select @change="updateScore(participant.id, 'performance', $event.target.value)"
+                                            class="text-xs p-1 border rounded">
+                                        <option value="">-</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs">Expandability:</span>
+                                    <select @change="updateScore(participant.id, 'expandability', $event.target.value)"
+                                            class="text-xs p-1 border rounded">
+                                        <option value="">-</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Scores Display -->
+                        <div x-show="participant.scores && Object.keys(participant.scores).length > 0" class="border-t pt-4 mt-4">
+                            <h4 class="font-bold text-sm mb-2">Evaluation Scores</h4>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <template x-for="(scores, judge) in participant.scores" :key="judge">
+                                    <div class="bg-gray-50 p-2 rounded">
+                                        <div class="font-bold" x-text="judge"></div>
+                                        <div>App: <span x-text="scores.appearance || '-'"></span></div>
+                                        <div>Inn: <span x-text="scores.innovation || '-'"></span></div>
+                                        <div>Perf: <span x-text="scores.performance || '-'"></span></div>
+                                        <div>Exp: <span x-text="scores.expandability || '-'"></span></div>
+                                        <div class="font-bold">Total: <span x-text="calculateTotalScore(scores)"></span>/20</div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        
+                        <!-- Admin Actions -->
+                        <div x-show="isLoggedIn && currentUser.role === 'admin'" class="border-t pt-4 mt-4">
+                            <button @click="deleteParticipant(participant.id)" 
+                                    class="text-red-600 hover:text-red-800 text-sm">
+                                <i class="fas fa-trash mr-1"></i>Delete
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <div x-show="filteredParticipants.length === 0" class="text-center py-12 text-gray-500">
+                <i class="fas fa-users text-4xl mb-4"></i>
+                <p>No participants found</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function evaluationSystem() {
+            return {
+                showLogin: false,
+                isLoggedIn: false,
+                currentUser: null,
+                searchTerm: '',
+                filterType: '',
+                
+                loginForm: {
+                    username: '',
+                    password: ''
+                },
+                
+                participants: JSON.parse(localStorage.getItem('skyfire_participants') || '[]'),
+                
+                newParticipant: {
+                    name: '',
+                    email: '',
+                    country: '',
+                    phone: '',
+                    company: '',
+                    participationType: '',
+                    powerLevel: '',
+                    description: ''
+                },
+                
+                // Default users
+                users: {
+                    'admin': { name: 'Administrator', role: 'admin', password: 'skyfire2025' },
+                    'judge1': { name: 'Judge 1', role: 'judge', password: 'judge123' },
+                    'judge2': { name: 'Judge 2', role: 'judge', password: 'judge123' },
+                    'judge3': { name: 'Judge 3', role: 'judge', password: 'judge123' }
+                },
+                
+                init() {
+                    // Check if user is already logged in
+                    const savedUser = localStorage.getItem('skyfire_user');
+                    if (savedUser) {
+                        this.currentUser = JSON.parse(savedUser);
+                        this.isLoggedIn = true;
+                    }
+                    
+                    // Load demo data if empty
+                    if (this.participants.length === 0) {
+                        this.loadDemoData();
+                    }
+                },
+                
+                login() {
+                    const user = this.users[this.loginForm.username];
+                    if (user && user.password === this.loginForm.password) {
+                        this.currentUser = { username: this.loginForm.username, ...user };
+                        this.isLoggedIn = true;
+                        this.showLogin = false;
+                        this.loginForm = { username: '', password: '' };
+                        localStorage.setItem('skyfire_user', JSON.stringify(this.currentUser));
+                    } else {
+                        alert('Invalid username or password');
+                    }
+                },
+                
+                logout() {
+                    this.isLoggedIn = false;
+                    this.currentUser = null;
+                    localStorage.removeItem('skyfire_user');
+                },
+                
+                addParticipant() {
+                    if (!this.newParticipant.name || !this.newParticipant.email) {
+                        alert('Please fill in required fields');
+                        return;
+                    }
+                    
+                    const participant = {
+                        id: Date.now(),
+                        ...this.newParticipant,
+                        dateAdded: new Date().toISOString(),
+                        scores: {}
+                    };
+                    
+                    this.participants.push(participant);
+                    this.saveParticipants();
+                    
+                    // Reset form
+                    this.newParticipant = {
+                        name: '', email: '', country: '', phone: '', 
+                        company: '', participationType: '', powerLevel: '', description: ''
+                    };
+                    
+                    alert('Participant added successfully!');
+                },
+                
+                deleteParticipant(id) {
+                    if (confirm('Are you sure you want to delete this participant?')) {
+                        this.participants = this.participants.filter(p => p.id !== id);
+                        this.saveParticipants();
+                    }
+                },
+                
+                updateScore(participantId, criterion, score) {
+                    const participant = this.participants.find(p => p.id === participantId);
+                    if (participant) {
+                        if (!participant.scores[this.currentUser.username]) {
+                            participant.scores[this.currentUser.username] = {};
+                        }
+                        participant.scores[this.currentUser.username][criterion] = parseInt(score);
+                        this.saveParticipants();
+                    }
+                },
+                
+                calculateTotalScore(scores) {
+                    return (parseInt(scores.appearance || 0) + 
+                            parseInt(scores.innovation || 0) + 
+                            parseInt(scores.performance || 0) + 
+                            parseInt(scores.expandability || 0));
+                },
+                
+                get filteredParticipants() {
+                    let filtered = this.participants;
+                    
+                    if (this.searchTerm) {
+                        filtered = filtered.filter(p => 
+                            p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            p.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            p.country.toLowerCase().includes(this.searchTerm.toLowerCase())
+                        );
+                    }
+                    
+                    if (this.filterType) {
+                        filtered = filtered.filter(p => p.participationType === this.filterType);
+                    }
+                    
+                    return filtered;
+                },
+                
+                saveParticipants() {
+                    localStorage.setItem('skyfire_participants', JSON.stringify(this.participants));
+                },
+                
+                loadDemoData() {
+                    const demoParticipants = [
+                        {
+                            id: 1,
+                            name: "John Smith",
+                            email: "john@example.com",
+                            country: "USA",
+                            phone: "+1-555-0123",
+                            company: "Maker Labs Inc",
+                            participationType: "individual",
+                            powerLevel: "3kw",
+                            description: "DIY 3kW fiber laser with custom control system",
+                            dateAdded: new Date().toISOString(),
+                            scores: {}
+                        },
+                        {
+                            id: 2,
+                            name: "Team Alpha",
+                            email: "team@alpha.com",
+                            country: "Germany",
+                            phone: "+49-123-456789",
+                            company: "Alpha Innovations",
+                            participationType: "team",
+                            powerLevel: "6kw",
+                            description: "High-precision 6kW laser with advanced motion control",
+                            dateAdded: new Date().toISOString(),
+                            scores: {}
+                        }
+                    ];
+                    
+                    this.participants = demoParticipants;
+                    this.saveParticipants();
+                }
+            }
+        }
+    </script>
+</body>
+</html> 
