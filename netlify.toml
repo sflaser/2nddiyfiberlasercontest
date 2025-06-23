@@ -1,45 +1,9 @@
 [build]
-  # 发布目录 (当前目录的所有文件)
   publish = "."
-  
-  # 没有构建命令，因为这是静态站点
-  command = ""
-
-[build.environment]
-  # Node.js版本 (如果需要)
-  NODE_VERSION = "18"
 
 # 表单设置
 [[forms]]
   name = "registration"
-  
-# 表单处理设置
-[build.processing]
-  skip_processing = false
-[build.processing.css]
-  bundle = false
-  minify = false
-[build.processing.js]
-  bundle = false
-  minify = false
-[build.processing.html]
-  pretty_urls = false
-
-# 头部设置
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
-# 文件类型设置
-[[headers]]
-  for = "*.dxf"
-  [headers.values]
-    Content-Type = "application/octet-stream"
-    Content-Disposition = "attachment"
 
 # 重定向规则
 [[redirects]]
