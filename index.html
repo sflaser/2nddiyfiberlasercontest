@@ -664,7 +664,7 @@
                     };
                     
                     // 创建邮件链接并打开默认邮件客户端
-                    const subject = encodeURIComponent('SKYFIRE第二届DIY激光切割机大赛 - 新注册申请');
+                    const subject = encodeURIComponent('SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration');
                     const body = encodeURIComponent(data.email_content);
                     const mailtoLink = `mailto:info@sflaser.net?subject=${subject}&body=${body}`;
                     
@@ -693,34 +693,34 @@
             // 格式化邮件内容
             function formatEmailContent(formData) {
                 return `
-🔥 SKYFIRE第二届DIY激光切割机大赛 - 新注册申请
+🔥 SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration
 
-📋 参赛者信息:
+📋 PARTICIPANT INFORMATION:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-👤 姓名: ${formData.get('name')}
-📧 邮箱: ${formData.get('email')}
-🌍 国家/地区: ${formData.get('country')}
-📱 电话: ${formData.get('phone') || '未提供'}
-🏢 组织/公司: ${formData.get('company') || '个人参与'}
+👤 Name: ${formData.get('name')}
+📧 Email: ${formData.get('email')}
+🌍 Country/Region: ${formData.get('country')}
+📱 Phone: ${formData.get('phone') || 'Not provided'}
+🏢 Organization/Company: ${formData.get('company') || 'Individual participation'}
 
-🔧 参赛信息:
+🔧 COMPETITION DETAILS:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-👥 参与类型: ${formData.get('participation_type') === 'individual' ? '个人参与' : '团队参与'}
+👥 Participation Type: ${formData.get('participation_type') === 'individual' ? 'Individual Participation' : 'Team Participation'}
 ${formData.get('participation_type') === 'team' && formData.get('team_members') ? 
-    `👨‍👩‍👧‍👦 团队成员: ${formData.get('team_members')}` : ''}
-⚡ 激光功率: ${getPowerLevelText(formData.get('power_level'))}
-📢 了解渠道: ${getSourceText(formData.get('source'))}
+    `👨‍👩‍👧‍👦 Team Members: ${formData.get('team_members')}` : ''}
+⚡ Laser Power Level: ${getPowerLevelText(formData.get('power_level'))}
+📢 How they heard about us: ${getSourceText(formData.get('source'))}
 
-⏰ 提交时间: ${new Date().toLocaleString('zh-CN')}
-✅ 已同意条款: ${formData.get('agreed') === 'yes' ? '是' : '否'}
+⏰ Submission Time: ${new Date().toLocaleString('en-US')}
+✅ Agreed to Terms: ${formData.get('agreed') === 'yes' ? 'Yes' : 'No'}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-请及时联系参赛者进行后续安排。
+Please contact the participant promptly for further arrangements.
 
-SKYFIRE大赛组委会自动通知系统
+SKYFIRE Competition Committee - Automated Notification System
                 `;
             }
             
@@ -731,7 +731,7 @@ SKYFIRE大赛组委会自动通知系统
                     '3kw': '3kW',
                     '6kw': '6kW',
                     '12kw': '12kW',
-                    'above_12kw': '12kW以上'
+                    'above_12kw': 'Above 12kW'
                 };
                 return powerLevels[value] || value;
             }
@@ -739,14 +739,14 @@ SKYFIRE大赛组委会自动通知系统
             // 获取来源文本
             function getSourceText(value) {
                 const sources = {
-                    'social_media': '社交媒体',
-                    'friend_referral': '朋友推荐',
-                    'tech_forum': '技术论坛',
-                    'maker_community': 'Maker社区',
-                    'search_engine': '搜索引擎',
-                    'other': '其他'
+                    'social_media': 'Social Media',
+                    'friend_referral': 'Friend Referral',
+                    'tech_forum': 'Tech Forum',
+                    'maker_community': 'Maker Community',
+                    'search_engine': 'Search Engine',
+                    'other': 'Other'
                 };
-                return sources[value] || '未选择';
+                return sources[value] || 'Not selected';
             }
             
             // 显示邮件发送说明
@@ -759,8 +759,8 @@ SKYFIRE大赛组委会自动通知系统
                         <p class="mb-4">请复制以下内容并发送邮件到：<strong>info@sflaser.net</strong></p>
                         
                         <div class="bg-gray-100 p-4 rounded text-sm mb-4">
-                            <strong>邮件主题：</strong>SKYFIRE第二届DIY激光切割机大赛 - 新注册申请<br><br>
-                            <strong>邮件内容：</strong><br>
+                            <strong>Email Subject:</strong> SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration<br><br>
+                            <strong>Email Content:</strong><br>
                             <textarea readonly class="w-full h-40 text-xs bg-white border p-2 mt-2">${data.email_content}</textarea>
                         </div>
                         
