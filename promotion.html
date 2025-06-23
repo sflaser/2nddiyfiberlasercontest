@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>SKYFIRE 2nd Edition DIY Contest Promotion v3.0 - Share the Maker Spirit</title>
+    <meta name="description" content="Share SKYFIRE 2nd Edition DIY Fiber Laser Cutter Contest, invite global makers to participate and share innovation">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/mobile.css?v=3.0" rel="stylesheet">
+    <style>
+        /* Consistent styling with main page */
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+        }
+        .orange-hover:hover {
+            background-color: #e67e00;
+        }
+        .section-blue {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+        .section-orange {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+        }
+        
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .qr-code {
+            background: qr-code-generator('https://diyfiberlasercontest.web.app');
+        }
+        .copy-success {
+            animation: copyPulse 0.6s ease-in-out;
+        }
+        @keyframes copyPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Orange accent colors */
+        .orange-accent { color: #ff8c00; }
+        .orange-bg { background-color: #ff8c00; }
+        .orange-shadow {
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        /* Reddit button hover effect */
+        .reddit-button {
+            background-color: #FF4500 !important;
+        }
+        .reddit-button:hover {
+            background-color: #E03D00 !important;
+        }
+        
+        /* LinkedIn button official color */
+        .linkedin-button {
+            background-color: #0077B5 !important;
+        }
+        .linkedin-button:hover {
+            background-color: #005885 !important;
+        }
+        
+        /* Telegram button official color */
+        .telegram-button {
+            background-color: #0088CC !important;
+        }
+        .telegram-button:hover {
+            background-color: #006699 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header with consistent orange gradient -->
+    <header class="orange-gradient text-white py-8 shadow-xl">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">📢 Help Promote <span class="text-white">SKYFIRE</span> 2nd Edition Contest</h1>
+                <p class="text-xl opacity-90 leading-relaxed max-w-3xl mx-auto">Share the maker spirit together and invite more creators to participate in this exciting <strong>DIY Fiber Laser Cutter Competition</strong></p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Share Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">🚀 One-Click Share to Social Media</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                <button onclick="shareToTwitter()" class="share-button bg-black hover:bg-gray-800 text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-twitter text-3xl mb-2"></i>
+                    <div class="font-bold">X (Twitter)</div>
+                </button>
+                
+                <button onclick="shareToLinkedIn()" class="share-button linkedin-button text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-linkedin text-3xl mb-2"></i>
+                    <div class="font-bold">LinkedIn</div>
+                </button>
+                
+                <button onclick="shareToFacebook()" class="share-button bg-blue-600 hover:bg-blue-700 text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-facebook text-3xl mb-2"></i>
+                    <div class="font-bold">Facebook</div>
+                </button>
+                
+                <button onclick="shareToTelegram()" class="share-button telegram-button text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-telegram text-3xl mb-2"></i>
+                    <div class="font-bold">Telegram</div>
+                </button>
+                
+                <button onclick="shareToReddit()" class="share-button reddit-button text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-reddit text-3xl mb-2"></i>
+                    <div class="font-bold">Reddit</div>
+                </button>
+                
+                <button onclick="copyShareLink()" class="share-button bg-gray-600 hover:bg-gray-700 text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fas fa-copy text-3xl mb-2"></i>
+                    <div class="font-bold">Copy Link</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Templates -->
+    <section class="py-12 section-blue">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">📝 Share Content Templates</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Short Version Template -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-gray-800">
+                        <i class="fas fa-bolt mr-2 orange-accent"></i>Short Version
+                    </h3>
+                    <p class="text-gray-600 mb-4">Perfect for Twitter, LinkedIn posts</p>
+                    
+                    <div class="border rounded-lg p-4">
+                        <div class="bg-gray-50 p-4 rounded text-sm mb-3 leading-relaxed" id="shortTemplate">
+🔥 <strong>SKYFIRE 2nd DIY Fiber Laser Cutter Competition</strong> is NOW OPEN!
+
+💰 <strong>$5,800 prize pool</strong> - $3,000 for 1st place!
+🎯 Showcase your creativity & skills with global makers
+
+📝 <strong>Register:</strong> https://www.diyfiberlasercontest.com
+
+<em>#SKYFIRE #DIY #LaserCutting #MakerCompetition #Innovation</em>
+                        </div>
+                        <button onclick="copyText('shortTemplate')" class="orange-gradient text-white px-4 py-2 rounded text-sm font-semibold transition-all duration-300 hover:orange-hover orange-shadow">
+                            <i class="fas fa-copy mr-1"></i>Copy Text
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Detailed Version Template -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-gray-800">
+                        <i class="fas fa-align-left mr-2 text-green-600"></i>Detailed Version
+                    </h3>
+                    <p class="text-gray-600 mb-4">Perfect for Facebook, Reddit, forums</p>
+                    
+                    <div class="border rounded-lg p-4">
+                        <div class="bg-gray-50 p-4 rounded text-sm mb-3 leading-relaxed" id="longTemplate">
+🔥 <strong>SKYFIRE 2nd DIY Fiber Laser Cutter Competition</strong> 🔥
+
+🎉 <strong>Calling all makers!</strong> Time to showcase your DIY fiber laser cutting skills!
+
+🏆 <strong>Competition Highlights:</strong>
+   • <strong>$5,800 total prize pool</strong> ($3,000 for 1st place!)
+   • Professional judge panel with fair evaluation
+   • Global participation, boost your international presence
+   • Project showcase platform for tech exchange
+
+📅 <strong>Important Dates:</strong>
+   • <strong>Registration Deadline:</strong> August 31, 2025
+   • <strong>Project Submission:</strong> September 30, 2025
+   • <strong>Results Announcement:</strong> October 31, 2025
+
+🎯 <strong>Evaluation Categories:</strong>
+   Appearance Design | Innovation | Cutting Performance | Expandability | Environmental Impact
+
+Whether you're an individual maker or team, everyone's welcome! Let's advance DIY laser cutting technology together!
+
+🔗 <strong>Register Now:</strong> https://www.diyfiberlasercontest.com
+
+<em>#SKYFIRE #DIY #FiberLaser #MakerCompetition #TechInnovation #LaserCutting</em>
+                        </div>
+                        <button onclick="copyText('longTemplate')" class="orange-gradient text-white px-4 py-2 rounded text-sm font-semibold transition-all duration-300 hover:orange-hover orange-shadow">
+                            <i class="fas fa-copy mr-1"></i>Copy Text
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Code & Assets -->
+    <section class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">🎨 Promotional Materials Download</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- QR Code -->
+                <div class="text-center">
+                    <div class="bg-white border-2 border-gray-200 rounded-lg p-6 inline-block mb-4">
+                        <div id="qrcode" class="w-48 h-48 bg-gray-100 rounded flex items-center justify-center">
+                            <img id="qrCodeImg" 
+                                 src="https://api.qrserver.com/v1/create-qr-code/?size=192x192&data=https://www.diyfiberlasercontest.com" 
+                                 alt="Contest Registration QR Code" 
+                                 class="w-full h-full object-contain"
+                                 style="display: block;">
+                        </div>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800 text-lg">📱 Exclusive QR Code</h3>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">Scan to go directly to <strong>registration page</strong></p>
+                    <button onclick="downloadQRCode()" class="orange-gradient text-white px-4 py-2 rounded font-semibold transition-all duration-300 hover:orange-hover orange-shadow">
+                        <i class="fas fa-download mr-2"></i>Download QR Code
+                    </button>
+                </div>
+                
+                <!-- Competition Stats -->
+                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-lg p-6 border border-orange-200">
+                    <h3 class="font-bold text-xl mb-4 text-gray-800">📊 Contest Statistics</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700 font-medium">Registered:</span>
+                            <span id="totalRegistrations" class="font-bold orange-accent text-lg">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700 font-medium">Countries:</span>
+                            <span id="totalCountries" class="font-bold text-green-600 text-lg">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700 font-medium">Prize Pool:</span>
+                            <span class="font-bold text-purple-600 text-lg">$5,800</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700 font-medium">Deadline:</span>
+                            <span class="font-bold text-red-600 text-lg">Aug 31, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Promotion Goals -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+                    <h3 class="font-bold text-xl mb-4 text-gray-800">🎯 Promotion Goals</h3>
+                    <div class="space-y-3">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600">500+</div>
+                            <div class="text-sm text-gray-600">Target Participants</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-orange-600">30+</div>
+                            <div class="text-sm text-gray-600">Target Countries</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600">100K+</div>
+                            <div class="text-sm text-gray-600">Target Reach</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Tips -->
+    <section class="py-12 section-orange">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">💡 Promotion Strategies</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users orange-accent text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800">Maker Communities</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Share in <strong>makerspaces</strong>, <strong>tech forums</strong>, and <strong>DIY groups</strong> to reach target audience</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-green-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800">Educational Institutions</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Contact <strong>engineering schools</strong> and <strong>technical colleges</strong> to encourage student team participation</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-industry text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800">Industry Media</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Submit to <strong>manufacturing</strong> and <strong>laser technology media</strong> to expand reach</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-video text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800">Video Platforms</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Create introduction videos on <strong>YouTube</strong>, <strong>TikTok</strong> demonstrating contest highlights</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-handshake text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800">Partnership Promotion</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Collaborate with <strong>laser equipment manufacturers</strong> and <strong>tech influencers</strong></p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-alt text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-3 text-gray-800">Trade Shows & Events</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Promote at <strong>manufacturing trade shows</strong> and <strong>maker fairs</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Support -->
+    <section class="py-12 orange-gradient text-white">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">🤝 Need Promotion Support?</h2>
+            <p class="text-xl mb-8 text-orange-100 leading-relaxed max-w-4xl mx-auto">We provide <strong class="text-white">promotional materials</strong> and <strong class="text-white">technical support</strong> to help more people learn about <strong class="text-white">SKYFIRE Contest</strong>!</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:info@sflaser.net" class="bg-white text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-lg">
+                    <i class="fas fa-envelope mr-2"></i>Contact Committee
+                </a>
+                <a href="index.html" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-orange-600 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Share functionality
+        const shareUrl = 'https://www.diyfiberlasercontest.com';
+        const shareTitle = 'SKYFIRE 2nd Edition DIY Fiber Laser Cutter Competition';
+        const shareDescription = 'Showcase creativity & skills in the global DIY fiber laser cutter competition, $5,800 prize pool!';
+
+        function shareToTwitter() {
+            const text = `🔥 ${shareTitle} is NOW OPEN! 💰 $5,800 prize pool! Join the global maker community and showcase your DIY skills! 🎯`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToLinkedIn() {
+            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToFacebook() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToTelegram() {
+            const text = `${shareTitle}\n${shareDescription}`;
+            const url = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToReddit() {
+            const title = `🔥 ${shareTitle} - $5,800 Prize Pool!`;
+            const url = `https://reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(title)}`;
+            window.open(url, '_blank');
+        }
+
+        function copyShareLink() {
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                showNotification('Link copied to clipboard!', 'success');
+            });
+        }
+
+        function copyText(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Text copied!', 'success');
+                element.classList.add('copy-success');
+                setTimeout(() => element.classList.remove('copy-success'), 600);
+            });
+        }
+
+        function downloadQRCode() {
+            // Create a download link for the QR code image
+            const qrCodeUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=https://www.diyfiberlasercontest.com';
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = qrCodeUrl;
+            link.download = 'SKYFIRE_Contest_QR_Code.png';
+            
+            // Trigger the download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showNotification('QR Code download started!', 'success');
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg transition-all duration-300 ${
+                type === 'success' ? 'bg-green-600 text-white' :
+                type === 'error' ? 'bg-red-600 text-white' :
+                'bg-blue-600 text-white'
+            }`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Load statistics data
+        async function loadStats() {
+            try {
+                // Import Firebase functions for 2nd edition registrations
+                const { 
+                    getFirestore, 
+                    collection, 
+                    getDocs 
+                } = await import('https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js');
+                const { db } = await import('./js/firebase-config.js');
+                
+                // Get 2nd edition registration data from the correct collection
+                const registrationsCollection = collection(db, "registrations_2025");
+                const querySnapshot = await getDocs(registrationsCollection);
+                
+                // Calculate statistics from 2nd edition registrations
+                const totalRegistrations = querySnapshot.size;
+                const countries = new Set();
+                
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.country) {
+                        countries.add(data.country);
+                    }
+                });
+                
+                const totalCountries = countries.size;
+                
+                // Update display
+                document.getElementById('totalRegistrations').textContent = totalRegistrations.toString();
+                document.getElementById('totalCountries').textContent = totalCountries.toString();
+                
+                console.log(`Loaded ${totalRegistrations} registrations from ${totalCountries} countries (2nd Edition)`);
+                
+            } catch (error) {
+                console.error('Failed to load statistics:', error);
+                // Fallback to 0 if error occurs
+                document.getElementById('totalRegistrations').textContent = '0';
+                document.getElementById('totalCountries').textContent = '0';
+            }
+        }
+
+        // Ensure QR code loads properly
+        function initQRCode() {
+            const qrImg = document.getElementById('qrCodeImg');
+            if (qrImg) {
+                qrImg.onerror = function() {
+                    console.error('Failed to load QR code from API');
+                    // Fallback to show a message
+                    const qrContainer = document.getElementById('qrcode');
+                    qrContainer.innerHTML = `
+                        <div class="text-center">
+                            <i class="fas fa-qrcode text-4xl text-gray-400 mb-2"></i>
+                            <div class="text-sm text-gray-500">QR Code Loading...</div>
+                            <div class="text-xs text-gray-400 mt-1">Please try refresh if not showing</div>
+                        </div>
+                    `;
+                };
+                
+                qrImg.onload = function() {
+                    console.log('QR code loaded successfully');
+                };
+            }
+        }
+
+        // Execute after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            initQRCode();
+        });
+    </script>
+</body>
+</html> 

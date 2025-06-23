@@ -1,0 +1,8 @@
+# Netlify redirects file for SKYFIRE Contest
+
+# Admin panel access
+/admin  /admin.html  200
+
+# Promotion page
+/promote  /promotion.html  200
+/promotion  /promotion.html  200 

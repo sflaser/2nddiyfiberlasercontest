@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>SKYFIRE DIY Fiber Laser Cutter Competition - 2nd Edition Registration v4.0</title>
+    <meta name="description" content="SKYFIRE 2nd DIY Fiber Laser Cutter Competition - Professional registration platform for makers worldwide">
+    <meta name="keywords" content="laser cutting,DIY,fiber laser,competition registration,SKYFIRE,maker,manufacturing">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/mobile.css?v=3.0" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- EmailJS for email sending -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        /* Primary Brand Colors */
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+        .gradient-accent {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+        }
+        .gradient-secondary {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+        }
+        
+        /* Card Effects */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+        }
+        .card-hover-orange:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.15);
+        }
+        
+        /* Laser Effect Animation */
+        .laser-effect {
+            background: linear-gradient(90deg, #ff8c00, #ffb347, #ffd700, #ff8c00);
+            background-size: 200% 200%;
+            animation: laser 3s ease infinite;
+        }
+        @keyframes laser {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Layout */
+        .competition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Pulse Animation */
+        .pulse-ring {
+            animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(.33); }
+            80%, 100% { opacity: 0; }
+        }
+        
+        /* Color Classes */
+        .orange-accent { color: #ff8c00; }
+        .orange-bg { background-color: #ff8c00; }
+        .orange-bg-light { background-color: #fff4e6; }
+        .orange-border { border-color: #ff8c00; }
+        .orange-hover:hover { background-color: #e67e00; }
+        .orange-text-light { color: #ffb347; }
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+        }
+        .orange-shadow {
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+        .blue-shadow {
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+        .focus-orange:focus {
+            border-color: #ff8c00;
+            ring-color: rgba(255, 140, 0, 0.3);
+        }
+        
+        /* Hero Section Styling */
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(29, 78, 216, 0.8) 100%);
+        }
+        
+        /* Section Backgrounds */
+        .section-blue {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+        .section-orange {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="orange-gradient text-white shadow-xl sticky top-0 z-40" x-data="{ mobileMenuOpen: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-18">
+                <div class="flex items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <i class="fas fa-fire text-3xl text-yellow-300 animate-pulse"></i>
+                            <div class="absolute -top-1 -right-1 w-2 h-2 bg-yellow-400 rounded-full animate-ping"></div>
+                        </div>
+                        <div>
+                            <span class="font-black text-xl tracking-wide">SKYFIRE</span>
+                            <div class="text-xs text-orange-200 font-medium -mt-1">DIY Competition</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="#home" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="#registration" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-user-plus mr-2"></i>Registration
+                    </a>
+                    <a href="https://alleriastore.com/" target="_blank" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-shopping-cart mr-2"></i>Laser Kits
+                    </a>
+                    <a href="#patterns" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-download mr-2"></i>Patterns
+                    </a>
+                    <a href="promotion.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300 font-medium text-sm">
+                        <i class="fas fa-bullhorn mr-2"></i>Promote
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenuOpen" 
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 -translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-1"
+                 class="lg:hidden pb-4 border-t border-orange-400 border-opacity-30 mt-4">
+                <div class="space-y-2 pt-4">
+                    <a href="#home" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                        <i class="fas fa-home mr-3 w-5"></i>Home
+                    </a>
+                    <a href="#registration" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                        <i class="fas fa-user-plus mr-3 w-5"></i>2nd Edition Registration
+                    </a>
+                    <a href="https://alleriastore.com/" target="_blank" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                        <i class="fas fa-shopping-cart mr-3 w-5"></i>Laser Kits
+                    </a>
+                    <a href="#patterns" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                        <i class="fas fa-download mr-3 w-5"></i>Patterns
+                    </a>
+                    <a href="promotion.html" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-20 transition-colors font-medium">
+                        <i class="fas fa-bullhorn mr-3 w-5"></i>Promote Contest
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-white py-20 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-10 left-10 w-20 h-20 border-2 border-orange-300 rounded-full pulse-ring"></div>
+            <div class="absolute top-20 right-20 w-16 h-16 border-2 border-orange-300 rounded-full pulse-ring" style="animation-delay: 0.5s;"></div>
+            <div class="absolute bottom-20 left-20 w-24 h-24 border-2 border-orange-300 rounded-full pulse-ring" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <div class="mb-6">
+                <span class="orange-gradient text-white px-4 py-2 rounded-full text-sm font-bold orange-shadow">
+                    🔥 2nd Edition Contest Registration Now Open!
+                </span>
+            </div>
+            
+            <h1 class="text-5xl font-bold mb-6 text-gray-800">
+                <span class="text-gray-800">SKYFIRE</span>
+                <br>DIY Fiber Laser Cutter Competition
+            </h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto text-gray-600">
+                Showcase Your Creativity & Skills - Join the Global DIY Fiber Laser Cutter Competition<br>
+                Professional Registration Platform for Your Projects to Shine on the World Stage
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <a href="#registration" class="orange-gradient hover:orange-hover text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 orange-shadow">
+                    <i class="fas fa-user-plus mr-2"></i>Register for 2nd Edition
+                </a>
+                <a href="https://alleriastore.com/pages/diy-fiber-laser-cutting-machine-contest" target="_blank" class="bg-white hover:bg-gray-50 text-gray-800 font-bold py-4 px-8 rounded-lg transition-all duration-300 border border-gray-300 shadow-lg">
+                    <i class="fas fa-trophy mr-2"></i>View 1st Contest Results
+                </a>
+                <a href="promotion.html" class="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-bullhorn mr-2 animate-pulse"></i>Promote Contest
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+                <div class="bg-white rounded-lg p-6 border border-gray-200 shadow-lg">
+                    <i class="fas fa-eye text-3xl mb-4 text-orange-500"></i>
+                    <h3 class="font-bold text-lg text-gray-800">Appearance Design</h3>
+                    <p class="text-sm text-gray-600">Aesthetic appeal and craftsmanship quality</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 border border-gray-200 shadow-lg">
+                    <i class="fas fa-lightbulb text-3xl mb-4 text-orange-500"></i>
+                    <h3 class="font-bold text-lg text-gray-800">Innovation</h3>
+                    <p class="text-sm text-gray-600">Unique design concepts and technical innovation</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 border border-gray-200 shadow-lg">
+                    <i class="fas fa-cut text-3xl mb-4 text-orange-500"></i>
+                    <h3 class="font-bold text-lg text-gray-800">Cutting Performance</h3>
+                    <p class="text-sm text-gray-600">Precision, speed, and cutting quality</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 border border-gray-200 shadow-lg">
+                    <i class="fas fa-expand-arrows-alt text-3xl mb-4 text-orange-500"></i>
+                    <h3 class="font-bold text-lg text-gray-800">Expandability</h3>
+                    <p class="text-sm text-gray-600">Feature expansion and upgrade potential</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Registration Section -->
+    <section id="registration" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <span class="text-orange-600">SKYFIRE</span> 2nd Edition Contest Registration
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Join the global maker community, showcase your DIY fiber laser cutter projects, and compete with top creators worldwide
+                </p>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="bg-white rounded-2xl shadow-2xl border border-orange-200 overflow-hidden">
+                <div class="p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Register Now</h3>
+                        <p class="text-gray-600 text-lg">Fill out the registration form to start your maker journey</p>
+                    </div>
+                    
+                    <form name="registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="#registration" class="space-y-6">
+                        <!-- Hidden bot field for spam protection -->
+                        <input type="hidden" name="bot-field" />
+                        <!-- Hidden form name field -->
+                        <input type="hidden" name="form-name" value="registration" />
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-user mr-2 orange-accent"></i>Participant Name *
+                                </label>
+                                <input type="text" id="regName" name="name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required placeholder="Enter your full name">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-envelope mr-2 orange-accent"></i>Email Address *
+                                </label>
+                                <input type="email" id="regEmail" name="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required placeholder="example@email.com">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-globe mr-2 orange-accent"></i>Country/Region *
+                                </label>
+                                <input type="text" id="regCountry" name="country" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required placeholder="Enter your country/region">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-phone mr-2 orange-accent"></i>Phone Number
+                                </label>
+                                <input type="tel" id="regPhone" name="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" placeholder="+1 555-0000">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-building mr-2 orange-accent"></i>Organization/Company
+                                </label>
+                                <input type="text" id="regCompany" name="company" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" placeholder="Leave blank for individual participation">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-users mr-2 orange-accent"></i>Participation Type *
+                                </label>
+                                <select id="regType" name="participation_type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required>
+                                    <option value="">Select Participation Type</option>
+                                    <option value="individual">Individual Participation</option>
+                                    <option value="team">Team Participation</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div id="teamMembersSection" style="display: none;">
+                            <label class="block text-gray-700 font-bold mb-2">
+                                <i class="fas fa-user-friends mr-2 orange-accent"></i>Team Member Information
+                            </label>
+                            <textarea id="regTeamMembers" name="team_members" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" rows="3" placeholder="List team member names, one per line"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">
+                                <i class="fas fa-microchip mr-2 orange-accent"></i>Laser Power Level *
+                            </label>
+                            <select id="regPowerLevel" name="power_level" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required>
+                                <option value="">Select Power Level</option>
+                                <option value="1kw_1.5kw">1kW - 1.5kW</option>
+                                <option value="3kw">3kW</option>
+                                <option value="6kw">6kW</option>
+                                <option value="12kw">12kW</option>
+                                <option value="above_12kw">Above 12kW</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2">
+                                <i class="fas fa-question-circle mr-2 orange-accent"></i>How did you hear about this contest?
+                            </label>
+                            <select id="regSource" name="source" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors">
+                                <option value="">Please select</option>
+                                <option value="social_media">Social Media</option>
+                                <option value="friend_referral">Friend Referral</option>
+                                <option value="tech_forum">Tech Forum</option>
+                                <option value="maker_community">Maker Community</option>
+                                <option value="search_engine">Search Engine</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Post-Registration Information -->
+                        <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-lg">
+                            <h4 class="font-bold text-lg text-orange-800 mb-3 flex items-center">
+                                <i class="fas fa-info-circle mr-2"></i>Important: After Registration Confirmation
+                            </h4>
+                            <div class="text-orange-700 space-y-3">
+                                <p class="font-semibold">📦 <strong>T-shirt Production:</strong></p>
+                                <p class="ml-4">Once registration is confirmed, the organizers will begin creating T-shirts and send them to participants.</p>
+                                
+                                <p class="font-semibold">🎥 <strong>Video Submission Requirements:</strong></p>
+                                <p class="ml-4">After registering, participants need to create a video (at least 5 minutes long). The video should explain the DIY process and showcase the machine's appearance, functionality, and cutting performance.</p>
+                                
+                                <p class="font-semibold">📤 <strong>Video Upload Instructions:</strong></p>
+                                <p class="ml-4">Upload the video to the <strong><a href="https://www.facebook.com/groups/998602455597977" target="_blank" class="text-orange-600 hover:text-orange-800 underline">DIY Fiber Laser Facebook Group</a></strong> and add the tag: <code class="bg-orange-200 px-2 py-1 rounded text-sm text-orange-700">#ParticipateInTheSecondSKYFIREDIYLaserCutterContest</code></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <input type="checkbox" id="regAgree" name="agreed" value="yes" class="mt-1 mr-3" required>
+                            <label for="regAgree" class="text-gray-700">
+                                I have read and agree to the <a href="#terms" class="text-orange-600 hover:text-orange-800 underline font-semibold">Contest Terms and Conditions</a>,
+                                and confirm that I understand the post-registration requirements *
+                            </label>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="text-white font-bold py-4 px-12 rounded-lg transition-all duration-300 transform hover:scale-105" style="background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);">
+                                <i class="fas fa-paper-plane mr-2"></i>Submit Registration
+                            </button>
+                            <p class="text-sm text-gray-600 mt-3">
+                                After submission, you will see a confirmation page. If you encounter any issues, please contact info@sflaser.net
+                            </p>
+                        </div>
+                    </form>
+                    
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="successMessage" class="hidden mt-8 bg-green-50 border-2 border-green-200 rounded-2xl p-8 text-center">
+                        <div class="mb-6">
+                            <div class="w-20 h-20 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check-circle text-4xl text-green-600"></i>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">
+                            🎉 注册提交成功！
+                        </h3>
+                        
+                        <p class="text-lg text-green-700 mb-6">
+                            感谢您报名参加 <strong>SKYFIRE第二届DIY激光切割机大赛</strong>！
+                            <br>您的注册信息已成功提交。
+                        </p>
+                        
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6 text-left">
+                            <h4 class="text-lg font-bold text-blue-800 mb-3">
+                                <i class="fas fa-info-circle mr-2"></i>接下来会发生什么？
+                            </h4>
+                            <div class="space-y-2 text-blue-700">
+                                <p>• <strong>审核确认：</strong>我们将在3个工作日内审核您的注册并发送确认邮件</p>
+                                <p>• <strong>T恤制作：</strong>审核通过后，我们将制作定制T恤并邮寄给您</p>
+                                <p>• <strong>比赛说明：</strong>您将收到详细的视频制作和提交指南</p>
+                                <p>• <strong>联系方式：</strong>如有问题请联系 <a href="mailto:info@sflaser.net" class="font-semibold underline">info@sflaser.net</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="#home" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                                <i class="fas fa-home mr-2"></i>返回首页
+                            </a>
+                            <a href="https://www.facebook.com/groups/998602455597977" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                                <i class="fab fa-facebook mr-2"></i>加入Facebook群组
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cutting Patterns Section -->
+    <section id="patterns" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <span class="text-orange-600">SKYFIRE</span> Contest Cutting Patterns
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Download official cutting patterns to test your DIY laser cutter's precision and performance
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-2xl border border-orange-200 overflow-hidden">
+                <div class="p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Official Test Patterns</h3>
+                        <p class="text-gray-600 text-lg">Download and use these patterns to demonstrate your laser cutter capabilities</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-cube text-4xl orange-accent mb-2"></i>
+                        <h3 class="font-bold text-lg">8MM Thick Plate Pattern</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Test laser cutter's capability with thick plate materials</p>
+                    <a href="patterns/8MM Thick Plate Demonstration Pattern.dxf" download="8MM_Thick_Plate_Pattern.dxf" class="w-full orange-gradient text-white py-2 rounded orange-hover transition-colors block text-center font-semibold">
+                        <i class="fas fa-download mr-2"></i>Download Pattern
+                    </a>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-puzzle-piece text-4xl text-green-600 mb-2"></i>
+                        <h3 class="font-bold text-lg">Carbon Steel Assembly</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Complex assembly parts cutting precision test</p>
+                    <a href="patterns/Combination Component Carbon Steel Cutting Pattern.dxf" download="Carbon_Steel_Assembly_Pattern.dxf" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition-colors block text-center font-semibold">
+                        <i class="fas fa-download mr-2"></i>Download Pattern
+                    </a>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-star text-4xl orange-accent mb-2"></i>
+                        <h3 class="font-bold text-lg">Stainless Steel Sharp Corners</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">0.8-1MM stainless steel sharp corner cutting demo</p>
+                    <a href="patterns/Sharp Corners 0.8-1MM Stainless Steel Cutting Demonstration.dxf" download="Sharp_Corners_Stainless_Steel_Pattern.dxf" class="w-full orange-gradient text-white py-2 rounded orange-hover transition-colors block text-center font-semibold">
+                        <i class="fas fa-download mr-2"></i>Download Pattern
+                    </a>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-crosshairs text-4xl text-purple-600 mb-2"></i>
+                        <h3 class="font-bold text-lg">Classic Precision Test</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">1MM stainless steel cutting precision test</p>
+                    <a href="patterns/Classic Pattern Stainless Steel 1MM Cutting Precision Test.dxf" download="Classic_Precision_Test_Pattern.dxf" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors block text-center font-semibold">
+                        <i class="fas fa-download mr-2"></i>Download Pattern
+                    </a>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-car text-4xl text-red-600 mb-2"></i>
+                        <h3 class="font-bold text-lg">Brake Pad 3MM Cutting</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Carbon steel 3MM brake pad cutting effect</p>
+                    <a href="patterns/Brake Pads 3MM Cutting Effect on Carbon Steel.dxf" download="Brake_Pad_3MM_Pattern.dxf" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition-colors block text-center font-semibold">
+                        <i class="fas fa-download mr-2"></i>Download Pattern
+                    </a>
+                </div>
+            </div>
+            
+                    </div>
+                    
+                    <!-- View Detailed Patterns -->
+                    <div class="text-center mt-8 pt-6 border-t border-gray-200">
+                        <div class="max-w-2xl mx-auto">
+                            <i class="fas fa-info-circle text-4xl text-orange-600 mb-4"></i>
+                            <h4 class="text-xl font-bold mb-4 text-gray-800">Need More Details?</h4>
+                            <p class="text-gray-600 mb-6">
+                                View comprehensive specifications, technical requirements, and detailed descriptions for each cutting pattern.
+                            </p>
+                            <a href="patterns.html" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all inline-block">
+                                <i class="fas fa-eye mr-2"></i>View Detailed Pattern Information
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="orange-gradient text-white py-8" x-data="{ 
+        showAdminLogin: false, 
+        adminPassword: '',
+        authenticateAdmin() {
+            if (this.adminPassword === 'skyfire2025') {
+                // Set authentication state in sessionStorage
+                sessionStorage.setItem('adminAuthenticated', 'true');
+                // Navigate to admin panel
+                window.location.href = 'admin.html';
+            } else {
+                alert('Incorrect password!');
+                this.adminPassword = '';
+            }
+        }
+    }">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center">
+                <p class="text-lg font-semibold mb-2">SKYFIRE DIY Fiber Laser Cutter Competition</p>
+                <p class="text-orange-100 mb-4">
+                    Empowering makers worldwide to showcase innovation and creativity
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 text-sm text-orange-100">
+                    <div>
+                        <span>Contact: </span>
+                        <a href="mailto:info@sflaser.net" class="text-yellow-200 hover:text-yellow-100 transition-colors">
+                            info@sflaser.net
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <a href="promotion.html" class="hover:text-yellow-200 transition-colors">
+                            <i class="fas fa-bullhorn mr-1"></i>Promote
+                        </a>
+                        <a href="patterns.html" class="hover:text-yellow-200 transition-colors">
+                            <i class="fas fa-download mr-1"></i>Patterns
+                        </a>
+                        <!-- Secure admin access -->
+                        <div class="relative">
+                            <button @click="showAdminLogin = !showAdminLogin" 
+                                    class="text-orange-200 hover:text-yellow-200 transition-colors text-xs">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                            
+                            <!-- Admin Login Modal -->
+                            <div x-show="showAdminLogin" 
+                                 x-transition:enter="transition ease-out duration-200"
+                                 x-transition:enter-start="opacity-0 scale-95"
+                                 x-transition:enter-end="opacity-100 scale-100"
+                                 x-transition:leave="transition ease-in duration-75"
+                                 x-transition:leave-start="opacity-100 scale-100"
+                                 x-transition:leave-end="opacity-0 scale-95"
+                                 @click.away="showAdminLogin = false"
+                                 class="absolute bottom-full right-0 mb-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 p-4 z-50">
+                                <div class="text-gray-800">
+                                    <h4 class="font-bold text-sm mb-3 text-center">Organizer Access</h4>
+                                    <input type="password" 
+                                           x-model="adminPassword"
+                                           @keyup.enter="authenticateAdmin()"
+                                           placeholder="Enter password"
+                                           class="w-full p-2 border border-gray-300 rounded text-sm mb-3">
+                                    <button @click="authenticateAdmin()"
+                                            class="w-full bg-gray-600 hover:bg-gray-700 text-white py-2 rounded text-sm font-semibold">
+                                        Access Panel
+                                    </button>
+                                    <p class="text-xs text-gray-500 mt-2 text-center">For organizers only</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-orange-300 border-opacity-30 text-xs text-orange-200">
+                    <p>&copy; 2025 SKYFIRE DIY Fiber Laser Cutter Competition. All rights reserved.</p>
+                    <p class="mt-1">Designed for makers, by makers. Join the innovation revolution.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Simple team members section toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const regType = document.getElementById('regType');
+            const teamSection = document.getElementById('teamMembersSection');
+            
+            if (regType && teamSection) {
+                regType.addEventListener('change', function() {
+                    if (this.value === 'team') {
+                        teamSection.style.display = 'block';
+                    } else {
+                        teamSection.style.display = 'none';
+                    }
+                });
+            }
+
+            // Form submission handling
+            const form = document.querySelector('form[name="registration"]');
+            const successMessage = document.getElementById('successMessage');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    // 显示加载状态
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+                    submitBtn.disabled = true;
+                    
+                    // 延迟一点显示成功消息（让Netlify处理表单）
+                    setTimeout(function() {
+                        // 隐藏表单，显示成功消息
+                        form.parentElement.style.display = 'none';
+                        successMessage.classList.remove('hidden');
+                        // 滚动到成功消息
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

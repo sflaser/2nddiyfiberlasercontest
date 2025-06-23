@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hidden Form for Netlify</title>
+</head>
+<body>
+    <!-- 这个隐藏表单确保Netlify能在构建时识别表单结构 -->
+    <form name="registration" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="form-name" value="registration" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="country" />
+        <input type="tel" name="phone" />
+        <input type="text" name="company" />
+        <select name="participation_type">
+            <option value="individual">Individual</option>
+            <option value="team">Team</option>
+        </select>
+        <textarea name="team_members"></textarea>
+        <select name="power_level">
+            <option value="1kw_1.5kw">1kW - 1.5kW</option>
+            <option value="3kw">3kW</option>
+            <option value="6kw">6kW</option>
+            <option value="12kw">12kW</option>
+            <option value="above_12kw">Above 12kW</option>
+        </select>
+        <select name="source">
+            <option value="social_media">Social Media</option>
+            <option value="friend_referral">Friend Referral</option>
+            <option value="tech_forum">Tech Forum</option>
+            <option value="maker_community">Maker Community</option>
+            <option value="search_engine">Search Engine</option>
+            <option value="other">Other</option>
+        </select>
+        <input type="checkbox" name="agreed" value="yes" />
+    </form>
+</body>
+</html> 
