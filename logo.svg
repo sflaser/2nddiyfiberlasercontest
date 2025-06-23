@@ -1,32 +1,53 @@
-<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+<svg width="150" height="50" viewBox="0 0 150 50" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff8c00;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#ff6b35;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ff6b35;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffff00;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#fff7ed;stop-opacity:1" />
     </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
   
+  <!-- Background Circle -->
+  <circle cx="25" cy="25" r="20" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  
   <!-- Fire Icon -->
-  <g transform="translate(8, 8)">
-    <path d="M12 2C8 6 8 12 12 16C16 12 16 6 12 2Z" fill="url(#fireGradient)" stroke="#ff4500" stroke-width="0.5"/>
-    <path d="M12 4C10 7 10 11 12 14C14 11 14 7 12 4Z" fill="#ffd700" opacity="0.8"/>
-    <circle cx="12" cy="12" r="1" fill="#ffffff" opacity="0.9"/>
+  <g transform="translate(15, 10)">
+    <!-- Main flame -->
+    <path d="M10 5C6 10 6 20 10 25C14 20 14 10 10 5Z" fill="url(#fireGradient)" stroke="#ff4500" stroke-width="1" filter="url(#glow)"/>
+    <!-- Inner flame -->
+    <path d="M10 8C8 12 8 18 10 22C12 18 12 12 10 8Z" fill="#ffd700" opacity="0.9"/>
+    <!-- Flame core -->
+    <ellipse cx="10" cy="16" rx="2" ry="4" fill="#ffffff" opacity="0.8"/>
+    <!-- Spark -->
+    <circle cx="10" cy="12" r="1" fill="#ffffff" opacity="1">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
   </g>
   
   <!-- SKYFIRE Text -->
-  <text x="32" y="18" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="url(#textGradient)">SKYFIRE</text>
-  <text x="32" y="32" font-family="Arial, sans-serif" font-size="8" fill="#ffb347" opacity="0.9">DIY Competition</text>
+  <text x="50" y="22" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="url(#textGradient)" filter="url(#glow)">SKYFIRE</text>
+  <text x="50" y="38" font-family="Arial, sans-serif" font-size="10" fill="#ffb347" opacity="0.95">DIY Competition</text>
   
-  <!-- Decorative elements -->
-  <circle cx="110" cy="8" r="2" fill="#ffd700" opacity="0.6">
-    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+  <!-- Decorative sparks -->
+  <circle cx="135" cy="12" r="2" fill="#ffd700" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="115" cy="15" r="1.5" fill="#ff8c00" opacity="0.5">
-    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.5s" repeatCount="indefinite"/>
+  <circle cx="142" cy="20" r="1.5" fill="#ff8c00" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="138" cy="30" r="1" fill="#ffd700" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1.2s" repeatCount="indefinite"/>
   </circle>
 </svg> 
