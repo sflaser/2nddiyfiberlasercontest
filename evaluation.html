@@ -197,6 +197,13 @@
                                           placeholder="Brief description of the project..."></textarea>
                             </div>
                             
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">Video URL</label>
+                                <input type="url" x-model="newParticipant.videoUrl" 
+                                       class="w-full p-3 border border-gray-300 rounded-lg"
+                                       placeholder="https://www.youtube.com/watch?v=... or Facebook video link">
+                            </div>
+                            
                             <button @click="addParticipant()" 
                                     class="w-full gradient-accent text-white py-3 rounded-lg font-bold hover:opacity-90">
                                 <i class="fas fa-plus mr-2"></i>Add Participant
@@ -271,6 +278,12 @@
                             <div><i class="fas fa-building w-4"></i> <span x-text="participant.company || 'Individual'"></span></div>
                             <div><i class="fas fa-bolt w-4"></i> <span x-text="participant.powerLevel"></span></div>
                             <div x-show="participant.description" class="text-xs"><i class="fas fa-info-circle w-4"></i> <span x-text="participant.description"></span></div>
+                            <div x-show="participant.videoUrl" class="text-xs">
+                                <i class="fas fa-video w-4"></i> 
+                                <a :href="participant.videoUrl" target="_blank" class="text-blue-600 hover:text-blue-800 underline">
+                                    Watch Video
+                                </a>
+                            </div>
                         </div>
                         
                         <!-- Scoring Section -->
@@ -287,6 +300,11 @@
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                                 <div class="flex justify-between items-center">
@@ -299,6 +317,11 @@
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                                 <div class="flex justify-between items-center">
@@ -311,6 +334,11 @@
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                                 <div class="flex justify-between items-center">
@@ -323,6 +351,11 @@
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
                                     </select>
                                 </div>
                             </div>
@@ -339,7 +372,7 @@
                                         <div>Inn: <span x-text="scores.innovation || '-'"></span></div>
                                         <div>Perf: <span x-text="scores.performance || '-'"></span></div>
                                         <div>Exp: <span x-text="scores.expandability || '-'"></span></div>
-                                        <div class="font-bold">Total: <span x-text="calculateTotalScore(scores)"></span>/20</div>
+                                        <div class="font-bold">Total: <span x-text="calculateTotalScore(scores)"></span>/40</div>
                                     </div>
                                 </template>
                             </div>
@@ -387,7 +420,8 @@
                     company: '',
                     participationType: '',
                     powerLevel: '',
-                    description: ''
+                    description: '',
+                    videoUrl: ''
                 },
                 
                 // Default users
@@ -451,7 +485,7 @@
                     // Reset form
                     this.newParticipant = {
                         name: '', email: '', country: '', phone: '', 
-                        company: '', participationType: '', powerLevel: '', description: ''
+                        company: '', participationType: '', powerLevel: '', description: '', videoUrl: ''
                     };
                     
                     alert('Participant added successfully!');
@@ -516,6 +550,7 @@
                             participationType: "individual",
                             powerLevel: "3kw",
                             description: "DIY 3kW fiber laser with custom control system",
+                            videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                             dateAdded: new Date().toISOString(),
                             scores: {}
                         },
@@ -529,6 +564,7 @@
                             participationType: "team",
                             powerLevel: "6kw",
                             description: "High-precision 6kW laser with advanced motion control",
+                            videoUrl: "https://www.facebook.com/watch?v=example",
                             dateAdded: new Date().toISOString(),
                             scores: {}
                         }
