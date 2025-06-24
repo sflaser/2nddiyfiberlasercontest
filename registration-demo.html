@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYFIRE Competition Registration - Multi-Language Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="js/i18n.js" defer></script>
+    <style>
+        .form-container {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+            border: 1px solid #f3e8d8;
+        }
+        .language-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .required {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen py-8 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header with Language Selector -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4" data-i18n="reg.title">
+                    SKYFIRE 2nd Edition Contest Registration
+                </h1>
+                <p class="text-lg text-gray-600 mb-6" data-i18n="reg.subtitle">
+                    Join the global maker community, showcase your DIY fiber laser cutter projects, and compete with top creators worldwide
+                </p>
+                
+                <!-- Language Selector -->
+                <div class="flex justify-center gap-3 mb-8">
+                    <button onclick="setLanguage('en')" class="language-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-all duration-300">
+                        🇺🇸 English
+                    </button>
+                    <button onclick="setLanguage('es')" class="language-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-all duration-300">
+                        🇪🇸 Español
+                    </button>
+                    <button onclick="setLanguage('ja')" class="language-btn bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition-all duration-300">
+                        🇯🇵 日本語
+                    </button>
+                    <button onclick="setLanguage('de')" class="language-btn bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-all duration-300">
+                        🇩🇪 Deutsch
+                    </button>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form-container rounded-2xl p-8 shadow-xl mb-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-orange-600 mb-2" data-i18n="reg.form-title">Register Now</h2>
+                    <p class="text-gray-600" data-i18n="reg.form-subtitle">Fill out the registration form to start your maker journey</p>
+                </div>
+
+                <form class="space-y-6">
+                    <!-- Participant Name -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <span data-i18n="reg.participant-name">Participant Name</span> <span class="required">*</span>
+                        </label>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                               data-i18n-placeholder="form.placeholder.name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <span data-i18n="form.email">Email Address</span> <span class="required">*</span>
+                        </label>
+                        <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                               data-i18n-placeholder="form.placeholder.email" placeholder="example@email.com" required>
+                    </div>
+
+                    <!-- Country/Region -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <span data-i18n="form.country">Country/Region</span> <span class="required">*</span>
+                        </label>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                               data-i18n-placeholder="form.placeholder.country" placeholder="Enter your country/region" required>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="form.phone">Phone Number</label>
+                        <input type="tel" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                               data-i18n-placeholder="form.placeholder.phone" placeholder="+1 555-0000">
+                    </div>
+
+                    <!-- Organization/Company -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="form.company">Organization/Company</label>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" 
+                               data-i18n-placeholder="form.placeholder.company" placeholder="Leave blank for individual participation">
+                    </div>
+
+                    <!-- Participation Type -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <span data-i18n="form.participation">Participation Type</span> <span class="required">*</span>
+                        </label>
+                        <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" required>
+                            <option value="" data-i18n="form.option.select-participation">Select Participation Type</option>
+                            <option value="individual" data-i18n="form.option.individual">Individual Participation</option>
+                            <option value="team" data-i18n="form.option.team">Team Participation</option>
+                        </select>
+                    </div>
+
+                    <!-- Laser Power Level -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            <span data-i18n="form.power-level">Laser Power Level</span> <span class="required">*</span>
+                        </label>
+                        <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" required>
+                            <option value="" data-i18n="form.option.select-power">Select Power Level</option>
+                            <option value="1kw_1.5kw" data-i18n="form.option.1kw-1.5kw">1kW - 1.5kW</option>
+                            <option value="3kw" data-i18n="form.option.3kw">3kW</option>
+                            <option value="6kw" data-i18n="form.option.6kw">6kW</option>
+                            <option value="12kw" data-i18n="form.option.12kw">12kW</option>
+                            <option value="above_12kw" data-i18n="form.option.above-12kw">Above 12kW</option>
+                        </select>
+                    </div>
+
+                    <!-- How did you hear -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="form.source">How did you hear about this contest?</label>
+                        <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                            <option value="" data-i18n="form.option.please-select">Please select</option>
+                            <option value="social_media" data-i18n="form.option.social-media">Social Media</option>
+                            <option value="friend_referral" data-i18n="form.option.friend-referral">Friend Referral</option>
+                            <option value="tech_forum" data-i18n="form.option.tech-forum">Tech Forum</option>
+                            <option value="maker_community" data-i18n="form.option.maker-community">Maker Community</option>
+                            <option value="search_engine" data-i18n="form.option.search-engine">Search Engine</option>
+                            <option value="other" data-i18n="form.option.other">Other</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Important Information -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4" data-i18n="reg.important-title">
+                    Important: After Registration Confirmation
+                </h3>
+                
+                <div class="space-y-6">
+                    <!-- T-shirt Production -->
+                    <div class="border-l-4 border-orange-500 pl-4">
+                        <h4 class="font-semibold text-gray-800 mb-2" data-i18n="reg.tshirt-title">📦 T-shirt Production:</h4>
+                        <p class="text-gray-600" data-i18n="reg.tshirt-desc">
+                            Once registration is confirmed, the organizers will begin creating T-shirts and send them to participants.
+                        </p>
+                    </div>
+
+                    <!-- Video Requirements -->
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h4 class="font-semibold text-gray-800 mb-2" data-i18n="reg.video-title">🎥 Video Submission Requirements:</h4>
+                        <p class="text-gray-600" data-i18n="reg.video-desc">
+                            After registering, participants need to create a video (at least 5 minutes long). The video should explain the DIY process and showcase the machine's appearance, functionality, and cutting performance.
+                        </p>
+                    </div>
+
+                    <!-- Upload Instructions -->
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h4 class="font-semibold text-gray-800 mb-2" data-i18n="reg.upload-title">📤 Video Upload Instructions:</h4>
+                        <p class="text-gray-600" data-i18n="reg.upload-desc">
+                            Upload the video to the DIY Fiber Laser Facebook Group and add the tag: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms and Submit -->
+            <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <div class="space-y-4">
+                    <!-- Terms Agreement -->
+                    <label class="flex items-start">
+                        <input type="checkbox" class="mt-1 mr-3" required>
+                        <span class="text-sm text-gray-700" data-i18n="reg.terms-agreement">
+                            I have read and agree to the Contest Terms and Conditions, and confirm that I understand the post-registration requirements
+                        </span>
+                        <span class="required ml-1">*</span>
+                    </label>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        <span data-i18n="reg.submit-btn">Submit Registration</span>
+                    </button>
+
+                    <!-- After Submit Info -->
+                    <p class="text-sm text-gray-500 text-center" data-i18n="reg.after-submit">
+                        After submission, you will see a confirmation page. If you encounter any issues, please contact info@sflaser.net
+                    </p>
+                </div>
+            </div>
+
+            <!-- Back to Main Site -->
+            <div class="text-center mt-8">
+                <a href="index.html" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Competition Site
+                </a>
+                <a href="multilang-demo.html" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 ml-3">
+                    <i class="fas fa-language mr-2"></i>View All Translations
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update language button states
+        function updateLanguageButtons() {
+            const buttons = document.querySelectorAll('.language-btn');
+            const currentLang = localStorage.getItem('skyfire-language') || 'en';
+            
+            buttons.forEach(btn => {
+                const lang = btn.getAttribute('onclick').match(/'(\w+)'/)[1];
+                if (lang === currentLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // Listen for language changes
+        window.addEventListener('languageChanged', updateLanguageButtons);
+        
+        // Initial update
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateLanguageButtons, 100);
+        });
+
+        // Form submission demo
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('This is a demo form. In the real website, this would submit to the server.');
+        });
+    </script>
+</body>
+</html> 

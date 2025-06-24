@@ -86,6 +86,8 @@ const translations = {
         'reg.upload-title': '📤 Video Upload Instructions:',
         'reg.upload-desc': 'Upload the video to the DIY Fiber Laser Facebook Group and add the tag: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest',
         'reg.terms-agreement': 'I have read and agree to the Contest Terms and Conditions, and confirm that I understand the post-registration requirements',
+        'reg.submit-btn': 'Submit Registration',
+        'reg.after-submit': 'After submission, you will see a confirmation page. If you encounter any issues, please contact info@sflaser.net',
         
         // Additional elements
         'hero.register-btn': 'Register Now',
@@ -200,6 +202,8 @@ const translations = {
         'reg.upload-title': '📤 Instrucciones de Subida de Video:',
         'reg.upload-desc': 'Sube el video al Grupo de Facebook DIY Fiber Laser y agrega la etiqueta: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest',
         'reg.terms-agreement': 'He leído y acepto los Términos y Condiciones del Concurso, y confirmo que entiendo los requisitos posteriores al registro',
+        'reg.submit-btn': 'Enviar Registro',
+        'reg.after-submit': 'Después del envío, verás una página de confirmación. Si encuentras algún problema, por favor contacta info@sflaser.net',
         
         // Additional elements
         'hero.register-btn': 'Registrarse Ahora',
@@ -314,6 +318,8 @@ const translations = {
         'reg.upload-title': '📤 動画アップロード手順：',
         'reg.upload-desc': 'DIY Fiber Laser Facebookグループに動画をアップロードし、タグ「#ParticipateInTheSecondSKYFIREDIYLaserCutterContest」を追加してください',
         'reg.terms-agreement': 'コンテストの利用規約を読み、同意します。また、登録後の要件を理解していることを確認します',
+        'reg.submit-btn': '登録を送信',
+        'reg.after-submit': '送信後、確認ページが表示されます。問題が発生した場合は、info@sflaser.net までお問い合わせください',
         
         // Additional elements
         'hero.register-btn': '今すぐ登録',
@@ -428,6 +434,8 @@ const translations = {
         'reg.upload-title': '📤 Video-Upload Anweisungen:',
         'reg.upload-desc': 'Lade das Video in die DIY Fiber Laser Facebook-Gruppe hoch und füge den Tag hinzu: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest',
         'reg.terms-agreement': 'Ich habe die Wettbewerbsbedingungen gelesen und stimme ihnen zu, und bestätige, dass ich die Anforderungen nach der Anmeldung verstehe',
+        'reg.submit-btn': 'Anmeldung Absenden',
+        'reg.after-submit': 'Nach der Übermittlung sehen Sie eine Bestätigungsseite. Bei Problemen wenden Sie sich bitte an info@sflaser.net',
         
         // Additional elements
         'hero.register-btn': 'Jetzt Anmelden',
