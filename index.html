@@ -195,22 +195,22 @@
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-1">
                     <a href="#home" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-home mr-2"></i>Home
+                        <i class="fas fa-home mr-2"></i><span data-i18n="nav.home">Home</span>
                     </a>
                     <a href="#registration" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-user-plus mr-2"></i>Registration
+                        <i class="fas fa-user-plus mr-2"></i><span data-i18n="nav.registration">Registration</span>
                     </a>
                     <a href="evaluation.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-chart-line mr-2"></i>Evaluation
+                        <i class="fas fa-chart-line mr-2"></i><span data-i18n="nav.evaluation">Evaluation</span>
                     </a>
                     <a href="https://alleriastore.com/" target="_blank" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-shopping-cart mr-2"></i>Laser Kits
+                        <i class="fas fa-shopping-cart mr-2"></i><span data-i18n="nav.laser-kits">Laser Kits</span>
                     </a>
                     <a href="#patterns" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-download mr-2"></i>Patterns
+                        <i class="fas fa-download mr-2"></i><span data-i18n="nav.patterns">Patterns</span>
                     </a>
                     <a href="promotion.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-bullhorn mr-2"></i>Promote
+                        <i class="fas fa-bullhorn mr-2"></i><span data-i18n="nav.promote">Promote</span>
                     </a>
                 </div>
                 
@@ -272,17 +272,17 @@
             
             <h1 class="text-5xl font-bold mb-6 text-gray-800">
                 <span class="text-gray-800">SKYFIRE</span>
-                <br>DIY Fiber Laser Cutter Competition 2024-2025
+                <br><span data-i18n="hero.title">DIY Fiber Laser Cutter Competition 2024-2025</span>
             </h1>
             <p class="text-xl mb-8 max-w-3xl mx-auto text-gray-600">
-                🏆 Join the Global Maker Community - Showcase Your DIY Fiber Laser Cutting Skills<br>
-                🌍 International Competition with $5,800 Prize Pool - Registration Open Until September 30, 2025
+                <span data-i18n="hero.subtitle">🏆 Join the Global Maker Community - Showcase Your DIY Fiber Laser Cutting Skills</span><br>
+                <span data-i18n="hero.description">🌍 International Competition with $5,800 Prize Pool - Registration Open Until September 30, 2025</span>
             </p>
             
             <!-- Prize Pool -->
             <div class="mb-8">
                 <div class="rounded-2xl p-8 shadow-xl max-w-5xl mx-auto" style="background-color: #fff8f0;">
-                    <h3 class="text-3xl font-bold mb-4 text-gray-800">🎁 Total Prize Pool: $5,800 Gift Vouchers</h3>
+                    <h3 class="text-3xl font-bold mb-4 text-gray-800" data-i18n="stats.prize-pool">🎁 Total Prize Pool: $5,800 Gift Vouchers</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="bg-white bg-opacity-70 rounded-lg p-4 shadow-md">
                             <div class="text-2xl font-bold text-gray-800">🥇 1st Place</div>
@@ -336,7 +336,7 @@
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <a href="#registration" class="orange-gradient hover:orange-hover text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 orange-shadow">
-                    <i class="fas fa-user-plus mr-2"></i>Register for 2nd Edition
+                    <i class="fas fa-user-plus mr-2"></i><span data-i18n="hero.register-btn">Register for 2nd Edition</span>
                 </a>
                 <a href="https://alleriastore.com/pages/diy-fiber-laser-cutting-machine-contest" target="_blank" class="bg-white hover:bg-gray-50 text-gray-800 font-bold py-4 px-8 rounded-lg transition-all duration-300 border border-gray-300 shadow-lg">
                     <i class="fas fa-trophy mr-2"></i>View 1st Contest Results
@@ -376,7 +376,7 @@
         <div class="max-w-5xl mx-auto px-4">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class="fas fa-calendar-alt orange-accent mr-2"></i>Competition Timeline
+                    <i class="fas fa-calendar-alt orange-accent mr-2"></i><span data-i18n="timeline.title">Competition Timeline</span>
                 </h2>
                 <p class="text-lg text-gray-600">
                     Important dates for the SKYFIRE 2nd Edition Contest
@@ -459,12 +459,12 @@
                 </p>
                 <div class="mt-6 flex items-center justify-center gap-4">
                     <span class="bg-white text-black px-6 py-3 rounded-full text-lg font-bold shadow-lg border-2 border-gray-200">
-                        <i class="fas fa-fire mr-2 text-orange-500"></i><span x-text="participants.length"></span> Participants Registered
+                        <i class="fas fa-fire mr-2 text-orange-500"></i><span x-text="participants.length"></span> <span data-i18n="stats.participants">Participants Registered</span>
                     </span>
                     <button @click="loadParticipants()" 
                             class="bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
                             title="Refresh participant data">
-                        <i class="fas fa-sync-alt mr-1"></i>Refresh
+                        <i class="fas fa-sync-alt mr-1"></i><span data-i18n="stats.refresh">Refresh</span>
                     </button>
                 </div>
             </div>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYFIRE Competition - Multi-Language Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="js/i18n.js" defer></script>
+    <style>
+        .language-demo {
+            transition: all 0.3s ease;
+        }
+        .language-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-globe text-blue-500 mr-2"></i>
+                    Multi-Language Demo
+                </h1>
+                <p class="text-gray-600 text-lg">
+                    SKYFIRE DIY Fiber Laser Cutter Competition - 4 Languages Support
+                </p>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+                    <i class="fas fa-language text-orange-500 mr-2"></i>
+                    Select Language / Seleccionar Idioma / 言語選択 / Sprache wählen
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="setLanguage('en')" class="language-btn bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-lg transition-all duration-300 text-center">
+                        <div class="text-2xl mb-2">🇺🇸</div>
+                        <div class="font-semibold">English</div>
+                    </button>
+                    <button onclick="setLanguage('es')" class="language-btn bg-red-500 hover:bg-red-600 text-white p-4 rounded-lg transition-all duration-300 text-center">
+                        <div class="text-2xl mb-2">🇪🇸</div>
+                        <div class="font-semibold">Español</div>
+                    </button>
+                    <button onclick="setLanguage('ja')" class="language-btn bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-lg transition-all duration-300 text-center">
+                        <div class="text-2xl mb-2">🇯🇵</div>
+                        <div class="font-semibold">日本語</div>
+                    </button>
+                    <button onclick="setLanguage('de')" class="language-btn bg-gray-700 hover:bg-gray-800 text-white p-4 rounded-lg transition-all duration-300 text-center">
+                        <div class="text-2xl mb-2">🇩🇪</div>
+                        <div class="font-semibold">Deutsch</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Demo Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Navigation Demo -->
+                <div class="bg-white rounded-lg shadow-lg p-6 language-demo">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-bars text-orange-500 mr-2"></i>Navigation Menu
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-home text-gray-400 mr-2"></i>
+                            <span data-i18n="nav.home" class="text-gray-700">Home</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-user-plus text-gray-400 mr-2"></i>
+                            <span data-i18n="nav.registration" class="text-gray-700">Registration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-chart-line text-gray-400 mr-2"></i>
+                            <span data-i18n="nav.evaluation" class="text-gray-700">Evaluation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-download text-gray-400 mr-2"></i>
+                            <span data-i18n="nav.patterns" class="text-gray-700">Patterns</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hero Section Demo -->
+                <div class="bg-white rounded-lg shadow-lg p-6 language-demo">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-star text-orange-500 mr-2"></i>Hero Section
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="text-lg font-semibold text-gray-800" data-i18n="hero.title">
+                            DIY Fiber Laser Cutter Competition 2024-2025
+                        </div>
+                        <div class="text-sm text-gray-600" data-i18n="hero.subtitle">
+                            🏆 Join the Global Maker Community - Showcase Your DIY Fiber Laser Cutting Skills
+                        </div>
+                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition-all duration-300">
+                            <span data-i18n="hero.register-btn">Register Now</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Statistics Demo -->
+                <div class="bg-white rounded-lg shadow-lg p-6 language-demo">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-chart-bar text-orange-500 mr-2"></i>Statistics
+                    </h3>
+                    <div class="space-y-2">
+                        <div class="text-gray-700">
+                            <span class="font-semibold">25</span> 
+                            <span data-i18n="stats.participants">Participants Registered</span>
+                        </div>
+                        <div class="text-gray-700" data-i18n="stats.prize-pool">
+                            🎁 Total Prize Pool: $5,800 Gift Vouchers
+                        </div>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-all duration-300">
+                            <i class="fas fa-sync-alt mr-1"></i>
+                            <span data-i18n="stats.refresh">Refresh</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Timeline Demo -->
+                <div class="bg-white rounded-lg shadow-lg p-6 language-demo">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-calendar-alt text-orange-500 mr-2"></i>
+                        <span data-i18n="timeline.title">Competition Timeline</span>
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span data-i18n="timeline.registration" class="text-gray-600">Registration</span>
+                            <span data-i18n="timeline.reg-deadline" class="text-gray-800 font-medium">Sep 30, 2025</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span data-i18n="timeline.evaluation" class="text-gray-600">Evaluation</span>
+                            <span data-i18n="timeline.eval-start" class="text-gray-800 font-medium">Nov 30, 2025</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span data-i18n="timeline.results" class="text-gray-600">Results</span>
+                            <span data-i18n="timeline.results-date" class="text-gray-800 font-medium">Dec 15, 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Demo -->
+                <div class="bg-white rounded-lg shadow-lg p-6 language-demo md:col-span-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <i class="fas fa-form text-orange-500 mr-2"></i>Registration Form Sample
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.name">Full Name</label>
+                            <input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled 
+                                   data-i18n-placeholder="form.placeholder.name" placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.email">Email Address</label>
+                            <input type="email" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled
+                                   data-i18n-placeholder="form.placeholder.email" placeholder="example@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.country">Country/Region</label>
+                            <input type="text" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled
+                                   data-i18n-placeholder="form.placeholder.country" placeholder="Enter your country/region">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.phone">Phone Number (Optional)</label>
+                            <input type="tel" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled
+                                   data-i18n-placeholder="form.placeholder.phone" placeholder="+1 555-0000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.participation">Participation Type</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled>
+                                <option data-i18n="form.option.select-participation">Select Participation Type</option>
+                                <option data-i18n="form.option.individual">Individual Participation</option>
+                                <option data-i18n="form.option.team">Team Participation</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.power-level">Laser Power Level</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled>
+                                <option data-i18n="form.option.select-power">Select Power Level</option>
+                                <option data-i18n="form.option.1kw-1.5kw">1kW - 1.5kW</option>
+                                <option data-i18n="form.option.3kw">3kW</option>
+                                <option data-i18n="form.option.6kw">6kW</option>
+                                <option data-i18n="form.option.12kw">12kW</option>
+                                <option data-i18n="form.option.above-12kw">Above 12kW</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="mb-3">
+                            <label class="block text-sm font-medium text-gray-700 mb-1" data-i18n="form.source">How did you hear about us?</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 text-sm" disabled>
+                                <option data-i18n="form.option.please-select">Please select</option>
+                                <option data-i18n="form.option.social-media">Social Media</option>
+                                <option data-i18n="form.option.friend-referral">Friend Referral</option>
+                                <option data-i18n="form.option.tech-forum">Tech Forum</option>
+                                <option data-i18n="form.option.maker-community">Maker Community</option>
+                                <option data-i18n="form.option.search-engine">Search Engine</option>
+                                <option data-i18n="form.option.other">Other</option>
+                            </select>
+                        </div>
+                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded font-semibold transition-all duration-300">
+                            <span data-i18n="form.submit">Register Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Demo -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-comments text-orange-500 mr-2"></i>System Messages
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span data-i18n="msg.success">Registration successful!</span>
+                    </div>
+                    <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <span data-i18n="msg.copied">Copied to clipboard!</span>
+                    </div>
+                    <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+                        <i class="fas fa-spinner fa-spin mr-2"></i>
+                        <span data-i18n="msg.loading">Loading...</span>
+                    </div>
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        <span data-i18n="msg.error">An error occurred</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back to Main Site -->
+            <div class="text-center mt-8">
+                <a href="index.html" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Competition Site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update button states when language changes
+        function updateLanguageButtons() {
+            const buttons = document.querySelectorAll('.language-btn');
+            const currentLang = localStorage.getItem('skyfire-language') || 'en';
+            
+            buttons.forEach(btn => {
+                const lang = btn.getAttribute('onclick').match(/'(\w+)'/)[1];
+                if (lang === currentLang) {
+                    btn.classList.add('ring-4', 'ring-white', 'ring-opacity-50');
+                } else {
+                    btn.classList.remove('ring-4', 'ring-white', 'ring-opacity-50');
+                }
+            });
+        }
+
+        // Listen for language changes
+        window.addEventListener('languageChanged', updateLanguageButtons);
+        
+        // Initial update
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateLanguageButtons, 100);
+        });
+    </script>
+</body>
+</html> 
