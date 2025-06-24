@@ -72,6 +72,21 @@ const translations = {
         'form.option.search-engine': 'Search Engine',
         'form.option.other': 'Other',
         
+        // Registration form titles and instructions
+        'reg.title': 'SKYFIRE 2nd Edition Contest Registration',
+        'reg.subtitle': 'Join the global maker community, showcase your DIY fiber laser cutter projects, and compete with top creators worldwide',
+        'reg.form-title': 'Register Now',
+        'reg.form-subtitle': 'Fill out the registration form to start your maker journey',
+        'reg.participant-name': 'Participant Name',
+        'reg.important-title': 'Important: After Registration Confirmation',
+        'reg.tshirt-title': '📦 T-shirt Production:',
+        'reg.tshirt-desc': 'Once registration is confirmed, the organizers will begin creating T-shirts and send them to participants.',
+        'reg.video-title': '🎥 Video Submission Requirements:',
+        'reg.video-desc': 'After registering, participants need to create a video (at least 5 minutes long). The video should explain the DIY process and showcase the machine\'s appearance, functionality, and cutting performance.',
+        'reg.upload-title': '📤 Video Upload Instructions:',
+        'reg.upload-desc': 'Upload the video to the DIY Fiber Laser Facebook Group and add the tag: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest',
+        'reg.terms-agreement': 'I have read and agree to the Contest Terms and Conditions, and confirm that I understand the post-registration requirements',
+        
         // Additional elements
         'hero.register-btn': 'Register Now',
         'prize.1st': '1st Place',
@@ -170,6 +185,21 @@ const translations = {
         'form.option.maker-community': 'Comunidad Maker',
         'form.option.search-engine': 'Motor de Búsqueda',
         'form.option.other': 'Otro',
+        
+        // Registration form titles and instructions
+        'reg.title': 'Registro del Concurso SKYFIRE 2da Edición',
+        'reg.subtitle': 'Únete a la comunidad global de makers, muestra tus proyectos DIY de cortadora láser de fibra, y compite con los mejores creadores del mundo',
+        'reg.form-title': 'Registrarse Ahora',
+        'reg.form-subtitle': 'Completa el formulario de registro para comenzar tu viaje como maker',
+        'reg.participant-name': 'Nombre del Participante',
+        'reg.important-title': 'Importante: Después de la Confirmación de Registro',
+        'reg.tshirt-title': '📦 Producción de Camisetas:',
+        'reg.tshirt-desc': 'Una vez confirmado el registro, los organizadores comenzarán a crear camisetas y las enviarán a los participantes.',
+        'reg.video-title': '🎥 Requisitos de Envío de Video:',
+        'reg.video-desc': 'Después de registrarse, los participantes deben crear un video (de al menos 5 minutos de duración). El video debe explicar el proceso DIY y mostrar la apariencia, funcionalidad y rendimiento de corte de la máquina.',
+        'reg.upload-title': '📤 Instrucciones de Subida de Video:',
+        'reg.upload-desc': 'Sube el video al Grupo de Facebook DIY Fiber Laser y agrega la etiqueta: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest',
+        'reg.terms-agreement': 'He leído y acepto los Términos y Condiciones del Concurso, y confirmo que entiendo los requisitos posteriores al registro',
         
         // Additional elements
         'hero.register-btn': 'Registrarse Ahora',
@@ -270,6 +300,21 @@ const translations = {
         'form.option.search-engine': '検索エンジン',
         'form.option.other': 'その他',
         
+        // Registration form titles and instructions
+        'reg.title': 'SKYFIRE第2回コンテスト登録',
+        'reg.subtitle': 'グローバルメーカーコミュニティに参加し、DIYファイバーレーザーカッタープロジェクトを紹介し、世界のトップクリエイターと競争しましょう',
+        'reg.form-title': '今すぐ登録',
+        'reg.form-subtitle': '登録フォームに記入してメーカーの旅を始めましょう',
+        'reg.participant-name': '参加者名',
+        'reg.important-title': '重要：登録確認後について',
+        'reg.tshirt-title': '📦 Tシャツ製作：',
+        'reg.tshirt-desc': '登録が確認されると、主催者はTシャツの製作を開始し、参加者に送付します。',
+        'reg.video-title': '🎥 動画提出要件：',
+        'reg.video-desc': '登録後、参加者は動画（最低5分間）を作成する必要があります。動画ではDIYプロセスを説明し、機械の外観、機能、切断性能を紹介してください。',
+        'reg.upload-title': '📤 動画アップロード手順：',
+        'reg.upload-desc': 'DIY Fiber Laser Facebookグループに動画をアップロードし、タグ「#ParticipateInTheSecondSKYFIREDIYLaserCutterContest」を追加してください',
+        'reg.terms-agreement': 'コンテストの利用規約を読み、同意します。また、登録後の要件を理解していることを確認します',
+        
         // Additional elements
         'hero.register-btn': '今すぐ登録',
         'prize.1st': '1位',
@@ -368,6 +413,21 @@ const translations = {
         'form.option.maker-community': 'Maker-Community',
         'form.option.search-engine': 'Suchmaschine',
         'form.option.other': 'Andere',
+        
+        // Registration form titles and instructions
+        'reg.title': 'SKYFIRE 2. Edition Wettbewerb Anmeldung',
+        'reg.subtitle': 'Tritt der globalen Maker-Community bei, zeige deine DIY Faserlaser-Schneider Projekte und tritt gegen Top-Kreative weltweit an',
+        'reg.form-title': 'Jetzt Anmelden',
+        'reg.form-subtitle': 'Fülle das Anmeldeformular aus, um deine Maker-Reise zu beginnen',
+        'reg.participant-name': 'Name des Teilnehmers',
+        'reg.important-title': 'Wichtig: Nach der Anmeldebestätigung',
+        'reg.tshirt-title': '📦 T-Shirt Produktion:',
+        'reg.tshirt-desc': 'Sobald die Anmeldung bestätigt ist, beginnen die Organisatoren mit der Herstellung von T-Shirts und senden sie an die Teilnehmer.',
+        'reg.video-title': '🎥 Video-Einreichung Anforderungen:',
+        'reg.video-desc': 'Nach der Anmeldung müssen die Teilnehmer ein Video erstellen (mindestens 5 Minuten lang). Das Video sollte den DIY-Prozess erklären und das Aussehen, die Funktionalität und die Schneidleistung der Maschine zeigen.',
+        'reg.upload-title': '📤 Video-Upload Anweisungen:',
+        'reg.upload-desc': 'Lade das Video in die DIY Fiber Laser Facebook-Gruppe hoch und füge den Tag hinzu: #ParticipateInTheSecondSKYFIREDIYLaserCutterContest',
+        'reg.terms-agreement': 'Ich habe die Wettbewerbsbedingungen gelesen und stimme ihnen zu, und bestätige, dass ich die Anforderungen nach der Anmeldung verstehe',
         
         // Additional elements
         'hero.register-btn': 'Jetzt Anmelden',
