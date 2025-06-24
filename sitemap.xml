@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                           http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Main Competition Page -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Competition Index Page -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/index.html</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Promotion Page -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/promotion.html</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Evaluation System -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/evaluation.html</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Cutting Patterns -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/patterns.html</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Registration Form -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/form.html</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Admin Panel -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/admin.html</loc>
+    <lastmod>2024-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset> 
