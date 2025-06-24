@@ -89,7 +89,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">🚀 One-Click Share to Social Media</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
                 <button onclick="shareToTwitter()" class="share-button bg-black hover:bg-gray-800 text-white p-6 rounded-lg transition-all duration-300">
                     <i class="fab fa-twitter text-3xl mb-2"></i>
                     <div class="font-bold">X (Twitter)</div>
@@ -113,6 +113,21 @@
                 <button onclick="shareToReddit()" class="share-button reddit-button text-white p-6 rounded-lg transition-all duration-300">
                     <i class="fab fa-reddit text-3xl mb-2"></i>
                     <div class="font-bold">Reddit</div>
+                </button>
+                
+                <button onclick="shareToWhatsApp()" class="share-button bg-green-500 hover:bg-green-600 text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-whatsapp text-3xl mb-2"></i>
+                    <div class="font-bold">WhatsApp</div>
+                </button>
+                
+                <button onclick="shareToDiscord()" class="share-button bg-indigo-600 hover:bg-indigo-700 text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-discord text-3xl mb-2"></i>
+                    <div class="font-bold">Discord</div>
+                </button>
+                
+                <button onclick="shareToYouTube()" class="share-button bg-red-600 hover:bg-red-700 text-white p-6 rounded-lg transition-all duration-300">
+                    <i class="fab fa-youtube text-3xl mb-2"></i>
+                    <div class="font-bold">YouTube</div>
                 </button>
                 
                 <button onclick="copyShareLink()" class="share-button bg-gray-600 hover:bg-gray-700 text-white p-6 rounded-lg transition-all duration-300">
@@ -370,6 +385,28 @@ Whether you're an individual maker or team, everyone's welcome! Let's advance DI
             const title = `🔥 ${shareTitle} - $5,800 Prize Pool!`;
             const url = `https://reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(title)}`;
             window.open(url, '_blank');
+        }
+
+        function shareToWhatsApp() {
+            const text = `🔥 ${shareTitle}\n\n${shareDescription}\n\n📝 Register: ${shareUrl}`;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToDiscord() {
+            const text = `🔥 **${shareTitle}**\n\n${shareDescription}\n\n🎯 Join now: ${shareUrl}`;
+            // Discord doesn't have direct sharing URL, copy text instead
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('Discord message copied! Paste it in your Discord channel.', 'success');
+            });
+        }
+
+        function shareToYouTube() {
+            // YouTube doesn't have direct sharing, but we can suggest creating content
+            const description = `Create a video about the SKYFIRE Competition! Here's the link to include: ${shareUrl}`;
+            navigator.clipboard.writeText(description).then(() => {
+                showNotification('YouTube video description copied! Use it to create promotional content.', 'success');
+            });
         }
 
         function copyShareLink() {
