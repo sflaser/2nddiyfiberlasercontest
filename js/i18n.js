@@ -54,6 +54,9 @@ const translations = {
         'form.placeholder.company': 'Leave blank for individual participation',
         'form.placeholder.team-members': 'List team member names, one per line',
         
+        // Form privacy
+        'form.privacy-note': 'We will not disclose your email information, it will only be used for contest-related notifications',
+        
         // Form options
         'form.option.select-participation': 'Select Participation Type',
         'form.option.individual': 'Individual Participation',
@@ -169,6 +172,9 @@ const translations = {
         'form.placeholder.phone': '+1 555-0000',
         'form.placeholder.company': 'Dejar en blanco para participación individual',
         'form.placeholder.team-members': 'Lista de nombres de miembros del equipo, uno por línea',
+        
+        // Form privacy
+        'form.privacy-note': 'No divulgaremos su información de correo electrónico, solo se utilizará para notificaciones relacionadas con el concurso',
         
         // Form options
         'form.option.select-participation': 'Seleccionar Tipo de Participación',
@@ -286,6 +292,9 @@ const translations = {
         'form.placeholder.company': '個人参加の場合は空白のままにしてください',
         'form.placeholder.team-members': 'チームメンバーの名前を1行に1人ずつ入力',
         
+        // Form privacy
+        'form.privacy-note': 'メールアドレス情報は公開されません。コンテスト関連の通知にのみ使用されます',
+        
         // Form options
         'form.option.select-participation': '参加タイプを選択',
         'form.option.individual': '個人参加',
@@ -401,6 +410,9 @@ const translations = {
         'form.placeholder.phone': '+49 030 12345678',
         'form.placeholder.company': 'Leer lassen für Einzelteilnahme',
         'form.placeholder.team-members': 'Namen der Teammitglieder auflisten, einen pro Zeile',
+        
+        // Form privacy
+        'form.privacy-note': 'Wir werden Ihre E-Mail-Informationen nicht preisgeben, sie werden nur für wettbewerbsbezogene Benachrichtigungen verwendet',
         
         // Form options
         'form.option.select-participation': 'Teilnahmeart wählen',
