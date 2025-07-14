@@ -83,6 +83,8 @@
     <script src="js/ux-improvements.js?v=1.0" defer></script>
     <script src="js/i18n.js?v=1.0" defer></script>
     <script src="js/analytics.js?v=1.0" defer></script>
+    <!-- Firebase Client -->
+    <script src="js/firebase-config.js"></script>
     <!-- EmailJS for email sending -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -1079,25 +1081,59 @@ SKYFIRE Competition Committee - Automated Notification System
         function participantDisplay() {
             return {
                 participants: [],
+                loading: false,
 
-                init() {
-                    this.loadParticipants();
-                    // 设置定期同步，每30秒检查一次数据变化
-                    setInterval(() => {
-                        this.loadParticipants();
-                    }, 30000);
+                async init() {
+                    await this.loadParticipants();
+                    
+                    // If using localStorage fallback, poll for changes
+                    if (!window.isFirebaseConfigured) {
+                        setInterval(() => {
+                            this.loadParticipantsFromLocal();
+                        }, 30000);
+                    }
                 },
 
-                loadParticipants() {
-                    // Load participants from localStorage (same as evaluation system)
+                async loadParticipants() {
+                    this.loading = true;
+                    
+                    try {
+                        if (window.isFirebaseConfigured) {
+                            // Load from Firebase
+                            const data = await ParticipantFirebase.getAll();
+                            this.participants = data;
+                            console.log('Participants loaded from Firebase:', this.participants.length, 'participants');
+                            
+                            // Clear localStorage cache to prevent conflicts
+                            localStorage.removeItem('skyfire_participants');
+                        } else {
+                            // Fallback to localStorage
+                            this.loadParticipantsFromLocal();
+                        }
+                    } catch (error) {
+                        console.error('Failed to load participants:', error);
+                        
+                        // If Firebase fails, try localStorage as fallback
+                        if (window.isFirebaseConfigured) {
+                            console.log('Firebase failed, trying localStorage fallback...');
+                            this.loadParticipantsFromLocal();
+                        } else {
+                            this.participants = [];
+                        }
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+
+                loadParticipantsFromLocal() {
                     try {
                         const savedParticipants = localStorage.getItem('skyfire_participants');
                         if (savedParticipants) {
                             const newParticipants = JSON.parse(savedParticipants);
-                            // 只有当数据实际发生变化时才更新
+                            // Only update if data actually changed
                             if (JSON.stringify(newParticipants) !== JSON.stringify(this.participants)) {
                                 this.participants = newParticipants;
-                                console.log('Participants data updated:', this.participants.length, 'participants');
+                                console.log('Participants data updated from localStorage:', this.participants.length, 'participants');
                             }
                         } else {
                             if (this.participants.length > 0) {
@@ -1106,10 +1142,12 @@ SKYFIRE Competition Committee - Automated Notification System
                             }
                         }
                     } catch (error) {
-                        console.error('Failed to load participants:', error);
+                        console.error('Failed to load participants from localStorage:', error);
                         this.participants = [];
                     }
                 },
+
+
 
                 formatDate(dateString) {
                     if (!dateString) return 'Unknown';
