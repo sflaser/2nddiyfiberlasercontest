@@ -516,12 +516,16 @@
                         if (window.isFirebaseConfigured) {
                             // Use Firebase
                             await ParticipantFirebase.delete(id);
-                        } else {
-                            // Fallback to localStorage
+                        }
+                        
+                        // Remove from local array (works for both Firebase and localStorage)
+                        this.participants = this.participants.filter(p => p.id !== id);
+                        
+                        if (!window.isFirebaseConfigured) {
+                            // Update localStorage
                             this.saveParticipantsLocal();
                         }
                         
-                        this.participants = this.participants.filter(p => p.id !== id);
                         alert('Participant deleted successfully!');
                     } catch (error) {
                         console.error('Error deleting participant:', error);
