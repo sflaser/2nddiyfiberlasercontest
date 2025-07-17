@@ -590,6 +590,28 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-ruler-vertical mr-2 orange-accent"></i>Height (cm) *
+                                </label>
+                                <input type="text" id="regHeight" name="height" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required placeholder="Enter your height in cm">
+                                <p class="text-sm text-gray-500 mt-1">
+                                    <i class="fas fa-tshirt mr-1"></i>Required for T-shirt size calculation
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
+                                    <i class="fas fa-weight mr-2 orange-accent"></i>Weight (kg) *
+                                </label>
+                                <input type="text" id="regWeight" name="weight" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" required placeholder="Enter your weight in kg">
+                                <p class="text-sm text-gray-500 mt-1">
+                                    <i class="fas fa-tshirt mr-1"></i>Required for T-shirt size calculation
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-bold mb-2">
                                     <i class="fas fa-building mr-2 orange-accent"></i>Organization/Company
                                 </label>
                                 <input type="text" id="regCompany" name="company" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-300 focus:border-orange-500 transition-colors" placeholder="Leave blank for individual participation">
@@ -653,7 +675,10 @@
                                 <p class="ml-4">Once registration is confirmed, the organizers will begin creating T-shirts and send them to participants.</p>
                                 
                                 <p class="font-semibold">🎥 <strong>Video Submission Requirements:</strong></p>
-                                <p class="ml-4">After registering, participants need to create a video (at least 5 minutes long). The video should explain the DIY process and showcase the machine's appearance, functionality, and cutting performance.</p>
+                                <p class="ml-4">After registering, participants need to create a video (<span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded font-bold">5-8 minutes long</span>). The video should explain the DIY process and showcase the machine's appearance, functionality, and cutting performance.</p>
+                                
+                                <p class="font-semibold">📺 <strong>Live Evaluation Notice:</strong></p>
+                                <p class="ml-4">Since our evaluation is conducted through live streaming, please keep your video duration between <span class="bg-yellow-200 text-yellow-800 px-2 py-1 rounded font-bold">5-8 minutes</span> to save time during the review process.</p>
                                 
                                 <p class="font-semibold">📤 <strong>Video Upload Instructions:</strong></p>
                                 <p class="ml-4">Upload the video to the <strong><a href="https://www.facebook.com/groups/998602455597977" target="_blank" class="text-orange-600 hover:text-orange-800 underline">DIY Fiber Laser Facebook Group</a></strong> and add the tag: <code class="bg-orange-200 px-2 py-1 rounded text-sm text-orange-700">#ParticipateInTheSecondSKYFIREDIYLaserCutterContest</code></p>
@@ -940,6 +965,8 @@
                         email: formData.get('email'),
                         country: formData.get('country'),
                         phone: formData.get('phone') || '未提供',
+                        height: formData.get('height'),
+                        weight: formData.get('weight'),
                         company: formData.get('company') || '个人参与',
                         participation_type: formData.get('participation_type'),
                         team_members: formData.get('team_members') || '无',
@@ -990,6 +1017,8 @@
 📧 Email: ${formData.get('email')}
 🌍 Country/Region: ${formData.get('country')}
 📱 Phone: ${formData.get('phone') || 'Not provided'}
+📏 Height: ${formData.get('height')} cm
+⚖️ Weight: ${formData.get('weight')} kg
 🏢 Organization/Company: ${formData.get('company') || 'Individual participation'}
 
 🔧 COMPETITION DETAILS:
