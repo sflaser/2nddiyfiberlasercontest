@@ -461,26 +461,27 @@ Whether you're an individual maker or team, everyone's welcome! Let's advance DI
         // Load statistics data
         async function loadStats() {
             try {
-                // Import Firebase functions for 2nd edition registrations
-                const { 
-                    getFirestore, 
-                    collection, 
-                    getDocs 
-                } = await import('https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js');
-                const { db } = await import('./js/firebase-config.js');
+                // Import Firebase configuration
+                await import('./js/firebase-config.js');
                 
-                // Get 2nd edition registration data from the correct collection
-                const registrationsCollection = collection(db, "registrations_2025");
-                const querySnapshot = await getDocs(registrationsCollection);
+                // Check if Firebase is configured
+                if (!window.isFirebaseConfigured || !window.ParticipantFirebase) {
+                    console.warn('Firebase not configured, showing fallback values');
+                    document.getElementById('totalRegistrations').textContent = '0';
+                    document.getElementById('totalCountries').textContent = '0';
+                    return;
+                }
                 
-                // Calculate statistics from 2nd edition registrations
-                const totalRegistrations = querySnapshot.size;
+                // Get participants data from Firebase Realtime Database
+                const participants = await window.ParticipantFirebase.getAll();
+                
+                // Calculate statistics from participant data
+                const totalRegistrations = participants.length;
                 const countries = new Set();
                 
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    if (data.country) {
-                        countries.add(data.country);
+                participants.forEach((participant) => {
+                    if (participant.country) {
+                        countries.add(participant.country.trim());
                     }
                 });
                 
@@ -491,6 +492,7 @@ Whether you're an individual maker or team, everyone's welcome! Let's advance DI
                 document.getElementById('totalCountries').textContent = totalCountries.toString();
                 
                 console.log(`Loaded ${totalRegistrations} registrations from ${totalCountries} countries (2nd Edition)`);
+                console.log('Countries:', Array.from(countries).sort());
                 
             } catch (error) {
                 console.error('Failed to load statistics:', error);
