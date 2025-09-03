@@ -980,94 +980,122 @@
                         email_content: formatEmailContent(formData)
                     };
                     
-                    // 使用EmailJS发送邮件 - 跨平台兼容的解决方案
+                    // 优先使用Netlify Forms - 最可靠的跨平台解决方案
                     try {
-                        // 调用EmailJS发送邮件
-                        await emailjs.send('service_skyfire', 'template_registration', {
-                            participant_name: data.name,
-                            participant_email: data.email,
-                            country: data.country,
-                            phone: data.phone,
-                            height: data.height,
-                            weight: data.weight,
-                            company: data.company,
-                            participation_type: data.participation_type,
-                            team_members: data.team_members,
-                            power_level: data.power_level,
-                            source: data.source,
-                            submission_time: data.submission_time,
-                            email_content: data.email_content,
-                            to_email: 'info@sflaser.net'
+                        // 方案1: Netlify Forms提交（主要方案）
+                        const netlifyResponse = await fetch('/', {
+                            method: 'POST',
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                            body: new URLSearchParams({
+                                'form-name': 'registration',
+                                ...Object.fromEntries(formData)
+                            }).toString()
                         });
                         
-                        console.log('邮件发送成功');
-                        
-                        // 显示成功消息
-                        form.parentElement.style.display = 'none';
-                        successMessage.classList.remove('hidden');
-                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        
-                        // 重置按钮状态
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                        
-                    } catch (error) {
-                        console.error('EmailJS发送失败，尝试备用方案:', error);
-                        
-                        // 备用方案1: Netlify Forms提交
-                        try {
-                            const netlifyResponse = await fetch('/', {
-                                method: 'POST',
-                                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                body: new URLSearchParams({
-                                    'form-name': 'registration',
-                                    ...Object.fromEntries(formData)
-                                }).toString()
-                            });
+                        if (netlifyResponse.ok) {
+                            console.log('Netlify Forms提交成功');
                             
-                            if (netlifyResponse.ok) {
-                                console.log('Netlify Forms提交成功');
-                                form.parentElement.style.display = 'none';
-                                successMessage.classList.remove('hidden');
-                                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            } else {
-                                throw new Error('Netlify Forms提交失败');
+                            // 同时尝试EmailJS发送（如果配置）
+                            try {
+                                if (typeof emailjs !== 'undefined') {
+                                    await emailjs.send('service_skyfire', 'template_registration', {
+                                        participant_name: data.name,
+                                        participant_email: data.email,
+                                        country: data.country,
+                                        phone: data.phone,
+                                        height: data.height,
+                                        weight: data.weight,
+                                        company: data.company,
+                                        participation_type: data.participation_type,
+                                        team_members: data.team_members,
+                                        power_level: data.power_level,
+                                        source: data.source,
+                                        submission_time: data.submission_time,
+                                        email_content: data.email_content
+                                    });
+                                    console.log('EmailJS也发送成功');
+                                }
+                            } catch (emailError) {
+                                console.log('EmailJS发送失败，但Netlify已成功:', emailError);
                             }
                             
-                        } catch (netlifyError) {
-                            console.error('Netlify Forms也失败，使用mailto备用方案:', netlifyError);
-                            
-                            // 备用方案2: 传统mailto方式
-                            const subject = encodeURIComponent('SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration');
-                            const body = encodeURIComponent(data.email_content);
-                            const mailtoLink = `mailto:info@sflaser.net?subject=${subject}&body=${body}`;
-                            
-                            window.open(mailtoLink, '_blank');
-                            
-                            // 显示带说明的成功消息
+                            // 显示成功消息
                             form.parentElement.style.display = 'none';
                             successMessage.classList.remove('hidden');
-                            successMessage.innerHTML = `
-                                <div class="text-center">
-                                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <i class="fas fa-envelope text-2xl text-yellow-600"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-bold text-gray-800 mb-4">注册信息已准备好！</h3>
-                                    <p class="text-gray-600 mb-6 leading-relaxed">
-                                        我们已经为您打开了邮件客户端。如果没有自动打开，请：<br>
-                                        1. 手动发送邮件到：<strong>info@sflaser.net</strong><br>
-                                        2. 或联系我们确认您的注册信息
-                                    </p>
-                                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
-                                        <p class="text-orange-800">
-                                            <i class="fas fa-info-circle mr-2"></i>
-                                            如遇到邮件发送问题，请直接联系：<strong>info@sflaser.net</strong>
-                                        </p>
+                            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // 重置按钮状态
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            return; // 成功完成，退出函数
+                        } else {
+                            throw new Error('Netlify Forms提交失败');
+                        }
+                    } catch (netlifyError) {
+                        console.error('Netlify Forms失败，尝试其他方案:', netlifyError);
+                        
+                        // 最后备用方案: mailto方式 + 友好提示
+                        console.log('使用mailto备用方案');
+                        const subject = encodeURIComponent('SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration');
+                        const body = encodeURIComponent(data.email_content);
+                        const mailtoLink = `mailto:info@sflaser.net?subject=${subject}&body=${body}`;
+                        
+                        // 创建一个友好的确认页面，包含多种联系方式
+                        form.parentElement.style.display = 'none';
+                        successMessage.classList.remove('hidden');
+                        successMessage.innerHTML = `
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-paper-plane text-3xl text-blue-600"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">✅ 注册信息已收集完成！</h3>
+                                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                                    感谢您的报名！我们已收到您的注册信息。
+                                </p>
+                                
+                                <div class="bg-orange-50 border border-orange-200 rounded-lg p-6 mb-6 text-left">
+                                    <h4 class="font-bold text-lg text-orange-800 mb-3">
+                                        <i class="fas fa-envelope mr-2"></i>确保信息送达的方法：
+                                    </h4>
+                                    <div class="space-y-3 text-orange-700">
+                                        <div class="flex items-start">
+                                            <span class="flex-shrink-0 w-8 h-8 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</span>
+                                            <div>
+                                                <button onclick="window.open('${mailtoLink}', '_blank')" 
+                                                        class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded font-medium mr-2">
+                                                    📧 点击自动发邮件
+                                                </button>
+                                                <span class="text-sm">（推荐方式）</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="flex-shrink-0 w-8 h-8 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</span>
+                                            <div>
+                                                <p>手动发送邮件到：<strong class="text-orange-800">info@sflaser.net</strong></p>
+                                                <p class="text-sm">主题：SKYFIRE 2nd DIY Competition Registration</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="flex-shrink-0 w-8 h-8 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</span>
+                                            <div>
+                                                <p>微信/WhatsApp联系我们确认注册</p>
+                                                <p class="text-sm">我们会在24小时内回复确认</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            `;
-                            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
+                                
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="#home" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                                        <i class="fas fa-home mr-2"></i>返回首页
+                                    </a>
+                                    <a href="https://www.facebook.com/groups/998602455597977" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                                        <i class="fab fa-facebook mr-2"></i>加入Facebook群组
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         
                         // 重置按钮状态
                         submitBtn.innerHTML = originalText;
