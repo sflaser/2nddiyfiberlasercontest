@@ -80,18 +80,18 @@
     <link href="css/mobile.css?v=4.0" rel="stylesheet">
     <link href="css/performance.css?v=1.0" rel="stylesheet">
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="js/ux-improvements.js?v=1.0" defer></script>
+    <!-- <script src="js/ux-improvements.js?v=1.0" defer></script> -->
     <script src="js/i18n.js?v=1.0" defer></script>
     <script src="js/analytics.js?v=1.0" defer></script>
     <!-- Firebase Client -->
     <script src="js/firebase-config.js"></script>
-    <!-- EmailJS for email sending -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <!-- EmailJS for email sending - temporarily disabled -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> -->
+    <!-- <script type="text/javascript">
         (function(){
             emailjs.init("VfSxu4Sx-5tR0Yysp"); // EmailJS公开密钥
         })();
-    </script>
+    </script> -->
     <style>
         /* Primary Brand Colors */
         .gradient-bg {
@@ -955,13 +955,16 @@
             const successMessage = document.getElementById('successMessage');
             
             if (form) {
-                form.addEventListener('submit', async function(e) {
+                form.addEventListener('submit', function(e) {
                     e.preventDefault(); // 阻止默认提交
+                    e.stopPropagation(); // 阻止事件冒泡
+                    
+                    console.log('Form submitted - processing...');
                     
                     // 显示加载状态
                     const submitBtn = form.querySelector('button[type="submit"]');
                     const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>发送中...';
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
                     submitBtn.disabled = true;
                     
                     // 收集表单数据
@@ -970,94 +973,39 @@
                         name: formData.get('name'),
                         email: formData.get('email'),
                         country: formData.get('country'),
-                        phone: formData.get('phone') || '未提供',
+                        phone: formData.get('phone') || 'Not provided',
                         height: formData.get('height'),
                         weight: formData.get('weight'),
-                        company: formData.get('company') || '个人参与',
+                        company: formData.get('company') || 'Individual participation',
                         participation_type: formData.get('participation_type'),
-                        team_members: formData.get('team_members') || '无',
+                        team_members: formData.get('team_members') || 'None',
                         power_level: formData.get('power_level'),
-                        source: formData.get('source') || '未选择',
+                        source: formData.get('source') || 'Not selected',
                         agreed: formData.get('agreed'),
-                        submission_time: new Date().toLocaleString('zh-CN'),
-                        // 格式化的邮件内容
+                        submission_time: new Date().toLocaleString(),
                         email_content: formatEmailContent(formData)
                     };
                     
-                    // 创建邮件链接并尝试打开邮件客户端
+                    // 创建邮件链接
                     const subject = encodeURIComponent('SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration');
                     const body = encodeURIComponent(data.email_content);
                     const mailtoLink = `mailto:info@sflaser.net?subject=${subject}&body=${body}`;
                     
-                    // 尝试打开邮件客户端
-                    try {
-                        window.open(mailtoLink, '_blank');
-                    } catch (error) {
-                        console.log('无法自动打开邮件客户端:', error);
-                    }
+                    // 立即打开邮件客户端
+                    window.location.href = mailtoLink;
                     
-                    // 显示友好的成功页面，包含邮件发送选项
+                    // 显示成功消息
                     setTimeout(function() {
-                        form.parentElement.style.display = 'none';
+                        form.style.display = 'none';
                         successMessage.classList.remove('hidden');
-                        successMessage.innerHTML = `
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-check-circle text-4xl text-green-600"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-green-800 mb-4">✅ Registration Information Ready!</h3>
-                                <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                                    Thank you for registering! We have prepared your registration email.
-                                </p>
-                                
-                                <div class="bg-orange-50 border border-orange-200 rounded-lg p-6 mb-6 text-left">
-                                    <h4 class="font-bold text-lg text-orange-800 mb-3">
-                                        <i class="fas fa-envelope mr-2"></i>To Complete Registration:
-                                    </h4>
-                                    <div class="space-y-3 text-orange-700">
-                                        <div class="flex items-start">
-                                            <span class="flex-shrink-0 w-8 h-8 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">1</span>
-                                            <div>
-                                                <button onclick="window.open('${mailtoLink}', '_blank')" 
-                                                        class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded font-medium mr-2">
-                                                    📧 Click to Send Email
-                                                </button>
-                                                <span class="text-sm">(Recommended)</span>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-start">
-                                            <span class="flex-shrink-0 w-8 h-8 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">2</span>
-                                            <div>
-                                                <p>Or manually send email to: <strong class="text-orange-800">info@sflaser.net</strong></p>
-                                                <p class="text-sm">Subject: SKYFIRE 2nd DIY Competition Registration</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-start">
-                                            <span class="flex-shrink-0 w-8 h-8 bg-orange-200 text-orange-800 rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-0.5">3</span>
-                                            <div>
-                                                <p>Contact us via WeChat/WhatsApp to confirm registration</p>
-                                                <p class="text-sm">We will reply within 24 hours</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <a href="#home" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                                        <i class="fas fa-home mr-2"></i>Back to Home
-                                    </a>
-                                    <a href="https://www.facebook.com/groups/998602455597977" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                                        <i class="fab fa-facebook mr-2"></i>Join Facebook Group
-                                    </a>
-                                </div>
-                            </div>
-                        `;
                         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         
                         // 重置按钮状态
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     }, 1000);
+                    
+                    return false; // 确保不会有其他提交行为
                 });
             }
             
