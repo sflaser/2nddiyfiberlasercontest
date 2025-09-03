@@ -89,7 +89,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function(){
-            emailjs.init("YOUR_PUBLIC_KEY"); // 需要配置真实的公开密钥
+            emailjs.init("VfSxu4Sx-5tR0Yysp"); // EmailJS公开密钥
         })();
     </script>
     <style>
@@ -551,7 +551,9 @@
                         <p class="text-gray-600 text-lg">Fill out the registration form to start your maker journey</p>
                     </div>
                     
-                    <form id="registrationForm" name="registration" class="space-y-6" data-autosave="registration">
+                    <form id="registrationForm" name="registration" class="space-y-6" data-autosave="registration" netlify>
+                        <!-- Netlify Forms必需的隐藏字段 -->
+                        <input type="hidden" name="form-name" value="registration" />
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-gray-700 font-bold mb-2">
@@ -949,7 +951,7 @@
             const successMessage = document.getElementById('successMessage');
             
             if (form) {
-                form.addEventListener('submit', function(e) {
+                form.addEventListener('submit', async function(e) {
                     e.preventDefault(); // 阻止默认提交
                     
                     // 显示加载状态
@@ -978,27 +980,96 @@
                         email_content: formatEmailContent(formData)
                     };
                     
-                    // 创建邮件链接并打开默认邮件客户端
-                    const subject = encodeURIComponent('SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration');
-                    const body = encodeURIComponent(data.email_content);
-                    const mailtoLink = `mailto:info@sflaser.net?subject=${subject}&body=${body}`;
-                    
-                    // 尝试打开邮件客户端
+                    // 使用EmailJS发送邮件 - 跨平台兼容的解决方案
                     try {
-                        window.open(mailtoLink, '_blank');
+                        // 调用EmailJS发送邮件
+                        await emailjs.send('service_skyfire', 'template_registration', {
+                            participant_name: data.name,
+                            participant_email: data.email,
+                            country: data.country,
+                            phone: data.phone,
+                            height: data.height,
+                            weight: data.weight,
+                            company: data.company,
+                            participation_type: data.participation_type,
+                            team_members: data.team_members,
+                            power_level: data.power_level,
+                            source: data.source,
+                            submission_time: data.submission_time,
+                            email_content: data.email_content,
+                            to_email: 'info@sflaser.net'
+                        });
+                        
+                        console.log('邮件发送成功');
                         
                         // 显示成功消息
-                        setTimeout(function() {
-                            form.parentElement.style.display = 'none';
-                            successMessage.classList.remove('hidden');
-                            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }, 1000);
+                        form.parentElement.style.display = 'none';
+                        successMessage.classList.remove('hidden');
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // 重置按钮状态
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
                         
                     } catch (error) {
-                        console.log('邮件客户端打开失败...', error);
-                        // 显示备选方案
-                        showEmailInstructions(data);
-                        // 恢复按钮状态
+                        console.error('EmailJS发送失败，尝试备用方案:', error);
+                        
+                        // 备用方案1: Netlify Forms提交
+                        try {
+                            const netlifyResponse = await fetch('/', {
+                                method: 'POST',
+                                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                                body: new URLSearchParams({
+                                    'form-name': 'registration',
+                                    ...Object.fromEntries(formData)
+                                }).toString()
+                            });
+                            
+                            if (netlifyResponse.ok) {
+                                console.log('Netlify Forms提交成功');
+                                form.parentElement.style.display = 'none';
+                                successMessage.classList.remove('hidden');
+                                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            } else {
+                                throw new Error('Netlify Forms提交失败');
+                            }
+                            
+                        } catch (netlifyError) {
+                            console.error('Netlify Forms也失败，使用mailto备用方案:', netlifyError);
+                            
+                            // 备用方案2: 传统mailto方式
+                            const subject = encodeURIComponent('SKYFIRE 2nd DIY Fiber Laser Cutter Competition - New Registration');
+                            const body = encodeURIComponent(data.email_content);
+                            const mailtoLink = `mailto:info@sflaser.net?subject=${subject}&body=${body}`;
+                            
+                            window.open(mailtoLink, '_blank');
+                            
+                            // 显示带说明的成功消息
+                            form.parentElement.style.display = 'none';
+                            successMessage.classList.remove('hidden');
+                            successMessage.innerHTML = `
+                                <div class="text-center">
+                                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-envelope text-2xl text-yellow-600"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-4">注册信息已准备好！</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        我们已经为您打开了邮件客户端。如果没有自动打开，请：<br>
+                                        1. 手动发送邮件到：<strong>info@sflaser.net</strong><br>
+                                        2. 或联系我们确认您的注册信息
+                                    </p>
+                                    <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                                        <p class="text-orange-800">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            如遇到邮件发送问题，请直接联系：<strong>info@sflaser.net</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            `;
+                            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        
+                        // 重置按钮状态
                         submitBtn.innerHTML = originalText;
                         submitBtn.disabled = false;
                     }
