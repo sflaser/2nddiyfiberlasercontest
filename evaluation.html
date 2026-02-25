@@ -271,7 +271,7 @@
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h3 class="font-bold text-lg" x-text="participant.name"></h3>
-                                <p class="text-gray-600 text-sm" x-text="participant.email"></p>
+                                <p class="text-gray-600 text-sm" x-text="participant.country || participant.email || 'Country not provided'"></p>
                             </div>
                             <span class="px-2 py-1 text-xs font-bold rounded"
                                   :class="participant.participationType === 'team' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'"
