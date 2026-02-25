@@ -1130,12 +1130,18 @@ SKYFIRE Competition Committee - Automated Notification System
                 participants: [],
                 loading: false,
 
+                sanitizeCountry(value) {
+                    const normalizedValue = String(value || '').trim();
+                    if (!normalizedValue) return '';
+                    return normalizedValue.includes('@') ? '' : normalizedValue;
+                },
+
                 normalizeParticipant(participant = {}) {
                     return {
                         ...participant,
                         name: participant.name || participant.full_name || 'Unnamed Participant',
-                        email: participant.email || '',
-                        country: participant.country || participant.nationality || '',
+                        email: '',
+                        country: this.sanitizeCountry(participant.country || participant.nationality || ''),
                         company: participant.company || participant.organization || '',
                         participationType: participant.participationType || participant.participation_type || 'individual',
                         powerLevel: participant.powerLevel || participant.power_level || 'Not specified',
