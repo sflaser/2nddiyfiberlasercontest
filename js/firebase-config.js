@@ -14,6 +14,17 @@ const firebaseConfig = {
     appId: "1:108866306876​2:web:785eb5a44fb5100b397863"
 };
 
+function sanitizeParticipantForClient(participant = {}) {
+    const safeParticipant = { ...participant };
+    const countryValue = String(safeParticipant.country || safeParticipant.nationality || '').trim();
+
+    // Never expose personal email in client-side participant lists.
+    safeParticipant.email = '';
+    safeParticipant.country = countryValue && !countryValue.includes('@') ? countryValue : '';
+
+    return safeParticipant;
+}
+
 // 简单的数据操作函数
 const ParticipantFirebase = {
     // 获取所有参与者
@@ -27,7 +38,7 @@ const ParticipantFirebase = {
             // 转换 Firebase 格式到数组
             return Object.keys(data).map(key => ({
                 id: key,
-                ...data[key]
+                ...sanitizeParticipantForClient(data[key])
             }));
         } catch (error) {
             console.error('Error fetching participants:', error);
@@ -50,7 +61,7 @@ const ParticipantFirebase = {
             });
             
             const result = await response.json();
-            return { id: result.name, ...participant };
+            return { id: result.name, ...sanitizeParticipantForClient(participant) };
         } catch (error) {
             console.error('Error adding participant:', error);
             throw error;

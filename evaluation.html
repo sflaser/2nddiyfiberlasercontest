@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKYFIRE Competition Evaluation System</title>
-    <meta name="description" content="SKYFIRE 2nd DIY Fiber Laser Cutter Competition Evaluation System">
+    <meta name="description" content="SKYFIRE internal evaluation system for managing participants and scoring contest entries.">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <link rel="canonical" href="https://www.diyfiberlasercontest.com/evaluation.html">
+    <meta property="og:title" content="SKYFIRE Competition Evaluation System">
+    <meta property="og:description" content="Internal assessment portal for contest judges and administrators.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.diyfiberlasercontest.com/evaluation.html">
+    <meta property="og:image" content="https://www.diyfiberlasercontest.com/logo-pure.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -264,7 +271,7 @@
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h3 class="font-bold text-lg" x-text="participant.name"></h3>
-                                <p class="text-gray-600 text-sm" x-text="participant.email"></p>
+                                <p class="text-gray-600 text-sm" x-text="participant.country || 'Country not provided'"></p>
                             </div>
                             <span class="px-2 py-1 text-xs font-bold rounded"
                                   :class="participant.participationType === 'team' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'"
@@ -423,6 +430,36 @@
                     description: '',
                     videoUrl: ''
                 },
+
+                sanitizeCountry(value) {
+                    const normalizedValue = String(value || '').trim();
+                    if (!normalizedValue) return '';
+                    return normalizedValue.includes('@') ? '' : normalizedValue;
+                },
+
+                normalizeParticipant(participant = {}) {
+                    return {
+                        ...participant,
+                        name: participant.name || participant.full_name || 'Unnamed Participant',
+                        email: '',
+                        country: this.sanitizeCountry(participant.country || participant.nationality || ''),
+                        company: participant.company || participant.organization || '',
+                        participationType: participant.participationType || participant.participation_type || 'individual',
+                        powerLevel: participant.powerLevel || participant.power_level || 'Not specified',
+                        videoUrl: participant.videoUrl || participant.video_url || '',
+                        dateAdded: participant.dateAdded || participant.date_added || participant.created_at || '',
+                        scores: participant.scores && typeof participant.scores === 'object' ? participant.scores : {}
+                    };
+                },
+
+                normalizeParticipants(participants) {
+                    if (!Array.isArray(participants)) return [];
+                    return participants.map((participant) => this.normalizeParticipant(participant));
+                },
+
+                normalizeText(value) {
+                    return String(value || '').toLowerCase();
+                },
                 
                 // Default users
                 users: {
@@ -482,11 +519,11 @@
                         if (window.isFirebaseConfigured) {
                             // Use Firebase
                             const newParticipant = await ParticipantFirebase.add(participant);
-                            this.participants.push(newParticipant);
+                            this.participants.push(this.normalizeParticipant(newParticipant));
                         } else {
                             // Fallback to localStorage
                             participant.id = Date.now();
-                            this.participants.push(participant);
+                            this.participants.push(this.normalizeParticipant(participant));
                             this.saveParticipantsLocal();
                         }
                         
@@ -540,10 +577,18 @@
                     if (!participant) return;
                     
                     try {
+                        if (!participant.scores || typeof participant.scores !== 'object') {
+                            participant.scores = {};
+                        }
                         if (!participant.scores[this.currentUser.username]) {
                             participant.scores[this.currentUser.username] = {};
                         }
-                        participant.scores[this.currentUser.username][criterion] = parseInt(score);
+                        const parsedScore = Number.parseInt(score, 10);
+                        if (Number.isNaN(parsedScore)) {
+                            delete participant.scores[this.currentUser.username][criterion];
+                        } else {
+                            participant.scores[this.currentUser.username][criterion] = parsedScore;
+                        }
                         
                         if (window.isFirebaseConfigured) {
                             // Use Firebase
@@ -571,10 +616,10 @@
                     let filtered = this.participants;
                     
                     if (this.searchTerm) {
+                        const searchTerm = this.normalizeText(this.searchTerm);
                         filtered = filtered.filter(p => 
-                            p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                            p.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                            p.country.toLowerCase().includes(this.searchTerm.toLowerCase())
+                            this.normalizeText(p.name).includes(searchTerm) ||
+                            this.normalizeText(p.country).includes(searchTerm)
                         );
                     }
                     
@@ -593,11 +638,11 @@
                         if (window.isFirebaseConfigured) {
                             // Load from Firebase
                             const data = await ParticipantFirebase.getAll();
-                            this.participants = data;
+                            this.participants = this.normalizeParticipants(data);
                         } else {
                             // Fallback to localStorage
                             const savedParticipants = localStorage.getItem('skyfire_participants');
-                            this.participants = savedParticipants ? JSON.parse(savedParticipants) : [];
+                            this.participants = this.normalizeParticipants(savedParticipants ? JSON.parse(savedParticipants) : []);
                         }
                     } catch (error) {
                         console.error('Error loading participants:', error);
