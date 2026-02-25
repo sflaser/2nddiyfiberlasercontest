@@ -1130,6 +1130,25 @@ SKYFIRE Competition Committee - Automated Notification System
                 participants: [],
                 loading: false,
 
+                normalizeParticipant(participant = {}) {
+                    return {
+                        ...participant,
+                        name: participant.name || participant.full_name || 'Unnamed Participant',
+                        email: participant.email || '',
+                        country: participant.country || participant.nationality || '',
+                        company: participant.company || participant.organization || '',
+                        participationType: participant.participationType || participant.participation_type || 'individual',
+                        powerLevel: participant.powerLevel || participant.power_level || 'Not specified',
+                        videoUrl: participant.videoUrl || participant.video_url || '',
+                        dateAdded: participant.dateAdded || participant.date_added || participant.created_at || ''
+                    };
+                },
+
+                normalizeParticipants(participants) {
+                    if (!Array.isArray(participants)) return [];
+                    return participants.map((participant) => this.normalizeParticipant(participant));
+                },
+
                 async init() {
                     await this.loadParticipants();
                     
@@ -1148,7 +1167,7 @@ SKYFIRE Competition Committee - Automated Notification System
                         if (window.isFirebaseConfigured) {
                             // Load from Firebase
                             const data = await ParticipantFirebase.getAll();
-                            this.participants = data;
+                            this.participants = this.normalizeParticipants(data);
                             console.log('Participants loaded from Firebase:', this.participants.length, 'participants');
                             
                             // Clear localStorage cache to prevent conflicts
@@ -1177,9 +1196,10 @@ SKYFIRE Competition Committee - Automated Notification System
                         const savedParticipants = localStorage.getItem('skyfire_participants');
                         if (savedParticipants) {
                             const newParticipants = JSON.parse(savedParticipants);
+                            const normalizedParticipants = this.normalizeParticipants(newParticipants);
                             // Only update if data actually changed
-                            if (JSON.stringify(newParticipants) !== JSON.stringify(this.participants)) {
-                                this.participants = newParticipants;
+                            if (JSON.stringify(normalizedParticipants) !== JSON.stringify(this.participants)) {
+                                this.participants = normalizedParticipants;
                                 console.log('Participants data updated from localStorage:', this.participants.length, 'participants');
                             }
                         } else {

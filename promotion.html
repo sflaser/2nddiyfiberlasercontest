@@ -410,33 +410,55 @@ Whether you're an individual maker or team, everyone's welcome! Let's advance DI
         function shareToDiscord() {
             const text = `🔥 **${shareTitle}**\n\n${shareDescription}\n\n🎯 Join now: ${shareUrl}`;
             // Discord doesn't have direct sharing URL, copy text instead
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Discord message copied! Paste it in your Discord channel.', 'success');
-            });
+            copyToClipboard(text, 'Discord message copied! Paste it in your Discord channel.');
         }
 
         function shareToYouTube() {
             // YouTube doesn't have direct sharing, but we can suggest creating content
             const description = `Create a video about the SKYFIRE Competition! Here's the link to include: ${shareUrl}`;
-            navigator.clipboard.writeText(description).then(() => {
-                showNotification('YouTube video description copied! Use it to create promotional content.', 'success');
-            });
+            copyToClipboard(description, 'YouTube video description copied! Use it to create promotional content.');
         }
 
         function copyShareLink() {
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                showNotification('Link copied to clipboard!', 'success');
-            });
+            copyToClipboard(shareUrl, 'Link copied to clipboard!');
         }
 
         function copyText(elementId) {
             const element = document.getElementById(elementId);
             const text = element.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification('Text copied!', 'success');
+            copyToClipboard(text, 'Text copied!').then((copied) => {
+                if (!copied) return;
                 element.classList.add('copy-success');
                 setTimeout(() => element.classList.remove('copy-success'), 600);
             });
+        }
+
+        async function copyToClipboard(text, successMessage = 'Copied to clipboard!') {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.setAttribute('readonly', '');
+                    textArea.style.position = 'absolute';
+                    textArea.style.left = '-9999px';
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    const copied = document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    if (!copied) {
+                        throw new Error('Fallback copy command failed');
+                    }
+                }
+
+                showNotification(successMessage, 'success');
+                return true;
+            } catch (error) {
+                console.error('Copy failed:', error);
+                showNotification('Copy failed. Please copy manually.', 'error');
+                return false;
+            }
         }
 
         function downloadQRCode() {

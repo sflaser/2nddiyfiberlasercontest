@@ -430,6 +430,30 @@
                     description: '',
                     videoUrl: ''
                 },
+
+                normalizeParticipant(participant = {}) {
+                    return {
+                        ...participant,
+                        name: participant.name || participant.full_name || 'Unnamed Participant',
+                        email: participant.email || '',
+                        country: participant.country || participant.nationality || '',
+                        company: participant.company || participant.organization || '',
+                        participationType: participant.participationType || participant.participation_type || 'individual',
+                        powerLevel: participant.powerLevel || participant.power_level || 'Not specified',
+                        videoUrl: participant.videoUrl || participant.video_url || '',
+                        dateAdded: participant.dateAdded || participant.date_added || participant.created_at || '',
+                        scores: participant.scores && typeof participant.scores === 'object' ? participant.scores : {}
+                    };
+                },
+
+                normalizeParticipants(participants) {
+                    if (!Array.isArray(participants)) return [];
+                    return participants.map((participant) => this.normalizeParticipant(participant));
+                },
+
+                normalizeText(value) {
+                    return String(value || '').toLowerCase();
+                },
                 
                 // Default users
                 users: {
@@ -489,11 +513,11 @@
                         if (window.isFirebaseConfigured) {
                             // Use Firebase
                             const newParticipant = await ParticipantFirebase.add(participant);
-                            this.participants.push(newParticipant);
+                            this.participants.push(this.normalizeParticipant(newParticipant));
                         } else {
                             // Fallback to localStorage
                             participant.id = Date.now();
-                            this.participants.push(participant);
+                            this.participants.push(this.normalizeParticipant(participant));
                             this.saveParticipantsLocal();
                         }
                         
@@ -547,10 +571,18 @@
                     if (!participant) return;
                     
                     try {
+                        if (!participant.scores || typeof participant.scores !== 'object') {
+                            participant.scores = {};
+                        }
                         if (!participant.scores[this.currentUser.username]) {
                             participant.scores[this.currentUser.username] = {};
                         }
-                        participant.scores[this.currentUser.username][criterion] = parseInt(score);
+                        const parsedScore = Number.parseInt(score, 10);
+                        if (Number.isNaN(parsedScore)) {
+                            delete participant.scores[this.currentUser.username][criterion];
+                        } else {
+                            participant.scores[this.currentUser.username][criterion] = parsedScore;
+                        }
                         
                         if (window.isFirebaseConfigured) {
                             // Use Firebase
@@ -578,10 +610,11 @@
                     let filtered = this.participants;
                     
                     if (this.searchTerm) {
+                        const searchTerm = this.normalizeText(this.searchTerm);
                         filtered = filtered.filter(p => 
-                            p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                            p.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                            p.country.toLowerCase().includes(this.searchTerm.toLowerCase())
+                            this.normalizeText(p.name).includes(searchTerm) ||
+                            this.normalizeText(p.email).includes(searchTerm) ||
+                            this.normalizeText(p.country).includes(searchTerm)
                         );
                     }
                     
@@ -600,11 +633,11 @@
                         if (window.isFirebaseConfigured) {
                             // Load from Firebase
                             const data = await ParticipantFirebase.getAll();
-                            this.participants = data;
+                            this.participants = this.normalizeParticipants(data);
                         } else {
                             // Fallback to localStorage
                             const savedParticipants = localStorage.getItem('skyfire_participants');
-                            this.participants = savedParticipants ? JSON.parse(savedParticipants) : [];
+                            this.participants = this.normalizeParticipants(savedParticipants ? JSON.parse(savedParticipants) : []);
                         }
                     } catch (error) {
                         console.error('Error loading participants:', error);
