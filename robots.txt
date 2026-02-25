@@ -1,29 +1,16 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://www.diyfiberlasercontest.com/sitemap.xml
+# Keep internal tools and demo pages out of search
+Disallow: /admin.html
+Disallow: /evaluation.html
+Disallow: /form.html
+Disallow: /registration-demo.html
+Disallow: /multilang-demo.html
 
-# Specific instructions for search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-# Block specific files that should not be indexed
-Disallow: /*.zip$
-Disallow: /*.ai$
-Disallow: /css/
+# Prevent crawling repository/source artifacts
 Disallow: /.git/
-Disallow: /.DS_Store
+Disallow: /*.ai$
+Disallow: /*.zip$
 
-# Allow important pages
-Allow: /index.html
-Allow: /promotion.html
-Allow: /evaluation.html
-Allow: /patterns.html
-Allow: /admin.html
-Allow: /form.html 
+Sitemap: https://www.diyfiberlasercontest.com/sitemap.xml
