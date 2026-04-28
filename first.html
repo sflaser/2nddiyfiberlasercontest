@@ -19,6 +19,8 @@
     body {
       margin: 0;
       background: #fffdf9;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
   </style>
 <!-- SKYFIRE 1st DIY Fiber Laser Cutting Machine Contest -->
@@ -28,15 +30,21 @@
 
   .sf-legacy-contest {
     --sf-ink: #171717;
+    --sf-ink-soft: #25211d;
     --sf-muted: #5f5f5f;
     --sf-line: rgba(23, 23, 23, 0.1);
     --sf-orange: #ff8c00;
     --sf-orange-dark: #d86f00;
+    --sf-orange-soft: #fff0db;
     --sf-cream: #fff8f0;
     --sf-paper: #fffdf9;
+    --sf-card: rgba(255, 255, 255, 0.9);
+    --sf-shadow: 0 24px 70px rgba(25, 20, 16, 0.12);
     font-family: "Manrope", Arial, sans-serif;
     color: var(--sf-ink);
-    background: var(--sf-paper);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255, 140, 0, 0.11), transparent 28rem),
+      linear-gradient(180deg, var(--sf-paper) 0%, #fff7ed 55%, var(--sf-paper) 100%);
     margin: 0 auto;
   }
 
@@ -50,25 +58,71 @@
   }
 
   .sf-legacy-wrap {
-    max-width: 1180px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 18px;
+    padding: 0 22px;
   }
 
   .sf-legacy-hero {
-    padding: 34px 0 28px;
-    background: var(--sf-cream);
-    border-bottom: 1px solid var(--sf-line);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 72px 0 58px;
+    color: #fff;
+    background:
+      radial-gradient(circle at 82% 10%, rgba(255, 140, 0, 0.36), transparent 28rem),
+      radial-gradient(circle at 8% 78%, rgba(255, 255, 255, 0.13), transparent 22rem),
+      linear-gradient(135deg, #14120f 0%, #24211e 58%, #100f0e 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .sf-legacy-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.22;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .sf-legacy-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+  }
+
+  .sf-legacy-hero-copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sf-legacy-hero-media {
+    position: relative;
+  }
+
+  .sf-legacy-hero-media::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    z-index: -1;
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.45), rgba(255, 255, 255, 0.08));
+    filter: blur(2px);
   }
 
   .sf-legacy-video {
     aspect-ratio: 16 / 9;
     width: 100%;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 24px;
     background: #111;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
-    margin-bottom: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 36px 90px rgba(0, 0, 0, 0.36);
   }
 
   .sf-legacy-video iframe {
@@ -78,13 +132,32 @@
     display: block;
   }
 
+  .sf-legacy-video-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 14px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.9rem;
+    backdrop-filter: blur(16px);
+  }
+
+  .sf-legacy-video-caption strong {
+    color: #fff;
+  }
+
   .sf-legacy-kicker {
     display: inline-flex;
     align-items: center;
     min-height: 34px;
     padding: 0 14px;
     border-radius: 999px;
-    background: var(--sf-orange);
+    background: rgba(255, 140, 0, 0.18);
+    border: 1px solid rgba(255, 140, 0, 0.46);
     color: #fff;
     font-size: 0.82rem;
     font-weight: 800;
@@ -93,19 +166,19 @@
   }
 
   .sf-legacy-title {
-    margin: 18px 0 0;
-    max-width: 900px;
-    font-size: clamp(2.3rem, 5vw, 4.4rem);
-    line-height: 1.04;
-    letter-spacing: 0;
+    margin: 20px 0 0;
+    max-width: 780px;
+    font-size: clamp(3rem, 6.5vw, 6.4rem);
+    line-height: 0.92;
+    letter-spacing: -0.06em;
   }
 
   .sf-legacy-lead {
-    margin: 18px 0 0;
-    max-width: 780px;
-    color: var(--sf-muted);
-    font-size: 1.08rem;
-    line-height: 1.75;
+    margin: 22px 0 0;
+    max-width: 650px;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 1.12rem;
+    line-height: 1.8;
   }
 
   .sf-legacy-actions {
@@ -119,22 +192,23 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 0 22px;
-    border-radius: 8px;
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 999px;
     font-weight: 800;
-    border: 1px solid var(--sf-line);
-    transition: transform 160ms ease, background 160ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
   }
 
   .sf-legacy-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   .sf-legacy-btn--primary {
     background: var(--sf-orange);
     color: #fff;
     border-color: var(--sf-orange);
+    box-shadow: 0 18px 34px rgba(255, 140, 0, 0.28);
   }
 
   .sf-legacy-btn--dark {
@@ -144,8 +218,8 @@
   }
 
   .sf-legacy-btn--light {
-    background: #fff;
-    color: var(--sf-ink);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
   }
 
   .sf-legacy-stage {
@@ -153,21 +227,23 @@
     grid-template-columns: 1.1fr 1fr 1fr;
     gap: 1px;
     margin-top: 28px;
-    border: 1px solid var(--sf-line);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
     overflow: hidden;
-    background: var(--sf-line);
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
   }
 
   .sf-legacy-stage div {
-    background: #fff;
-    padding: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    backdrop-filter: blur(14px);
   }
 
   .sf-legacy-stage span,
   .sf-legacy-label {
     display: block;
-    color: var(--sf-orange-dark);
+    color: var(--sf-orange);
     font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -178,10 +254,11 @@
     display: block;
     margin-top: 8px;
     font-size: 1.1rem;
+    color: #fff;
   }
 
   .sf-legacy-section {
-    padding: 42px 0;
+    padding: 74px 0;
     border-bottom: 1px solid var(--sf-line);
   }
 
@@ -191,29 +268,30 @@
 
   .sf-legacy-head {
     display: grid;
-    gap: 10px;
-    margin-bottom: 22px;
+    gap: 12px;
+    margin-bottom: 30px;
   }
 
   .sf-legacy-head h2 {
     margin: 0;
-    max-width: 760px;
-    font-size: clamp(1.8rem, 3.2vw, 3rem);
-    line-height: 1.08;
-    letter-spacing: 0;
+    max-width: 880px;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
   }
 
   .sf-legacy-head p {
     margin: 0;
-    max-width: 760px;
+    max-width: 780px;
     color: var(--sf-muted);
-    line-height: 1.7;
+    font-size: 1.05rem;
+    line-height: 1.8;
   }
 
   .sf-legacy-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
   .sf-legacy-grid--four {
@@ -221,16 +299,35 @@
   }
 
   .sf-legacy-card {
-    background: #fff;
+    position: relative;
+    overflow: hidden;
+    background: var(--sf-card);
     border: 1px solid var(--sf-line);
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 22px;
+    padding: 24px;
     min-height: 100%;
+    box-shadow: var(--sf-shadow);
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .sf-legacy-card::after {
+    content: "";
+    position: absolute;
+    inset: auto 18px 0 18px;
+    height: 3px;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(90deg, var(--sf-orange), rgba(255, 140, 0, 0));
+  }
+
+  .sf-legacy-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 140, 0, 0.34);
+    box-shadow: 0 30px 80px rgba(25, 20, 16, 0.15);
   }
 
   .sf-legacy-card h3 {
-    margin: 12px 0 8px;
-    font-size: 1.14rem;
+    margin: 14px 0 9px;
+    font-size: 1.2rem;
     line-height: 1.3;
   }
 
@@ -250,16 +347,18 @@
   }
 
   .sf-legacy-rank {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
     font-weight: 900;
     line-height: 1;
+    color: var(--sf-orange);
   }
 
   .sf-legacy-table {
     overflow-x: auto;
     border: 1px solid var(--sf-line);
-    border-radius: 8px;
+    border-radius: 22px;
     background: #fff;
+    box-shadow: var(--sf-shadow);
   }
 
   .sf-legacy-table table {
@@ -270,14 +369,14 @@
 
   .sf-legacy-table th,
   .sf-legacy-table td {
-    padding: 15px 16px;
+    padding: 17px 18px;
     text-align: left;
     border-bottom: 1px solid var(--sf-line);
     vertical-align: top;
   }
 
   .sf-legacy-table th {
-    background: var(--sf-ink);
+    background: linear-gradient(135deg, var(--sf-ink) 0%, var(--sf-ink-soft) 100%);
     color: #fff;
     font-size: 0.8rem;
     letter-spacing: 0.08em;
@@ -298,16 +397,20 @@
     grid-template-columns: 1.15fr auto;
     gap: 20px;
     align-items: center;
-    padding: 26px;
-    border-radius: 8px;
-    background: var(--sf-ink);
+    padding: clamp(26px, 4vw, 44px);
+    border-radius: 26px;
+    background:
+      radial-gradient(circle at 88% 20%, rgba(255, 140, 0, 0.42), transparent 20rem),
+      linear-gradient(135deg, #171717 0%, #28231d 100%);
     color: #fff;
+    box-shadow: 0 34px 90px rgba(25, 20, 16, 0.22);
   }
 
   .sf-legacy-cta h2 {
     margin: 0 0 8px;
-    font-size: clamp(1.7rem, 3vw, 2.7rem);
-    line-height: 1.08;
+    font-size: clamp(2rem, 3.4vw, 3.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
   }
 
   .sf-legacy-cta p {
@@ -317,11 +420,20 @@
   }
 
   @media (max-width: 900px) {
+    .sf-legacy-hero-grid,
     .sf-legacy-stage,
     .sf-legacy-grid,
     .sf-legacy-grid--four,
     .sf-legacy-cta {
       grid-template-columns: 1fr;
+    }
+
+    .sf-legacy-hero {
+      padding: 54px 0 42px;
+    }
+
+    .sf-legacy-hero-media {
+      order: -1;
     }
   }
 
@@ -344,33 +456,41 @@
 <body>
 <section class="sf-legacy-contest">
   <div class="sf-legacy-hero">
-    <div class="sf-legacy-wrap">
-      <div class="sf-legacy-video">
-        <iframe src="https://www.youtube.com/embed/vmeJHpPTh6I" title="First SKYFIRE DIY Fiber Laser Competition judging session" allowfullscreen></iframe>
-      </div>
-      <span class="sf-legacy-kicker">1st DIY Fiber Laser Competition</span>
-      <h1 class="sf-legacy-title">World's First DIY Fiber Laser Cutting Machine Contest</h1>
-      <p class="sf-legacy-lead">
-        Explore the first SKYFIRE DIY Fiber Laser Cutting Machine Contest: the live judging session, prize structure,
-        judging criteria, builder rankings, and links to continue into the next competition.
-      </p>
-      <div class="sf-legacy-actions">
-        <a class="sf-legacy-btn sf-legacy-btn--primary" href="https://youtu.be/vmeJHpPTh6I" target="_blank" rel="noopener">Watch Judging Session</a>
-        <a class="sf-legacy-btn sf-legacy-btn--light" href="https://www.diyfiberlasercontest.com/" target="_blank" rel="noopener">View 2nd Contest</a>
-        <a class="sf-legacy-btn sf-legacy-btn--dark" href="https://alleriastore.com/pages/skyfire-third-diy-fiber-laser-competition" target="_blank" rel="noopener">View Current Contest</a>
-      </div>
-      <div class="sf-legacy-stage">
-        <div>
-          <span>Stage</span>
-          <strong>Completed Archive</strong>
+    <div class="sf-legacy-wrap sf-legacy-hero-grid">
+      <div class="sf-legacy-hero-copy">
+        <span class="sf-legacy-kicker">1st DIY Fiber Laser Competition</span>
+        <h1 class="sf-legacy-title">World's First DIY Fiber Laser Cutting Machine Contest</h1>
+        <p class="sf-legacy-lead">
+          Explore the first SKYFIRE DIY Fiber Laser Cutting Machine Contest: the live judging session, prize structure,
+          judging criteria, builder rankings, and links to continue into the next competition.
+        </p>
+        <div class="sf-legacy-actions">
+          <a class="sf-legacy-btn sf-legacy-btn--primary" href="https://youtu.be/vmeJHpPTh6I" target="_blank" rel="noopener">Watch Judging Session</a>
+          <a class="sf-legacy-btn sf-legacy-btn--light" href="https://www.diyfiberlasercontest.com/" target="_blank" rel="noopener">View 2nd Contest</a>
+          <a class="sf-legacy-btn sf-legacy-btn--dark" href="https://alleriastore.com/pages/skyfire-third-diy-fiber-laser-competition" target="_blank" rel="noopener">View Current Contest</a>
         </div>
-        <div>
-          <span>Prize Pool</span>
-          <strong>$3,200+ in vouchers</strong>
+        <div class="sf-legacy-stage">
+          <div>
+            <span>Stage</span>
+            <strong>Completed Archive</strong>
+          </div>
+          <div>
+            <span>Prize Pool</span>
+            <strong>$3,200+ in vouchers</strong>
+          </div>
+          <div>
+            <span>Final Result</span>
+            <strong>Winners announced July 15, 2025</strong>
+          </div>
         </div>
-        <div>
-          <span>Final Result</span>
-          <strong>Winners announced July 15, 2025</strong>
+      </div>
+      <div class="sf-legacy-hero-media">
+        <div class="sf-legacy-video">
+          <iframe src="https://www.youtube.com/embed/vmeJHpPTh6I" title="First SKYFIRE DIY Fiber Laser Competition judging session" allowfullscreen></iframe>
+        </div>
+        <div class="sf-legacy-video-caption">
+          <span>Live judging archive</span>
+          <strong>July 2025</strong>
         </div>
       </div>
     </div>
