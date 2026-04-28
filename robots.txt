@@ -22,8 +22,9 @@ Disallow: /.DS_Store
 
 # Allow important pages
 Allow: /index.html
+Allow: /first.html
 Allow: /promotion.html
 Allow: /evaluation.html
 Allow: /patterns.html
 Allow: /admin.html
-Allow: /form.html 
+Allow: /form.html

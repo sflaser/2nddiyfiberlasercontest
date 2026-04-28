@@ -7,7 +7,7 @@
   <!-- Main Competition Page -->
   <url>
     <loc>https://www.diyfiberlasercontest.com/</loc>
-    <lastmod>2024-06-23</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,9 +15,17 @@
   <!-- Competition Index Page -->
   <url>
     <loc>https://www.diyfiberlasercontest.com/index.html</loc>
-    <lastmod>2024-06-23</lastmod>
+    <lastmod>2026-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- First Competition Archive -->
+  <url>
+    <loc>https://www.diyfiberlasercontest.com/first.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Promotion Page -->
@@ -60,4 +68,4 @@
     <priority>0.3</priority>
   </url>
 
-</urlset> 
+</urlset>
