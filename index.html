@@ -843,10 +843,279 @@
             box-shadow: 0 18px 48px rgba(29, 23, 17, 0.09) !important;
         }
 
+        .sf-patterns-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(4.8rem, 7vw, 7rem) 0 !important;
+            color: #fff;
+            background:
+                radial-gradient(circle at 86% 10%, rgba(239, 134, 19, 0.38), transparent 27rem),
+                radial-gradient(circle at 12% 82%, rgba(255, 255, 255, 0.12), transparent 22rem),
+                linear-gradient(135deg, #15120f 0%, #28221c 58%, #100f0e 100%) !important;
+        }
+
+        .sf-patterns-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.18;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+            background-size: 46px 46px;
+            mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+        }
+
+        .sf-patterns-wrap {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .sf-patterns-head {
+            display: grid;
+            gap: 0.85rem;
+            max-width: 900px;
+            margin-bottom: 2rem;
+        }
+
+        .sf-patterns-head h2 {
+            margin: 0;
+            color: #fff !important;
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: clamp(2.7rem, 5vw, 5.5rem);
+            line-height: 0.94;
+            letter-spacing: -0.065em !important;
+        }
+
+        .sf-patterns-head p,
+        .sf-patterns-panel p,
+        .sf-patterns-card p,
+        .sf-patterns-cta p {
+            color: rgba(255, 255, 255, 0.68) !important;
+            line-height: 1.75;
+        }
+
+        .sf-patterns-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1.5rem;
+            align-items: end;
+            margin-bottom: 1.25rem;
+            padding: clamp(1.4rem, 3vw, 2.3rem);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 34px 90px rgba(0, 0, 0, 0.26);
+            backdrop-filter: blur(18px);
+        }
+
+        .sf-patterns-kicker,
+        .sf-patterns-card-label {
+            display: inline-flex;
+            width: fit-content;
+            align-items: center;
+            min-height: 30px;
+            padding: 0 0.75rem;
+            border-radius: 999px;
+            background: rgba(239, 134, 19, 0.18);
+            border: 1px solid rgba(239, 134, 19, 0.38);
+            color: #ffb25d;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .sf-patterns-panel h3 {
+            max-width: 770px;
+            margin: 1rem 0 0.55rem;
+            color: #fff;
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 3.1rem);
+            line-height: 1;
+            letter-spacing: -0.052em;
+        }
+
+        .sf-patterns-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 1px;
+            overflow: hidden;
+            min-width: 310px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .sf-patterns-metrics div {
+            padding: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .sf-patterns-metrics span {
+            display: block;
+            color: rgba(255, 255, 255, 0.58);
+            font-size: 0.74rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .sf-patterns-metrics strong {
+            display: block;
+            margin-top: 0.4rem;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .sf-patterns-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .sf-patterns-card {
+            position: relative;
+            display: flex;
+            min-height: 300px;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 22px 64px rgba(0, 0, 0, 0.24);
+            backdrop-filter: blur(18px);
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        .sf-patterns-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 18px 0 18px;
+            height: 3px;
+            border-radius: 999px 999px 0 0;
+            background: linear-gradient(90deg, #ef8613, transparent);
+        }
+
+        .sf-patterns-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(239, 134, 19, 0.42);
+            box-shadow: 0 32px 86px rgba(0, 0, 0, 0.3);
+        }
+
+        .sf-patterns-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.9rem;
+            margin-bottom: 1.35rem;
+        }
+
+        .sf-patterns-index {
+            color: #fff;
+            font-size: 2.6rem;
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.09em;
+        }
+
+        .sf-patterns-card h3 {
+            margin: 0 0 0.7rem;
+            color: #fff;
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+        }
+
+        .sf-patterns-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .sf-patterns-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            min-height: 46px;
+            margin-top: auto;
+            padding: 0 1rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #f69a28 0%, #ef8613 55%, #c76505 100%);
+            color: #fff !important;
+            font-weight: 900;
+            box-shadow: 0 18px 36px rgba(239, 134, 19, 0.26);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .sf-patterns-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 22px 44px rgba(239, 134, 19, 0.34);
+        }
+
+        .sf-patterns-cta {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 1.25rem;
+            padding: clamp(1.4rem, 3vw, 2.4rem);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+        }
+
+        .sf-patterns-cta h3 {
+            margin: 0.6rem 0 0.5rem;
+            color: #fff;
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: clamp(1.7rem, 3vw, 2.8rem);
+            line-height: 1;
+            letter-spacing: -0.052em;
+        }
+
+        .sf-patterns-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .sf-patterns-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 1.15rem;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+            font-weight: 900;
+        }
+
         footer.orange-gradient {
             background:
                 radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.1), transparent 24rem),
                 linear-gradient(135deg, #15120f 0%, #2b251f 100%) !important;
+        }
+
+        @media (max-width: 1180px) {
+            .sf-patterns-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sf-patterns-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
@@ -875,8 +1144,27 @@
 
             .sf-series-grid,
             .sf-series-grid--four,
+            .sf-patterns-panel,
+            .sf-patterns-cta,
             .sf-series-cta {
                 grid-template-columns: 1fr;
+            }
+
+            .sf-patterns-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sf-patterns-metrics {
+                min-width: 0;
+            }
+
+            .sf-patterns-actions {
+                justify-content: stretch;
+            }
+
+            .sf-patterns-secondary,
+            .sf-patterns-download {
+                width: 100%;
             }
 
             .sf-series-actions {
@@ -1584,102 +1872,109 @@
     </section>
 
     <!-- Cutting Patterns Section -->
-    <section id="patterns" class="py-16" style="background-color: #fff8f0 !important;">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                    <span class="text-orange-600">SKYFIRE</span> Contest Cutting Patterns
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Download official cutting patterns to test your DIY laser cutter's precision and performance
+    <section id="patterns" class="sf-patterns-section">
+        <div class="sf-patterns-wrap">
+            <div class="sf-patterns-head">
+                <span class="sf-patterns-kicker">Official Test Files</span>
+                <h2>Cut the same patterns. Prove the machine with real output.</h2>
+                <p>
+                    Use these DXF files to demonstrate cutting power, precision, repeatability, material handling, and finishing quality during the second SKYFIRE DIY competition.
                 </p>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-2xl border border-orange-200 overflow-hidden">
-                <div class="p-8">
-                    <div class="text-center mb-8">
-                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Official Test Patterns</h3>
-                        <p class="text-gray-600 text-lg">Download and use these patterns to demonstrate your laser cutter capabilities</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-cube text-4xl orange-accent mb-2"></i>
-                        <h3 class="font-bold text-lg">8MM Thick Plate Pattern</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Test laser cutter's capability with thick plate materials</p>
-                    <a href="patterns/8MM Thick Plate Demonstration Pattern.dxf" download="8MM_Thick_Plate_Pattern.dxf" class="w-full orange-gradient text-white py-2 rounded orange-hover transition-colors block text-center font-semibold">
-                        <i class="fas fa-download mr-2"></i>Download Pattern
-                    </a>
+            <div class="sf-patterns-panel">
+                <div>
+                    <span class="sf-patterns-kicker">Pattern Pack</span>
+                    <h3>Five judging files for practical machine testing.</h3>
+                    <p>Download the files below, cut them on your DIY fiber laser system, and include the results in your project video submission.</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-puzzle-piece text-4xl text-green-600 mb-2"></i>
-                        <h3 class="font-bold text-lg">Carbon Steel Assembly</h3>
+                <div class="sf-patterns-metrics">
+                    <div>
+                        <span>Files</span>
+                        <strong>5 DXF</strong>
                     </div>
-                    <p class="text-gray-600 mb-4">Complex assembly parts cutting precision test</p>
-                    <a href="patterns/Combination Component Carbon Steel Cutting Pattern.dxf" download="Carbon_Steel_Assembly_Pattern.dxf" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition-colors block text-center font-semibold">
-                        <i class="fas fa-download mr-2"></i>Download Pattern
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-star text-4xl orange-accent mb-2"></i>
-                        <h3 class="font-bold text-lg">Stainless Steel Sharp Corners</h3>
+                    <div>
+                        <span>Focus</span>
+                        <strong>Real Cuts</strong>
                     </div>
-                    <p class="text-gray-600 mb-4">0.8-1MM stainless steel sharp corner cutting demo</p>
-                    <a href="patterns/Sharp Corners 0.8-1MM Stainless Steel Cutting Demonstration.dxf" download="Sharp_Corners_Stainless_Steel_Pattern.dxf" class="w-full orange-gradient text-white py-2 rounded orange-hover transition-colors block text-center font-semibold">
-                        <i class="fas fa-download mr-2"></i>Download Pattern
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-crosshairs text-4xl text-purple-600 mb-2"></i>
-                        <h3 class="font-bold text-lg">Classic Precision Test</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">1MM stainless steel cutting precision test</p>
-                    <a href="patterns/Classic Pattern Stainless Steel 1MM Cutting Precision Test.dxf" download="Classic_Precision_Test_Pattern.dxf" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition-colors block text-center font-semibold">
-                        <i class="fas fa-download mr-2"></i>Download Pattern
-                    </a>
-                </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6 card-hover transition-all duration-300">
-                    <div class="text-center mb-4">
-                        <i class="fas fa-car text-4xl text-red-600 mb-2"></i>
-                        <h3 class="font-bold text-lg">Brake Pad 3MM Cutting</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Carbon steel 3MM brake pad cutting effect</p>
-                    <a href="patterns/Brake Pads 3MM Cutting Effect on Carbon Steel.dxf" download="Brake_Pad_3MM_Pattern.dxf" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition-colors block text-center font-semibold">
-                        <i class="fas fa-download mr-2"></i>Download Pattern
-                    </a>
                 </div>
             </div>
-            
+
+            <div class="sf-patterns-grid">
+                <article class="sf-patterns-card">
+                    <div class="sf-patterns-card-top">
+                        <span class="sf-patterns-card-label">Thick Plate</span>
+                        <strong class="sf-patterns-index">01</strong>
                     </div>
-                    
-                    <!-- View Detailed Patterns -->
-                    <div class="text-center mt-8 pt-6 border-t border-gray-200">
-                        <div class="max-w-2xl mx-auto">
-                            <i class="fas fa-info-circle text-4xl text-orange-600 mb-4"></i>
-                            <h4 class="text-xl font-bold mb-4 text-gray-800">Need More Pattern Details?</h4>
-                            <p class="text-gray-600 mb-6">
-                                View comprehensive specifications, technical requirements, and detailed descriptions for each cutting pattern.
-                                <br><span class="text-red-600 font-medium">⚠️ 这不是注册按钮！注册请向上滚动到表单部分</span>
-                            </p>
-                            <a href="patterns.html" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all inline-block">
-                                <i class="fas fa-eye mr-2"></i>查看切割图案详情 (View Pattern Details)
-                            </a>
-                            <div class="mt-4 text-center">
-                                <a href="#registration" class="text-orange-600 hover:text-orange-800 font-bold underline">
-                                    ⬆️ 要注册比赛，请点击这里回到注册表单
-                                </a>
-                            </div>
-                        </div>
+                    <h3>8MM Thick Plate Pattern</h3>
+                    <p>Test the cutter's capability with thicker plate material and stable pierce behavior.</p>
+                    <a href="patterns/8MM Thick Plate Demonstration Pattern.dxf" download="8MM_Thick_Plate_Pattern.dxf" class="sf-patterns-download">
+                        <i class="fas fa-download"></i>Download DXF
+                    </a>
+                </article>
+
+                <article class="sf-patterns-card">
+                    <div class="sf-patterns-card-top">
+                        <span class="sf-patterns-card-label">Assembly</span>
+                        <strong class="sf-patterns-index">02</strong>
                     </div>
+                    <h3>Carbon Steel Assembly</h3>
+                    <p>Show complex part geometry, fit, corner control, and dimensional consistency.</p>
+                    <a href="patterns/Combination Component Carbon Steel Cutting Pattern.dxf" download="Carbon_Steel_Assembly_Pattern.dxf" class="sf-patterns-download">
+                        <i class="fas fa-download"></i>Download DXF
+                    </a>
+                </article>
+
+                <article class="sf-patterns-card">
+                    <div class="sf-patterns-card-top">
+                        <span class="sf-patterns-card-label">Fine Detail</span>
+                        <strong class="sf-patterns-index">03</strong>
+                    </div>
+                    <h3>Stainless Steel Sharp Corners</h3>
+                    <p>Demonstrate 0.8-1MM stainless steel corner accuracy and edge definition.</p>
+                    <a href="patterns/Sharp Corners 0.8-1MM Stainless Steel Cutting Demonstration.dxf" download="Sharp_Corners_Stainless_Steel_Pattern.dxf" class="sf-patterns-download">
+                        <i class="fas fa-download"></i>Download DXF
+                    </a>
+                </article>
+
+                <article class="sf-patterns-card">
+                    <div class="sf-patterns-card-top">
+                        <span class="sf-patterns-card-label">Precision</span>
+                        <strong class="sf-patterns-index">04</strong>
+                    </div>
+                    <h3>Classic Precision Test</h3>
+                    <p>Use 1MM stainless steel to show repeatable accuracy and clean detail cutting.</p>
+                    <a href="patterns/Classic Pattern Stainless Steel 1MM Cutting Precision Test.dxf" download="Classic_Precision_Test_Pattern.dxf" class="sf-patterns-download">
+                        <i class="fas fa-download"></i>Download DXF
+                    </a>
+                </article>
+
+                <article class="sf-patterns-card">
+                    <div class="sf-patterns-card-top">
+                        <span class="sf-patterns-card-label">Carbon Steel</span>
+                        <strong class="sf-patterns-index">05</strong>
+                    </div>
+                    <h3>Brake Pad 3MM Cutting</h3>
+                    <p>Demonstrate a practical carbon steel cut with shape accuracy and finish quality.</p>
+                    <a href="patterns/Brake Pads 3MM Cutting Effect on Carbon Steel.dxf" download="Brake_Pad_3MM_Pattern.dxf" class="sf-patterns-download">
+                        <i class="fas fa-download"></i>Download DXF
+                    </a>
+                </article>
+            </div>
+
+            <div class="sf-patterns-cta">
+                <div>
+                    <span class="sf-patterns-kicker">Need More Detail?</span>
+                    <h3>Review the cutting requirements before submitting.</h3>
+                    <p>Open the full pattern details page for specifications, then return to registration when you are ready to enter the contest.</p>
+                </div>
+                <div class="sf-patterns-actions">
+                    <a href="patterns.html" class="sf-patterns-secondary">
+                        <i class="fas fa-eye mr-2"></i>View Pattern Details
+                    </a>
+                    <a href="#registration" class="sf-patterns-download">
+                        <i class="fas fa-user-plus"></i>Go to Registration
+                    </a>
                 </div>
             </div>
         </div>
