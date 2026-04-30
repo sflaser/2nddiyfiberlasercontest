@@ -847,6 +847,187 @@
             line-height: 1.6;
         }
 
+        .sf-winner-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.95rem;
+        }
+
+        .sf-winner-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            min-height: 34px;
+            padding: 0 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+            font-size: 0.78rem;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .sf-video-section {
+            position: relative;
+            padding: clamp(4.5rem, 7vw, 6.8rem) 0;
+            background:
+                radial-gradient(circle at 12% 10%, rgba(239, 134, 19, 0.12), transparent 24rem),
+                var(--alleria-cream);
+        }
+
+        .sf-video-wrap {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .sf-video-head {
+            display: grid;
+            gap: 0.8rem;
+            max-width: 960px;
+            margin-bottom: 2rem;
+        }
+
+        .sf-video-head span,
+        .sf-video-rank {
+            display: inline-flex;
+            width: fit-content;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 0.9rem;
+            border: 1px solid rgba(239, 134, 19, 0.34);
+            border-radius: 999px;
+            background: rgba(239, 134, 19, 0.12);
+            color: var(--alleria-orange-dark);
+            font-size: 0.76rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .sf-video-head h2 {
+            margin: 0;
+            color: var(--alleria-ink);
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.065em !important;
+        }
+
+        .sf-video-head p,
+        .sf-video-card p {
+            color: var(--alleria-muted) !important;
+            line-height: 1.7;
+        }
+
+        .sf-video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .sf-video-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(21, 18, 15, 0.1);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: var(--alleria-shadow);
+        }
+
+        .sf-video-thumb {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #15120f;
+        }
+
+        .sf-video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 220ms ease, opacity 220ms ease;
+        }
+
+        .sf-video-card:hover .sf-video-thumb img {
+            transform: scale(1.04);
+            opacity: 0.88;
+        }
+
+        .sf-video-play {
+            position: absolute;
+            left: 1rem;
+            bottom: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.58rem 0.82rem;
+            border-radius: 999px;
+            background: rgba(21, 18, 15, 0.88);
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .sf-video-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 1.2rem;
+        }
+
+        .sf-video-card h3 {
+            margin: 0.85rem 0 0.5rem;
+            color: var(--alleria-ink);
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: clamp(1.45rem, 2vw, 2rem);
+            line-height: 1.02;
+            letter-spacing: -0.045em;
+        }
+
+        .sf-video-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        .sf-video-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            min-height: 42px;
+            padding: 0 0.9rem;
+            border-radius: 999px;
+            background: #15120f;
+            color: #fff !important;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .sf-video-actions a:nth-child(2) {
+            border: 1px solid rgba(239, 134, 19, 0.24);
+            background: rgba(239, 134, 19, 0.11);
+            color: var(--alleria-orange-dark) !important;
+        }
+
+        .sf-video-card--notable {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1fr);
+        }
+
+        .sf-video-card--notable .sf-video-thumb {
+            min-height: 100%;
+            aspect-ratio: auto;
+        }
+
         .sf-series-wrap {
             max-width: 1200px;
         }
@@ -975,7 +1156,7 @@
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            padding: clamp(4.8rem, 7vw, 7rem) 0 !important;
+            padding: clamp(3.4rem, 5vw, 5rem) 0 !important;
             color: #fff;
             background:
                 radial-gradient(circle at 86% 10%, rgba(239, 134, 19, 0.38), transparent 27rem),
@@ -1005,16 +1186,16 @@
         .sf-patterns-head {
             display: grid;
             gap: 0.85rem;
-            max-width: 900px;
-            margin-bottom: 2rem;
+            max-width: 760px;
+            margin-bottom: 1.35rem;
         }
 
         .sf-patterns-head h2 {
             margin: 0;
             color: #fff !important;
             font-family: 'Space Grotesk', 'Manrope', sans-serif;
-            font-size: clamp(2.7rem, 5vw, 5.5rem);
-            line-height: 0.94;
+            font-size: clamp(2.25rem, 4vw, 3.7rem);
+            line-height: 0.98;
             letter-spacing: -0.065em !important;
         }
 
@@ -1108,10 +1289,10 @@
         .sf-patterns-card {
             position: relative;
             display: flex;
-            min-height: 300px;
+            min-height: 240px;
             flex-direction: column;
             overflow: hidden;
-            padding: 1.25rem;
+            padding: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.1);
@@ -1140,12 +1321,12 @@
             align-items: center;
             justify-content: space-between;
             gap: 0.9rem;
-            margin-bottom: 1.35rem;
+            margin-bottom: 1rem;
         }
 
         .sf-patterns-index {
             color: #fff;
-            font-size: 2.6rem;
+            font-size: 2.2rem;
             font-weight: 900;
             line-height: 0.9;
             letter-spacing: -0.09em;
@@ -1155,14 +1336,14 @@
             margin: 0 0 0.7rem;
             color: #fff;
             font-family: 'Space Grotesk', 'Manrope', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.12rem;
             line-height: 1.08;
             letter-spacing: -0.035em;
         }
 
         .sf-patterns-card p {
             margin: 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .sf-patterns-download {
@@ -1235,6 +1416,18 @@
         }
 
         @media (max-width: 1180px) {
+            .sf-video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sf-video-card--notable {
+                grid-template-columns: 1fr;
+            }
+
+            .sf-video-card--notable .sf-video-thumb {
+                aspect-ratio: 16 / 9;
+            }
+
             .sf-patterns-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
@@ -1247,6 +1440,10 @@
 
             .sf-winners-head {
                 display: grid;
+            }
+
+            .sf-video-head h2 {
+                font-size: 2.5rem;
             }
 
             .sf-patterns-grid {
@@ -1332,8 +1529,8 @@
                     <a href="#home" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-home mr-2"></i><span data-i18n="nav.home">Home</span>
                     </a>
-                    <a href="#results" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
-                        <i class="fas fa-trophy mr-2"></i><span>Results</span>
+                    <a href="#winner-videos" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
+                        <i class="fas fa-play mr-2"></i><span>Winner Videos</span>
                     </a>
                     <a href="evaluation.html" class="px-4 py-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-all duration-300 font-medium text-sm text-gray-800">
                         <i class="fas fa-chart-line mr-2"></i><span data-i18n="nav.evaluation">Evaluation</span>
@@ -1370,8 +1567,8 @@
                     <a href="#home" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-home mr-3 w-5"></i>Home
                     </a>
-                    <a href="#results" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
-                        <i class="fas fa-trophy mr-3 w-5"></i>2nd Edition Results
+                    <a href="#winner-videos" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
+                        <i class="fas fa-play mr-3 w-5"></i>Winner Videos
                     </a>
                     <a href="evaluation.html" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors font-medium text-gray-800">
                         <i class="fas fa-chart-line mr-3 w-5"></i>Evaluation System
@@ -1430,6 +1627,10 @@
                         </div>
                         <h4>Michael Barry</h4>
                         <p>$3,000 voucher for the strongest overall DIY build.</p>
+                        <div class="sf-winner-actions">
+                            <a href="https://www.youtube.com/watch?v=rh-vtWtVR7M&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd" target="_blank" rel="noopener"><i class="fas fa-play"></i> Entry</a>
+                            <a href="https://www.youtube.com/watch?v=FhQ_IF5DYy8&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=7" target="_blank" rel="noopener"><i class="fas fa-microphone"></i> Interview</a>
+                        </div>
                     </article>
                     <article class="sf-winner-card">
                         <div class="sf-winner-rank">
@@ -1438,6 +1639,10 @@
                         </div>
                         <h4>Ivan Serdyuk</h4>
                         <p>$1,800 voucher for excellent execution and presentation.</p>
+                        <div class="sf-winner-actions">
+                            <a href="https://www.youtube.com/watch?v=APCuFQ00dhA&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=2" target="_blank" rel="noopener"><i class="fas fa-play"></i> Entry</a>
+                            <a href="https://www.youtube.com/watch?v=fn157tsJagQ&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=8" target="_blank" rel="noopener"><i class="fas fa-microphone"></i> Interview</a>
+                        </div>
                     </article>
                     <article class="sf-winner-card">
                         <div class="sf-winner-rank">
@@ -1446,6 +1651,10 @@
                         </div>
                         <h4>András Farkas</h4>
                         <p>$1,000 voucher for a strong project with real cutting value.</p>
+                        <div class="sf-winner-actions">
+                            <a href="https://www.youtube.com/watch?v=MQQl7zhKU_E&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=3" target="_blank" rel="noopener"><i class="fas fa-play"></i> Entry</a>
+                            <a href="https://www.youtube.com/watch?v=-tF6pID-728&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=5" target="_blank" rel="noopener"><i class="fas fa-microphone"></i> Interview</a>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -1454,8 +1663,8 @@
                 <a href="https://alleriastore.com/pages/skyfire-third-diy-fiber-laser-competition" target="_blank" rel="noopener" class="orange-gradient hover:orange-hover text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 orange-shadow">
                     <i class="fas fa-user-plus mr-2"></i><span>Register for 3rd Edition</span>
                 </a>
-                <a href="#results" class="bg-white hover:bg-gray-50 text-gray-800 font-bold py-4 px-8 rounded-lg transition-all duration-300 border border-gray-300 shadow-lg">
-                    <i class="fas fa-trophy mr-2"></i>View 2nd Edition Results
+                <a href="#winner-videos" class="bg-white hover:bg-gray-50 text-gray-800 font-bold py-4 px-8 rounded-lg transition-all duration-300 border border-gray-300 shadow-lg">
+                    <i class="fas fa-play mr-2"></i>Watch Winner Videos
                 </a>
                 <a href="/first.html" class="bg-white hover:bg-gray-50 text-gray-800 font-bold py-4 px-8 rounded-lg transition-all duration-300 border border-gray-300 shadow-lg">
                     <i class="fas fa-trophy mr-2"></i>View 1st Contest Results
@@ -1487,121 +1696,95 @@
         </div>
     </section>
 
-    <!-- Series Story Section -->
-    <section class="sf-series-band sf-series-band--cream">
-        <div class="sf-series-wrap">
-            <span class="sf-series-label">Why We Do This</span>
-            <h2 class="sf-series-heading">This contest series exists to make DIY fiber laser building visible, practical, and shared.</h2>
-            <p class="sf-series-copy">
-                The 2nd edition gave builders a clear path: prepare the machine, use official test patterns,
-                publish a project video, and join a public judging process that rewarded real machine performance.
-            </p>
+    <!-- Winner Videos Section -->
+    <section id="winner-videos" class="sf-video-section">
+        <div class="sf-video-wrap">
+            <div class="sf-video-head">
+                <span>2nd Edition Video Archive</span>
+                <h2>Watch the builds that won.</h2>
+                <p>The second contest has ended. The strongest value on this page is now the winning project videos and the post-contest interviews.</p>
+            </div>
 
-            <div class="sf-series-grid">
-                <article class="sf-series-card">
-                    <span class="sf-series-step">01</span>
-                    <h3>Build with real parts</h3>
-                    <p>Participants use SkyFire and Alleria Store resources to turn component selection into a working machine.</p>
-                    <a href="https://alleriastore.com/" target="_blank" rel="noopener">Explore Alleria parts <i class="fas fa-arrow-right"></i></a>
+            <div class="sf-video-grid">
+                <article class="sf-video-card">
+                    <a class="sf-video-thumb" href="https://www.youtube.com/watch?v=rh-vtWtVR7M&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd" target="_blank" rel="noopener" aria-label="Watch Michael Barry contest video">
+                        <img src="https://img.youtube.com/vi/rh-vtWtVR7M/hqdefault.jpg" alt="Michael Barry 1st place contest video thumbnail" loading="lazy">
+                        <span class="sf-video-play"><i class="fas fa-play"></i>Contest Video</span>
+                    </a>
+                    <div class="sf-video-body">
+                        <span class="sf-video-rank">1st Place · Michael Barry</span>
+                        <h3>Overall winning DIY fiber laser build.</h3>
+                        <p>Start here: this is the top-ranked entry and the clearest example of what the 2nd edition rewarded.</p>
+                        <div class="sf-video-actions">
+                            <a href="https://www.youtube.com/watch?v=rh-vtWtVR7M&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd" target="_blank" rel="noopener"><i class="fas fa-play"></i>Watch entry</a>
+                            <a href="https://www.youtube.com/watch?v=FhQ_IF5DYy8&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=7" target="_blank" rel="noopener"><i class="fas fa-microphone"></i>Interview</a>
+                        </div>
+                    </div>
                 </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-step">02</span>
-                    <h3>Prove the machine</h3>
-                    <p>Official cutting patterns make the submission easier to judge and easier for other builders to learn from.</p>
-                    <a href="https://www.youtube.com/playlist?list=PLjmxgUbjr7L3BNw4-O7CuNB7lmq_rsL-e" target="_blank" rel="noopener">Watch DIY video tutorials <i class="fas fa-play"></i></a>
+
+                <article class="sf-video-card">
+                    <a class="sf-video-thumb" href="https://www.youtube.com/watch?v=APCuFQ00dhA&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=2" target="_blank" rel="noopener" aria-label="Watch Ivan Serdyuk contest video">
+                        <img src="https://img.youtube.com/vi/APCuFQ00dhA/hqdefault.jpg" alt="Ivan Serdyuk 2nd place contest video thumbnail" loading="lazy">
+                        <span class="sf-video-play"><i class="fas fa-play"></i>Contest Video</span>
+                    </a>
+                    <div class="sf-video-body">
+                        <span class="sf-video-rank">2nd Place · Ivan Serdyuk</span>
+                        <h3>Strong execution and presentation.</h3>
+                        <p>A practical reference for builders comparing structure, cutting proof, and project storytelling.</p>
+                        <div class="sf-video-actions">
+                            <a href="https://www.youtube.com/watch?v=APCuFQ00dhA&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=2" target="_blank" rel="noopener"><i class="fas fa-play"></i>Watch entry</a>
+                            <a href="https://www.youtube.com/watch?v=fn157tsJagQ&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=8" target="_blank" rel="noopener"><i class="fas fa-microphone"></i>Interview</a>
+                        </div>
+                    </div>
                 </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-step">03</span>
-                    <h3>Share the result</h3>
-                    <p>The Facebook group and public contest pages keep the learning loop open after the contest.</p>
-                    <a href="https://www.facebook.com/groups/998602455597977" target="_blank" rel="noopener">Join Facebook group <i class="fab fa-facebook-f"></i></a>
+
+                <article class="sf-video-card">
+                    <a class="sf-video-thumb" href="https://www.youtube.com/watch?v=MQQl7zhKU_E&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=3" target="_blank" rel="noopener" aria-label="Watch András Farkas contest video">
+                        <img src="https://img.youtube.com/vi/MQQl7zhKU_E/hqdefault.jpg" alt="András Farkas 3rd place contest video thumbnail" loading="lazy">
+                        <span class="sf-video-play"><i class="fas fa-play"></i>Contest Video</span>
+                    </a>
+                    <div class="sf-video-body">
+                        <span class="sf-video-rank">3rd Place · András Farkas</span>
+                        <h3>Real cutting value and build clarity.</h3>
+                        <p>Useful for understanding how project documentation and machine output were judged together.</p>
+                        <div class="sf-video-actions">
+                            <a href="https://www.youtube.com/watch?v=MQQl7zhKU_E&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=3" target="_blank" rel="noopener"><i class="fas fa-play"></i>Watch entry</a>
+                            <a href="https://www.youtube.com/watch?v=-tF6pID-728&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=5" target="_blank" rel="noopener"><i class="fas fa-microphone"></i>Interview</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="sf-video-card sf-video-card--notable">
+                    <a class="sf-video-thumb" href="https://www.youtube.com/watch?v=SwCb1OnhkUI&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=4" target="_blank" rel="noopener" aria-label="Watch Canada contestant video">
+                        <img src="https://img.youtube.com/vi/SwCb1OnhkUI/hqdefault.jpg" alt="Canada contestant video thumbnail" loading="lazy">
+                        <span class="sf-video-play"><i class="fas fa-play"></i>Notable Entry</span>
+                    </a>
+                    <div class="sf-video-body">
+                        <span class="sf-video-rank">Notable Entry · Canada</span>
+                        <h3>Additional builder story from the 2nd edition.</h3>
+                        <p>This entry and interview add another practical perspective for people preparing for the current 3rd edition.</p>
+                        <div class="sf-video-actions">
+                            <a href="https://www.youtube.com/watch?v=SwCb1OnhkUI&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=4" target="_blank" rel="noopener"><i class="fas fa-play"></i>Watch entry</a>
+                            <a href="https://www.youtube.com/watch?v=QnDAAgYMBFM&amp;list=PLKsKtjetIHbfmWkt-kwAGBqoDDkL9eWfd&amp;index=6" target="_blank" rel="noopener"><i class="fas fa-microphone"></i>Interview</a>
+                        </div>
+                    </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- Contest Series Section -->
-    <section class="sf-series-band">
-        <div class="sf-series-wrap">
-            <span class="sf-series-label">Competition History</span>
-            <h2 class="sf-series-heading">Explore the SKYFIRE DIY competition journey.</h2>
-            <p class="sf-series-copy">
-                The first contest proved the idea, the second edition is now archived with winners and test files, and the current
-                competition continues the community with more divisions, resources, and technical documents.
-            </p>
-
-            <div class="sf-series-grid sf-series-grid--four">
-                <article class="sf-series-card">
-                    <span class="sf-series-label">1st Edition</span>
-                    <h3>Archive and winners</h3>
-                    <p>Review the first wave of builders and judging results.</p>
-                    <a href="/first.html">View 1st contest</a>
-                </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-label">2nd Edition</span>
-                    <h3>Completed archive</h3>
-                    <p>Winners, participants, official cutting patterns, and project resources live here.</p>
-                    <a href="#results">View 2nd results</a>
-                </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-label">3rd Edition</span>
-                    <h3>Registration in progress</h3>
-                    <p>The active SKYFIRE DIY competition is now the 3rd edition on Alleria Store.</p>
-                    <a href="https://alleriastore.com/pages/skyfire-third-diy-fiber-laser-competition" target="_blank" rel="noopener">Register for 3rd edition</a>
-                </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-label">Store Path</span>
-                    <h3>Parts and kits</h3>
-                    <p>Use Alleria Store as the practical path from contest idea to machine build.</p>
-                    <a href="https://alleriastore.com/" target="_blank">Shop Alleria Store</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Third Edition Handoff Section -->
+    <!-- Third Edition CTA Section -->
     <section class="sf-series-band sf-series-band--cream">
         <div class="sf-series-wrap">
-            <span class="sf-series-label">2nd Edition Complete</span>
-            <h2 class="sf-series-heading">The 2nd edition has ended. Continue with the 3rd edition.</h2>
-            <p class="sf-series-copy">
-                This page now preserves the 2nd edition results, participants, and test files. If you want to join the next active contest,
-                the registration path has moved to the 3rd SKYFIRE DIY Fiber Laser Competition.
-            </p>
-
-            <div class="sf-series-grid sf-series-grid--four">
-                <article class="sf-series-card">
-                    <span class="sf-series-step">01</span>
-                    <h3>Review the winners</h3>
-                    <p>Use the 2nd edition archive to see the final prize results and official winner list.</p>
-                </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-step">02</span>
-                    <h3>Learn from builders</h3>
-                    <p>Browse the participant archive and project videos to understand real DIY machine builds.</p>
-                </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-step">03</span>
-                    <h3>Reuse the test files</h3>
-                    <p>Download the same DXF patterns used to evaluate cutting power, precision, and finish quality.</p>
-                </article>
-                <article class="sf-series-card">
-                    <span class="sf-series-step">04</span>
-                    <h3>Enter the 3rd edition</h3>
-                    <p>The current competition is accepting registrations through the official Alleria Store page.</p>
-                    <a href="https://alleriastore.com/pages/skyfire-third-diy-fiber-laser-competition" target="_blank" rel="noopener">Go to 3rd edition <i class="fas fa-arrow-right"></i></a>
-                </article>
-            </div>
-
             <div class="sf-series-cta">
                 <div>
+                    <span class="sf-series-label">Next Contest</span>
                     <h3>Ready for the active contest?</h3>
                     <p>The 2nd edition is finished. Register for the 3rd edition to join the current SKYFIRE DIY competition cycle.</p>
                 </div>
                 <div class="sf-series-actions">
                     <a class="sf-series-button sf-series-button--orange" href="https://alleriastore.com/pages/skyfire-third-diy-fiber-laser-competition" target="_blank" rel="noopener">Register for 3rd Edition</a>
-                    <a class="sf-series-button" href="#results">View 2nd Results</a>
-                    <a class="sf-series-button" href="#patterns">Download Patterns</a>
+                    <a class="sf-series-button" href="/first.html">View 1st Results</a>
                 </div>
             </div>
         </div>
@@ -1690,7 +1873,7 @@
     </section>
 
     <!-- Closed Registration Archive Section -->
-    <section id="registration" class="py-16 bg-white">
+    <section id="registration" class="hidden" style="display: none !important;" aria-hidden="true">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">
@@ -1936,29 +2119,11 @@
     <section id="patterns" class="sf-patterns-section">
         <div class="sf-patterns-wrap">
             <div class="sf-patterns-head">
-                <span class="sf-patterns-kicker">Official Test Files</span>
-                <h2>Cut the same patterns. Prove the machine with real output.</h2>
+                <span class="sf-patterns-kicker">Archive Files</span>
+                <h2>2nd edition DXF files.</h2>
                 <p>
-                    Use these DXF files to demonstrate cutting power, precision, repeatability, material handling, and finishing quality during the second SKYFIRE DIY competition.
+                    Keep these downloads as reference material. The main archive is now the winner videos above.
                 </p>
-            </div>
-
-            <div class="sf-patterns-panel">
-                <div>
-                    <span class="sf-patterns-kicker">Pattern Pack</span>
-                    <h3>Five judging files for practical machine testing.</h3>
-                    <p>Download the files below, cut them on your DIY fiber laser system, and include the results in your project video submission.</p>
-                </div>
-                <div class="sf-patterns-metrics">
-                    <div>
-                        <span>Files</span>
-                        <strong>5 DXF</strong>
-                    </div>
-                    <div>
-                        <span>Focus</span>
-                        <strong>Real Cuts</strong>
-                    </div>
-                </div>
             </div>
 
             <div class="sf-patterns-grid">
@@ -2021,22 +2186,6 @@
                         <i class="fas fa-download"></i>Download DXF
                     </a>
                 </article>
-            </div>
-
-            <div class="sf-patterns-cta">
-                <div>
-                    <span class="sf-patterns-kicker">Need More Detail?</span>
-                    <h3>Review the cutting requirements from the completed contest.</h3>
-                    <p>Open the full pattern details page for specifications, or return to the winners archive to see how the contest finished.</p>
-                </div>
-                <div class="sf-patterns-actions">
-                    <a href="patterns.html" class="sf-patterns-secondary">
-                        <i class="fas fa-eye mr-2"></i>View Pattern Details
-                    </a>
-                    <a href="#results" class="sf-patterns-download">
-                        <i class="fas fa-trophy"></i>View Results
-                    </a>
-                </div>
             </div>
         </div>
     </section>
