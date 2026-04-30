@@ -736,7 +736,6 @@
         }
 
         .sf-series-band--cream,
-        section[x-data="participantDisplay()"],
         #patterns:not(.sf-patterns-section) {
             background:
                 radial-gradient(circle at 12% 12%, rgba(239, 134, 19, 0.1), transparent 24rem),
@@ -1005,17 +1004,17 @@
             aspect-ratio: auto;
         }
 
-        .sf-participants-section {
+        section#participants.sf-participants-section {
             position: relative;
             overflow: hidden;
             padding: clamp(3.6rem, 6vw, 5.4rem) 0 !important;
             background:
                 radial-gradient(circle at 84% 14%, rgba(239, 134, 19, 0.24), transparent 24rem),
                 linear-gradient(135deg, #15120f 0%, #29231d 60%, #100f0e 100%) !important;
-            color: #fff;
+            color: #fff !important;
         }
 
-        .sf-participants-section::before {
+        section#participants.sf-participants-section::before {
             content: "";
             position: absolute;
             inset: 0;
