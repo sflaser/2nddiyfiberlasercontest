@@ -1005,6 +1005,176 @@
             aspect-ratio: auto;
         }
 
+        .sf-participants-section {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(3.6rem, 6vw, 5.4rem) 0 !important;
+            background:
+                radial-gradient(circle at 84% 14%, rgba(239, 134, 19, 0.24), transparent 24rem),
+                linear-gradient(135deg, #15120f 0%, #29231d 60%, #100f0e 100%) !important;
+            color: #fff;
+        }
+
+        .sf-participants-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.13;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+            background-size: 46px 46px;
+        }
+
+        .sf-participants-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .sf-participants-head {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1.5rem;
+            align-items: end;
+            margin-bottom: 1.4rem;
+        }
+
+        .sf-participants-head span {
+            display: inline-flex;
+            width: fit-content;
+            min-height: 32px;
+            align-items: center;
+            padding: 0 0.8rem;
+            border: 1px solid rgba(239, 134, 19, 0.42);
+            border-radius: 999px;
+            background: rgba(239, 134, 19, 0.16);
+            color: #ffb25d;
+            font-size: 0.76rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .sf-participants-head h2 {
+            margin: 0.9rem 0 0.45rem;
+            color: #fff !important;
+            font-family: 'Space Grotesk', 'Manrope', sans-serif;
+            font-size: clamp(2.1rem, 4vw, 3.8rem);
+            line-height: 0.98;
+            letter-spacing: -0.06em !important;
+        }
+
+        .sf-participants-head p,
+        .sf-participant-card p,
+        .sf-participant-empty {
+            color: rgba(255, 255, 255, 0.66) !important;
+            line-height: 1.65;
+        }
+
+        .sf-participants-summary {
+            min-width: 220px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.09);
+            text-align: right;
+            backdrop-filter: blur(16px);
+        }
+
+        .sf-participants-summary strong {
+            display: block;
+            color: #fff;
+            font-size: 2.4rem;
+            line-height: 0.9;
+            letter-spacing: -0.08em;
+        }
+
+        .sf-participants-summary small {
+            color: #ffb25d;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .sf-participants-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .sf-participant-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(18px);
+        }
+
+        .sf-participant-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 16px 0 16px;
+            height: 3px;
+            border-radius: 999px 999px 0 0;
+            background: linear-gradient(90deg, #ef8613, transparent);
+        }
+
+        .sf-participant-card h3 {
+            margin: 0 0 0.5rem;
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 900;
+        }
+
+        .sf-participant-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.85rem;
+        }
+
+        .sf-participant-tags span,
+        .sf-participant-tags a,
+        .sf-participants-refresh {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.38rem;
+            min-height: 32px;
+            padding: 0 0.68rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.82) !important;
+            font-size: 0.78rem;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .sf-participant-tags a,
+        .sf-participants-refresh {
+            border: 1px solid rgba(239, 134, 19, 0.26);
+            background: rgba(239, 134, 19, 0.14);
+            color: #ffb25d !important;
+        }
+
+        .sf-participants-refresh {
+            margin-top: 0.75rem;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .sf-participant-empty {
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
         .sf-series-wrap {
             max-width: 1200px;
         }
@@ -1408,6 +1578,10 @@
             .sf-patterns-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
+
+            .sf-participants-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         @media (max-width: 900px) {
@@ -1462,6 +1636,15 @@
 
             .sf-patterns-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .sf-participants-head,
+            .sf-participants-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sf-participants-summary {
+                text-align: left;
             }
 
             .sf-patterns-metrics {
@@ -1756,82 +1939,46 @@
     </section>
 
     <!-- Participants Archive Section -->
-    <section id="participants" class="py-16" x-data="participantDisplay()" style="background-color: #fff8f0 !important;">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">
-                    <i class="fas fa-users orange-accent mr-3"></i>2nd Edition Participants
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Meet the talented makers who registered for the completed 2nd edition.
-                </p>
-                <div class="mt-6 flex items-center justify-center gap-4">
-                    <span class="bg-white text-black px-6 py-3 rounded-full text-lg font-bold shadow-lg border-2 border-gray-200">
-                        <i class="fas fa-fire mr-2 text-orange-500"></i><span x-text="participants.length"></span> <span>Archived Participants</span>
-                    </span>
-                    <button @click="loadParticipants()" 
-                            class="bg-orange-500 hover:bg-orange-600 text-black px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-                            title="Refresh participant data">
-                        <i class="fas fa-sync-alt mr-1"></i><span data-i18n="stats.refresh">Refresh</span>
+    <section id="participants" class="sf-participants-section" x-data="participantDisplay()">
+        <div class="sf-participants-wrap">
+            <div class="sf-participants-head">
+                <div>
+                    <span>Participant Archive</span>
+                    <h2>Builders from the 2nd edition.</h2>
+                    <p>A compact record of registered builders. The main story remains the winner videos above.</p>
+                </div>
+                <div class="sf-participants-summary">
+                    <strong x-text="participants.length"></strong>
+                    <small>Archived builders</small>
+                    <button @click="loadParticipants()" class="sf-participants-refresh" title="Refresh participant data">
+                        <i class="fas fa-sync-alt"></i>Refresh
                     </button>
                 </div>
             </div>
-            
-            <div x-show="participants.length === 0" class="text-center py-12">
-                <i class="fas fa-user-plus text-6xl text-gray-300 mb-4"></i>
-                <p class="text-xl text-gray-500">No archived participants are available yet.</p>
+
+            <div x-show="participants.length === 0" class="sf-participant-empty">
+                No archived participants are available yet.
             </div>
-            
-            <div x-show="participants.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <template x-for="participant in participants" :key="participant.id">
-                    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 card-hover">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-800" x-text="participant.name"></h3>
-                                <p class="text-gray-600" x-text="participant.email"></p>
-                            </div>
-                            <span class="px-3 py-1 text-xs font-bold rounded-full"
-                                  :class="participant.participationType === 'team' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'"
-                                  x-text="participant.participationType === 'team' ? 'Team' : 'Individual'">
-                            </span>
+
+            <div x-show="participants.length > 0" class="sf-participants-grid">
+                <template x-for="participant in participants.slice(0, 6)" :key="participant.id">
+                    <article class="sf-participant-card">
+                        <h3 x-text="participant.name"></h3>
+                        <p x-text="participant.country || 'Country not listed'"></p>
+                        <div class="sf-participant-tags">
+                            <span x-text="participant.participationType === 'team' ? 'Team' : 'Individual'"></span>
+                            <span x-show="participant.powerLevel" x-text="participant.powerLevel"></span>
+                            <a x-show="participant.videoUrl" :href="participant.videoUrl" target="_blank" rel="noopener">
+                                <i class="fas fa-play"></i>Project video
+                            </a>
                         </div>
-                        
-                        <div class="space-y-2 text-sm text-gray-600 mb-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-globe w-5 orange-accent mr-2"></i>
-                                <span x-text="participant.country"></span>
-                            </div>
-                            <div class="flex items-center" x-show="participant.company">
-                                <i class="fas fa-building w-5 orange-accent mr-2"></i>
-                                <span x-text="participant.company"></span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-bolt w-5 orange-accent mr-2"></i>
-                                <span x-text="participant.powerLevel"></span>
-                            </div>
-                            <div x-show="participant.description" class="text-xs bg-gray-50 p-3 rounded">
-                                <i class="fas fa-info-circle orange-accent mr-1"></i>
-                                <span x-text="participant.description"></span>
-                            </div>
-                            <div x-show="participant.videoUrl" class="text-xs">
-                                <i class="fas fa-video orange-accent mr-1"></i>
-                                <a :href="participant.videoUrl" target="_blank" class="text-orange-600 hover:text-orange-800 underline font-medium">
-                                    Watch Project Video
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="text-xs text-gray-500 border-t pt-3">
-                            <i class="fas fa-calendar mr-1"></i>
-                            Registered: <span x-text="formatDate(participant.dateAdded)"></span>
-                        </div>
-                    </div>
+                    </article>
                 </template>
             </div>
-            
+
             <div x-show="participants.length > 6" class="text-center mt-8">
-                <a href="evaluation.html" class="orange-gradient text-white font-bold py-3 px-6 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg">
-                    <i class="fas fa-eye mr-2"></i>View All Participants
+                <a href="evaluation.html" class="sf-series-button">
+                    View full archive
                 </a>
             </div>
         </div>
