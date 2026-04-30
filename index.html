@@ -440,9 +440,23 @@
 
         .sf-series-card a {
             display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             margin-top: 1rem;
+            padding: 0.62rem 0.86rem;
+            border: 1px solid rgba(239, 134, 19, 0.22);
+            border-radius: 999px;
+            background: rgba(239, 134, 19, 0.1);
             color: var(--alleria-orange-dark);
             font-weight: 800;
+            text-decoration: none;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+        }
+
+        .sf-series-card a:hover {
+            transform: translateY(-2px);
+            border-color: rgba(239, 134, 19, 0.42);
+            background: rgba(239, 134, 19, 0.16);
         }
 
         .sf-series-step {
@@ -1613,16 +1627,19 @@
                     <span class="sf-series-step">01</span>
                     <h3>Build with real parts</h3>
                     <p>Participants use SkyFire and Alleria Store resources to turn component selection into a working machine.</p>
+                    <a href="https://alleriastore.com/" target="_blank" rel="noopener">Explore Alleria parts <i class="fas fa-arrow-right"></i></a>
                 </article>
                 <article class="sf-series-card">
                     <span class="sf-series-step">02</span>
                     <h3>Prove the machine</h3>
                     <p>Official cutting patterns make the submission easier to judge and easier for other builders to learn from.</p>
+                    <a href="#patterns">Download official patterns <i class="fas fa-arrow-right"></i></a>
                 </article>
                 <article class="sf-series-card">
                     <span class="sf-series-step">03</span>
                     <h3>Share the result</h3>
                     <p>The Facebook group and public contest pages keep the learning loop open after registration.</p>
+                    <a href="https://www.facebook.com/groups/998602455597977" target="_blank" rel="noopener">Join Facebook group <i class="fab fa-facebook-f"></i></a>
                 </article>
             </div>
         </div>
