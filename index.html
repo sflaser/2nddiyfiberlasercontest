@@ -847,123 +847,6 @@
             line-height: 1.6;
         }
 
-        .sf-timeline-section {
-            position: relative;
-            isolation: isolate;
-            overflow: hidden;
-            padding: clamp(4.6rem, 7vw, 6.6rem) 0;
-            color: #fff;
-            background:
-                radial-gradient(circle at 82% 8%, rgba(239, 134, 19, 0.32), transparent 26rem),
-                linear-gradient(135deg, #15120f 0%, #28221c 58%, #100f0e 100%);
-        }
-
-        .sf-timeline-section::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.17;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: 46px 46px;
-        }
-
-        .sf-timeline-wrap {
-            max-width: 1180px;
-            margin: 0 auto;
-            padding: 0 1.25rem;
-        }
-
-        .sf-timeline-head {
-            max-width: 820px;
-            margin-bottom: 2rem;
-        }
-
-        .sf-timeline-head span {
-            display: inline-flex;
-            min-height: 32px;
-            align-items: center;
-            padding: 0 0.8rem;
-            border: 1px solid rgba(239, 134, 19, 0.42);
-            border-radius: 999px;
-            background: rgba(239, 134, 19, 0.16);
-            color: #ffb25d;
-            font-size: 0.76rem;
-            font-weight: 900;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-        }
-
-        .sf-timeline-head h2 {
-            margin: 1rem 0 0.75rem;
-            color: #fff !important;
-            font-family: 'Space Grotesk', 'Manrope', sans-serif;
-            font-size: clamp(2.4rem, 5vw, 4.8rem);
-            line-height: 0.96;
-            letter-spacing: -0.06em !important;
-        }
-
-        .sf-timeline-head p {
-            color: rgba(255, 255, 255, 0.68) !important;
-            font-size: 1.1rem;
-            line-height: 1.75;
-        }
-
-        .sf-timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        .sf-timeline-card {
-            position: relative;
-            overflow: hidden;
-            min-height: 220px;
-            padding: 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.13);
-            border-radius: 24px;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
-            backdrop-filter: blur(18px);
-        }
-
-        .sf-timeline-card::after {
-            content: "";
-            position: absolute;
-            inset: auto 18px 0 18px;
-            height: 3px;
-            border-radius: 999px 999px 0 0;
-            background: linear-gradient(90deg, #ef8613, transparent);
-        }
-
-        .sf-timeline-step {
-            color: #fff;
-            font-size: 2.6rem;
-            font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -0.08em;
-        }
-
-        .sf-timeline-card h3 {
-            margin: 1.2rem 0 0.55rem;
-            color: #fff;
-            font-size: 1.18rem;
-            font-weight: 900;
-        }
-
-        .sf-timeline-card p {
-            margin: 0 0 0.8rem;
-            color: rgba(255, 255, 255, 0.65) !important;
-            line-height: 1.65;
-        }
-
-        .sf-timeline-card time {
-            color: #ffb25d;
-            font-weight: 900;
-        }
-
         .sf-series-wrap {
             max-width: 1200px;
         }
@@ -1352,10 +1235,6 @@
         }
 
         @media (max-width: 1180px) {
-            .sf-timeline-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
             .sf-patterns-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
@@ -1408,10 +1287,6 @@
             }
 
             .sf-patterns-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .sf-timeline-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1728,43 +1603,6 @@
                     <a class="sf-series-button" href="#results">View 2nd Results</a>
                     <a class="sf-series-button" href="#patterns">Download Patterns</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Competition Timeline Section -->
-    <section class="sf-timeline-section">
-        <div class="sf-timeline-wrap">
-            <div class="sf-timeline-head">
-                <span>Competition Timeline</span>
-                <h2>Four dates, one completed contest path.</h2>
-                <p>The second edition moved from registration to judging and final results between July and December 2025.</p>
-            </div>
-            <div class="sf-timeline-grid">
-                <article class="sf-timeline-card">
-                    <strong class="sf-timeline-step">01</strong>
-                    <h3>Registration Opened</h3>
-                    <p>Registration period began for individual and team builders.</p>
-                    <time>July 15, 2025</time>
-                </article>
-                <article class="sf-timeline-card">
-                    <strong class="sf-timeline-step">02</strong>
-                    <h3>Registration Closed</h3>
-                    <p>Final date for participant information and build plans.</p>
-                    <time>September 30, 2025</time>
-                </article>
-                <article class="sf-timeline-card">
-                    <strong class="sf-timeline-step">03</strong>
-                    <h3>Evaluation Started</h3>
-                    <p>Judges began reviewing project videos and cutting results.</p>
-                    <time>November 30, 2025</time>
-                </article>
-                <article class="sf-timeline-card">
-                    <strong class="sf-timeline-step">04</strong>
-                    <h3>Results Announced</h3>
-                    <p>Winners are finalized and prize vouchers are distributed.</p>
-                    <time>December 15, 2025</time>
-                </article>
             </div>
         </div>
     </section>
