@@ -1667,6 +1667,265 @@
                 width: 100%;
             }
         }
+
+        /* 2026 archive polish overrides */
+        :root {
+            --sf-signal: #18a99a;
+            --sf-deep: #151719;
+            --sf-panel-line: rgba(21, 23, 25, 0.12);
+        }
+
+        body * {
+            letter-spacing: 0 !important;
+        }
+
+        nav.text-gray-800 {
+            border-bottom: 1px solid rgba(21, 23, 25, 0.1) !important;
+        }
+
+        nav a {
+            border-radius: 8px !important;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            background: rgba(239, 134, 19, 0.12) !important;
+            outline: none;
+        }
+
+        #home h1 {
+            font-size: 4.6rem !important;
+            line-height: 0.98 !important;
+        }
+
+        #home > .max-w-7xl > p {
+            font-size: 1.24rem !important;
+        }
+
+        .sf-video-head h2 {
+            font-size: 4.4rem !important;
+            line-height: 0.98 !important;
+        }
+
+        .sf-series-heading {
+            font-size: 3.9rem !important;
+            line-height: 1 !important;
+        }
+
+        .sf-series-cta h3,
+        .sf-winners-head h3,
+        .sf-participants-head h2,
+        .sf-patterns-head h2,
+        .sf-first-results h2,
+        .sf-live-replay-card h3 {
+            line-height: 1 !important;
+        }
+
+        .sf-series-cta h3 {
+            font-size: 2.5rem !important;
+        }
+
+        .sf-winners-head h3 {
+            font-size: 2.7rem !important;
+        }
+
+        .sf-video-card h3 {
+            font-size: 1.8rem !important;
+            line-height: 1.06 !important;
+        }
+
+        .sf-participants-head h2,
+        .sf-patterns-head h2 {
+            font-size: 3.5rem !important;
+        }
+
+        .sf-winners-board,
+        .sf-winner-card,
+        .sf-video-card,
+        .sf-video-thumb,
+        .sf-series-card,
+        .sf-series-cta,
+        .sf-participants-summary,
+        .sf-participant-card,
+        .sf-participant-empty,
+        .sf-patterns-card,
+        .sf-patterns-panel,
+        .sf-patterns-cta,
+        .sf-live-replay-card,
+        .sf-first-result-card,
+        .sf-first-table-wrap {
+            border-radius: 8px !important;
+        }
+
+        .sf-winner-card::after,
+        .sf-series-card::after,
+        .sf-participant-card::after,
+        .sf-patterns-card::after,
+        #home .grid.mt-12 > div::after {
+            background: linear-gradient(90deg, var(--alleria-orange), var(--sf-signal), transparent) !important;
+        }
+
+        .sf-video-actions a,
+        .sf-series-button,
+        .sf-patterns-download,
+        .sf-patterns-secondary,
+        .sf-participants-refresh {
+            border-radius: 8px !important;
+        }
+
+        .sf-video-actions a:nth-child(2),
+        .sf-patterns-secondary {
+            border-color: rgba(24, 169, 154, 0.28) !important;
+            background: rgba(24, 169, 154, 0.12) !important;
+            color: #08796e !important;
+        }
+
+        .sf-video-card,
+        .sf-series-card,
+        .sf-patterns-card {
+            border-color: var(--sf-panel-line) !important;
+        }
+
+        .sf-video-card:hover,
+        .sf-series-card:hover,
+        .sf-patterns-card:hover,
+        .sf-participant-card:hover,
+        .sf-winner-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(24, 169, 154, 0.24) !important;
+        }
+
+        .sf-video-thumb:focus-visible,
+        .sf-video-actions a:focus-visible,
+        .sf-series-button:focus-visible,
+        .sf-patterns-download:focus-visible,
+        .sf-patterns-secondary:focus-visible,
+        .sf-participants-refresh:focus-visible {
+            outline: 3px solid rgba(24, 169, 154, 0.42);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 900px) {
+            #home h1 {
+                font-size: 3.2rem !important;
+            }
+
+            .sf-video-head h2,
+            .sf-series-heading,
+            .sf-participants-head h2,
+            .sf-patterns-head h2 {
+                font-size: 2.65rem !important;
+            }
+
+            .sf-winners-head h3,
+            .sf-series-cta h3 {
+                font-size: 2.15rem !important;
+            }
+        }
+
+        @media (max-width: 520px) {
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            nav,
+            section,
+            #home,
+            #home > .max-w-7xl,
+            .sf-winners-board,
+            .sf-winners-grid,
+            .sf-winner-card,
+            .sf-video-card,
+            .sf-series-card,
+            .sf-participants-summary,
+            .sf-participant-card,
+            .sf-patterns-card,
+            .sf-patterns-panel,
+            .sf-series-cta {
+                max-width: 100% !important;
+                min-width: 0 !important;
+                box-sizing: border-box;
+            }
+
+            nav .max-w-7xl {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            body > * {
+                max-width: 100vw !important;
+                overflow-x: hidden;
+            }
+
+            #home {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            #home > .max-w-7xl {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            #home h1 {
+                width: min(100%, 340px);
+                max-width: 340px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                font-size: 1.75rem !important;
+                letter-spacing: 0 !important;
+                overflow-wrap: anywhere;
+                text-wrap: balance;
+            }
+
+            #home h1 span {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                white-space: normal !important;
+            }
+
+            #home > .max-w-7xl > p,
+            .sf-series-copy {
+                width: min(100%, 340px);
+                max-width: 340px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                font-size: 1rem !important;
+                overflow-wrap: anywhere;
+            }
+
+            #home > .max-w-7xl > p span {
+                white-space: normal !important;
+            }
+
+            .sf-winners-board {
+                width: min(100%, 358px);
+                margin-top: 1.7rem;
+                padding: 1.05rem;
+            }
+
+            .sf-winners-head h3 {
+                font-size: 1.85rem !important;
+            }
+
+            .sf-winner-card {
+                padding: 1rem;
+            }
+
+            .sf-video-head h2,
+            .sf-series-heading,
+            .sf-participants-head h2,
+            .sf-patterns-head h2 {
+                font-size: 2.25rem !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
