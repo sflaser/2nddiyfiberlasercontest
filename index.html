@@ -1926,6 +1926,289 @@
                 font-size: 2.25rem !important;
             }
         }
+
+        /* Strict archive refinement: remove SaaS card/pill language and keep the Alleria orange system. */
+        :root {
+            --sf-signal: var(--alleria-orange);
+            --sf-hard-line: rgba(255, 255, 255, 0.16);
+            --sf-soft-line: rgba(24, 24, 24, 0.12);
+        }
+
+        nav a,
+        nav button,
+        #home a,
+        .sf-series-button,
+        .sf-video-actions a,
+        .sf-patterns-download,
+        .sf-patterns-secondary,
+        .sf-participants-refresh {
+            border-radius: 2px !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        nav .animate-ping,
+        #home .grid.mt-12 > div::after,
+        .sf-winner-card::after,
+        .sf-series-card::after,
+        .sf-participant-card::after,
+        .sf-patterns-card::after {
+            content: none !important;
+            display: none !important;
+        }
+
+        #home .orange-gradient.text-white {
+            min-height: 34px;
+            border: 1px solid rgba(239, 134, 19, 0.42);
+            border-radius: 2px !important;
+            background: rgba(239, 134, 19, 0.94) !important;
+            box-shadow: none !important;
+        }
+
+        .sf-winners-board {
+            width: min(1080px, 100%);
+            max-width: 1080px;
+            padding: 0 !important;
+            overflow: hidden;
+            border: 1px solid var(--sf-hard-line) !important;
+            border-radius: 2px !important;
+            background: rgba(255, 255, 255, 0.075) !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+        }
+
+        .sf-winners-head {
+            align-items: start;
+            padding: 22px 24px 20px;
+            margin: 0 !important;
+            border-bottom: 1px solid var(--sf-hard-line);
+        }
+
+        .sf-winners-head span {
+            color: #ffb25d !important;
+        }
+
+        .sf-winners-head h3 {
+            max-width: 760px;
+            color: #fff !important;
+            font-size: clamp(2rem, 3.4vw, 3.25rem) !important;
+        }
+
+        .sf-winners-head a {
+            min-height: 36px;
+            padding: 0 12px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: rgba(255, 255, 255, 0.82) !important;
+            text-decoration: none !important;
+            white-space: nowrap;
+        }
+
+        .sf-winners-grid {
+            display: block !important;
+        }
+
+        .sf-winner-card {
+            display: grid;
+            grid-template-columns: 132px minmax(0, 0.95fr) minmax(220px, 1.05fr);
+            gap: 18px;
+            align-items: center;
+            min-height: 86px;
+            padding: 18px 24px !important;
+            border: 0 !important;
+            border-bottom: 1px solid var(--sf-hard-line) !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            text-align: left;
+        }
+
+        .sf-winner-card:last-child {
+            border-bottom: 0 !important;
+        }
+
+        .sf-winner-rank {
+            display: grid;
+            grid-template-columns: 1fr 42px;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.72) !important;
+        }
+
+        .sf-winner-rank span {
+            font-size: 0.76rem;
+            line-height: 1.15;
+        }
+
+        .sf-winner-rank strong {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            min-height: 28px;
+            border: 1px solid rgba(239, 134, 19, 0.42);
+            color: #ffb25d !important;
+            font-family: 'Manrope', sans-serif !important;
+            font-size: 0.78rem !important;
+            line-height: 1 !important;
+            letter-spacing: 0 !important;
+        }
+
+        .sf-winner-card h4 {
+            margin: 0 !important;
+            color: #fff !important;
+            font-size: 1.15rem !important;
+        }
+
+        .sf-winner-card p {
+            color: rgba(255, 255, 255, 0.66) !important;
+        }
+
+        #home > .max-w-7xl > .flex.flex-col.sm\:flex-row.gap-4 a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0 22px !important;
+            border-radius: 2px !important;
+            box-shadow: none !important;
+            transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease !important;
+        }
+
+        #home > .max-w-7xl > .flex.flex-col.sm\:flex-row.gap-4 a:hover,
+        #home > .max-w-7xl > .flex.flex-col.sm\:flex-row.gap-4 a:focus-visible {
+            transform: none !important;
+        }
+
+        #home .flex.flex-col.sm\:flex-row.gap-4.justify-center.mb-12 a {
+            border-radius: 2px !important;
+            box-shadow: none !important;
+        }
+
+        #home .grid.mt-12 {
+            width: min(1080px, 100%);
+            margin-left: auto !important;
+            margin-right: auto !important;
+            gap: 0 !important;
+            overflow: hidden;
+            border: 1px solid var(--sf-hard-line);
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        #home .grid.mt-12 > div {
+            min-height: 138px;
+            padding: 22px 18px !important;
+            border: 0 !important;
+            border-right: 1px solid var(--sf-hard-line) !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            text-align: left;
+        }
+
+        #home .grid.mt-12 > div:last-child {
+            border-right: 0 !important;
+        }
+
+        #home .grid.mt-12 i {
+            display: block;
+            margin-bottom: 14px !important;
+            color: #ffb25d !important;
+            font-size: 1.55rem !important;
+        }
+
+        #home .grid.mt-12 h3 {
+            color: #fff !important;
+            font-size: 1.05rem !important;
+        }
+
+        #home .grid.mt-12 p {
+            color: rgba(255, 255, 255, 0.62) !important;
+        }
+
+        .sf-video-card,
+        .sf-series-card,
+        .sf-participant-card,
+        .sf-patterns-card,
+        .sf-patterns-panel,
+        .sf-series-cta,
+        .sf-live-replay-card,
+        .sf-first-result-card,
+        .sf-first-table-wrap {
+            border-radius: 2px !important;
+            box-shadow: none !important;
+        }
+
+        .sf-video-card:hover,
+        .sf-series-card:hover,
+        .sf-patterns-card:hover,
+        .sf-participant-card:hover,
+        .sf-winner-card:hover {
+            transform: none !important;
+            border-color: rgba(239, 134, 19, 0.32) !important;
+        }
+
+        .sf-video-actions a:nth-child(2),
+        .sf-patterns-secondary {
+            border-color: rgba(239, 134, 19, 0.24) !important;
+            background: rgba(239, 134, 19, 0.08) !important;
+            color: var(--alleria-orange-dark) !important;
+        }
+
+        @media (max-width: 900px) {
+            .sf-winners-head {
+                display: grid;
+            }
+
+            .sf-winner-card {
+                grid-template-columns: 108px minmax(0, 1fr);
+            }
+
+            .sf-winner-card p {
+                grid-column: 2;
+            }
+
+            #home .grid.mt-12 {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+
+            #home .grid.mt-12 > div:nth-child(2n) {
+                border-right: 0 !important;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .sf-winners-board {
+                width: min(100%, 358px);
+            }
+
+            .sf-winners-head {
+                padding: 18px;
+            }
+
+            .sf-winner-card {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 16px 18px !important;
+            }
+
+            .sf-winner-card p {
+                grid-column: auto;
+            }
+
+            #home .grid.mt-12 {
+                grid-template-columns: 1fr !important;
+            }
+
+            #home .grid.mt-12 > div {
+                border-right: 0 !important;
+                border-bottom: 1px solid var(--sf-hard-line) !important;
+            }
+
+            #home .grid.mt-12 > div:last-child {
+                border-bottom: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
